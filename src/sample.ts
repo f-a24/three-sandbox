@@ -17,7 +17,12 @@ export default () => {
   const scene = new THREE.Scene();
 
   // カメラを作成
-  const camera = new THREE.PerspectiveCamera(45, VIEWPORT_W / VIEWPORT_H, 1, 1000);
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    VIEWPORT_W / VIEWPORT_H,
+    1,
+    1000
+  );
 
   // 箱を作成
   const geometry = new THREE.BoxGeometry(1, 1, 1);

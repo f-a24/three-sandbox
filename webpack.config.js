@@ -1,6 +1,6 @@
 module.exports = {
-  mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
-  entry: `${__dirname}/src/js/index.js`,
+  mode: 'production',
+  entry: `${__dirname}/src/index.ts`,
   output: {
     path: `${__dirname}/public`,
     filename: 'index.js'
@@ -8,16 +8,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        ],
-        exclude: /node_modules/
+        test: /\.ts$/,
+        use: 'ts-loader'
       },
       {
         test: /\.(css|scss)$/,
@@ -40,7 +32,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.ts', '.js']
   },
   plugins: [],
   performance: {

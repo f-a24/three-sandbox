@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import Stats from 'stats.js';
+import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
 
 export default () => {
@@ -11,7 +11,12 @@ export default () => {
   const scene = new THREE.Scene();
 
   /* camera */
-  const camera = new THREE.PerspectiveCamera(45, VIEWPORT_W / VIEWPORT_H, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    VIEWPORT_W / VIEWPORT_H,
+    0.1,
+    1000
+  );
   camera.position.x = -30;
   camera.position.y = 40;
   camera.position.z = 30;
@@ -74,13 +79,13 @@ export default () => {
 
   /* stats */
   const initStats = () => {
-    const stats = new Stats();
-    stats.setMode(0);
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.getElementById('Stats-output').appendChild(stats.domElement);
-    return stats;
+    const statsObj = new Stats();
+    statsObj.showPanel(0);
+    statsObj.dom.style.position = 'absolute';
+    statsObj.dom.style.left = '0px';
+    statsObj.dom.style.top = '0px';
+    document.getElementById('Stats-output').appendChild(statsObj.dom);
+    return statsObj;
   };
   const stats = initStats();
 
