@@ -38,6 +38,9 @@ module.exports = {
   performance: {
     hints: false
   },
+  externals: {
+    THREE: 'three',
+  },
   devServer: {
     contentBase: `${__dirname}/public`,
     port: 3000,

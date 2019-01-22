@@ -9,6 +9,7 @@
       "check-format",
       "allow-pascal-case"
     ],
+    "no-console": false,
     "prettier": [true, { "singleQuote": true }]
   }
 }
