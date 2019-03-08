@@ -39,7 +39,7 @@ module.exports = {
     hints: false
   },
   externals: {
-    THREE: 'three',
+    THREE: 'three'
   },
   devServer: {
     contentBase: `${__dirname}/public`,

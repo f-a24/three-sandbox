@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
+import createMultiMaterialObject from './createMultiMaterialObject';
 import 'imports-loader?THREE=three!../node_modules/three/examples/js/QuickHull';
 import 'imports-loader?THREE=three!../node_modules/three/examples/js/geometries/ConvexGeometry';
 // import 'imports-loader?THREE=three!../node_modules/three/examples/js/utils/SceneUtils';
@@ -135,17 +136,7 @@ export default () => {
         })
       ];
 
-      // const mesh = THREE.SceneUtils.createMultiMaterialObject(
-      //   geoms[i],
-      //   materials
-      // );
-      const mesh = ((geometry, materials) => {
-        const group = new THREE.Group();
-        materials.forEach(material => {
-          group.add(new THREE.Mesh(geometry, material));
-        });
-        return group;
-      })(geoms[i], materials);
+      const mesh = createMultiMaterialObject(geoms[i], materials);
       mesh.traverse(e => {
         e.castShadow = true;
       });
