@@ -131,8 +131,23 @@ THREE.Scene
   - THREE.ConvexGeometry
   - THREE.SceneUtils.createMultiMaterialObject
 
+    - import-loader & 型拡張で対応
+
 - 効いてないっぽい（バグ？設定ミス？）
   - THREE.MeshPhongMaterial
     - **scene.overrideMaterial プロパティが設定されていただけでした…**
 
 ## 3 章　光源
+
+### ハマったところ
+
+- THREE.Object3D や THREE.Mesh の position プロパティに THREE.Vector3 代入するとエラー
+
+```js
+// Typeエラー？
+target.position = new THREE.Vector3(5, 0, 0);
+// こっちだと上手くいく
+target.position.set(5, 0, 0);
+```
+
+- THREE.DirectionalLight に distance & angle の型定義がない（そもそもプロパティすらない？）

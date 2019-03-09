@@ -116,11 +116,6 @@ export default () => {
 
     let j = 0;
     for (let i = 0; i < geoms.length; i++) {
-      const cubeMaterial = new THREE.MeshLambertMaterial({
-        wireframe: true,
-        color: Math.random() * 0xffffff
-      });
-
       const materials = [
         new THREE.MeshPhongMaterial({
           color: Math.random() * 0xffffff,

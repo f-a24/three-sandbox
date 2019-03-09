@@ -76,7 +76,6 @@ export default () => {
     new THREE.Face3(1, 3, 4),
     new THREE.Face3(3, 6, 4)
   ];
-
   geom.computeFaceNormals();
 
   const materials = [
@@ -95,14 +94,11 @@ export default () => {
 
   scene.add(mesh);
 
-  function addControl(x, y, z) {
-    const controls = new function() {
-      this.x = x;
-      this.y = y;
-      this.z = z;
-    }();
-    return controls;
-  }
+  const addControl = (x: number, y: number, z: number) => ({
+    x,
+    y,
+    z
+  });
 
   const controlPoints = [];
   controlPoints.push(addControl(3, 5, 3));
@@ -129,7 +125,7 @@ export default () => {
           new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true })
         ];
         const mesh2 = createMultiMaterialObject(clonedGeometry, materials);
-        mesh2.children.forEach(function(e) {
+        mesh2.children.forEach(e => {
           e.castShadow = true;
         });
         mesh2.translateX(5);
@@ -167,7 +163,7 @@ export default () => {
   /* render */
   const render = () => {
     stats.update();
-    mesh.children.forEach(function(e) {
+    mesh.children.forEach(e => {
       for (var i = 0; i < 8; i++) {
         ((e as THREE.Mesh).geometry as THREE.Geometry).vertices[i].set(
           controlPoints[i].x,

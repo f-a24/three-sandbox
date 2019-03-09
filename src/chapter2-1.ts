@@ -89,7 +89,7 @@ export default () => {
     }
   };
   /* stats */
-  function initStats() {
+  const initStats = () => {
     const statsObj = new Stats();
     statsObj.showPanel(0);
     statsObj.dom.style.position = 'absolute';
@@ -99,7 +99,7 @@ export default () => {
     document.getElementById('Stats-output').appendChild(statsObj.dom);
 
     return statsObj;
-  }
+  };
   const stats = initStats();
 
   /* gui */

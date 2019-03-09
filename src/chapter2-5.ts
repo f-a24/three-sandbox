@@ -69,9 +69,9 @@ export default () => {
   const ambientLight = new THREE.AmbientLight(0x292929);
   scene.add(ambientLight);
 
-  const controls = new function() {
-    this.perspective = 'Perspective';
-    this.switchCamera = function() {
+  const controls = {
+    perspective: 'Perspective',
+    switchCamera: () => {
       if (camera instanceof THREE.PerspectiveCamera) {
         camera = new THREE.OrthographicCamera(
           window.innerWidth / -16,
@@ -85,7 +85,7 @@ export default () => {
         camera.position.y = 60;
         camera.position.z = 180;
         camera.lookAt(scene.position);
-        this.perspective = 'Orthographic';
+        controls.perspective = 'Orthographic';
       } else {
         camera = new THREE.PerspectiveCamera(
           45,
@@ -97,10 +97,10 @@ export default () => {
         camera.position.y = 60;
         camera.position.z = 180;
         camera.lookAt(scene.position);
-        this.perspective = 'Perspective';
+        controls.perspective = 'Perspective';
       }
-    };
-  }();
+    }
+  };
 
   const gui = new dat.GUI();
   gui.add(controls, 'switchCamera');

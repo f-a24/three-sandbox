@@ -57,30 +57,30 @@ export default () => {
   cube.castShadow = true;
   scene.add(cube);
 
-  const controls = new function() {
-    this.scaleX = 1;
-    this.scaleY = 1;
-    this.scaleZ = 1;
-    this.positionX = 0;
-    this.positionY = 4;
-    this.positionZ = 0;
-    this.rotationX = 0;
-    this.rotationY = 0;
-    this.rotationZ = 0;
-    this.scale = 1;
-    this.translateX = 0;
-    this.translateY = 0;
-    this.translateZ = 0;
-    this.visible = true;
-    this.translate = function() {
+  const controls = {
+    scaleX: 1,
+    scaleY: 1,
+    scaleZ: 1,
+    positionX: 0,
+    positionY: 4,
+    positionZ: 0,
+    rotationX: 0,
+    rotationY: 0,
+    rotationZ: 0,
+    scale: 1,
+    translateX: 0,
+    translateY: 0,
+    translateZ: 0,
+    visible: true,
+    translate: () => {
       cube.translateX(controls.translateX);
       cube.translateY(controls.translateY);
       cube.translateZ(controls.translateZ);
       controls.positionX = cube.position.x;
       controls.positionY = cube.position.y;
       controls.positionZ = cube.position.z;
-    };
-  }();
+    }
+  };
   const gui = new dat.GUI();
   const guiScale = gui.addFolder('scale');
   guiScale.add(controls, 'scaleX', 0, 5);
