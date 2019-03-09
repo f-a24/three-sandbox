@@ -55,7 +55,6 @@ export default () => {
   spotLight.castShadow = true;
   scene.add(spotLight);
 
-  const step = 0;
   const vertices = [
     new THREE.Vector3(1, 3, 1),
     new THREE.Vector3(1, 3, -1),
