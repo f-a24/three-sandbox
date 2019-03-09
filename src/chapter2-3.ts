@@ -10,10 +10,6 @@ export default () => {
 
   /* scene */
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0xffffff, 0.015, 100);
-  scene.overrideMaterial = new THREE.MeshLambertMaterial({
-    color: 0xffffff
-  });
 
   /* camera */
   const camera = new THREE.PerspectiveCamera(
@@ -55,7 +51,8 @@ export default () => {
   spotLight.castShadow = true;
   scene.add(spotLight);
 
-  const vertices = [
+  const geom = new THREE.Geometry();
+  geom.vertices = [
     new THREE.Vector3(1, 3, 1),
     new THREE.Vector3(1, 3, -1),
     new THREE.Vector3(1, -1, 1),
@@ -65,8 +62,7 @@ export default () => {
     new THREE.Vector3(-1, -1, -1),
     new THREE.Vector3(-1, -1, 1)
   ];
-
-  const faces = [
+  geom.faces = [
     new THREE.Face3(0, 2, 1),
     new THREE.Face3(2, 3, 1),
     new THREE.Face3(4, 6, 5),
@@ -81,9 +77,6 @@ export default () => {
     new THREE.Face3(3, 6, 4)
   ];
 
-  const geom = new THREE.Geometry();
-  geom.vertices = vertices;
-  geom.faces = faces;
   geom.computeFaceNormals();
 
   const materials = [

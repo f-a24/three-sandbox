@@ -16,10 +16,6 @@ export default () => {
 
   /* scene */
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0xffffff, 0.015, 100);
-  scene.overrideMaterial = new THREE.MeshLambertMaterial({
-    color: 0xffffff
-  });
 
   /* camera */
   const camera = new THREE.PerspectiveCamera(
