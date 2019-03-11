@@ -9,6 +9,9 @@ import chapter3_1 from './chapter3-1';
 import chapter3_2 from './chapter3-2';
 import chapter3_3 from './chapter3-3';
 import chapter3_4 from './chapter3-4';
+import chapter3_5 from './chapter3-5';
+import chapter3_6 from './chapter3-6';
+import chapter3_7 from './chapter3-7';
 import './sass/style.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -22,5 +25,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // chapter3_1();
   // chapter3_2();
   // chapter3_3();
-  chapter3_4();
+  // chapter3_4();
+  chapter3_5();
+  // [wip]chapter3_6();
+  // [wip]chapter3_7();
 });
