@@ -215,3 +215,72 @@ target.position.set(5, 0, 0);
   - FilmicOperator（？）
   - AreaLight（ → RectAreaLight？）
   - LensFlare（/examples/js/objects/Lensflare.js に移動）
+
+## 4 章　マテリアル
+
+- マテリアルは THREE.Geometry と組み合わせて THREE.Mesh を構成するもの
+
+| マテリアル           | 説明                                                                                                   |
+| :------------------- | :----------------------------------------------------------------------------------------------------- |
+| MeshBasicMaterial    | 単純な色を設定                                                                                         |
+| MeshDepthMaterial    | カメラからの距離を使用して色を決定                                                                     |
+| MeshNormalMaterial   | 面の色をその法線ベクトルに従って決定                                                                   |
+| MultiMaterial        | それぞれの面に独自の設定                                                                               |
+| MeshLambertMaterial  | 光を鈍く反射する光沢のあまりないオブジェクトの作成に利用                                               |
+| MeshPhongMaterial    | 光沢のあるオブジェクトの作成に利用                                                                     |
+| MeshStandardMaterial | 簡易的な物理ベースレンダリングを使用                                                                   |
+| ShaderMaterial       | 独自のシェーダープログラムを指定し、頂点をどのように配置して各ピクセルにどのように色を付けるか直接制御 |
+| LineBasicMaterial    | THREE.Line ジオメトリで利用でき、色の付いた線を作成                                                    |
+| LineDashMaterial     | 点線の効果も作成                                                                                       |
+
+- マテリアル共通プロパティ
+
+  - 基本的なプロパティ
+
+  | プロパティ     | 説明 |
+  | :------------- | :--- |
+  | id             |      |
+  | uuid           |      |
+  | name           |      |
+  | opacity        |      |
+  | transparent    |      |
+  | overdraw       |      |
+  | vidible        |      |
+  | side           |      |
+  | clippingPlanes |      |
+  | clipShadows    |      |
+  | needsUpdate    |      |
+
+  - ブレンディングプロパティ
+
+  | プロパティ         | 説明 |
+  | :----------------- | :--- |
+  | blending           |      |
+  | blendSrc           |      |
+  | blendDst           |      |
+  | blendEquation      |      |
+  | blendSrcAlpha      |      |
+  | blendDstAlpha      |      |
+  | blendEquationAlpha |      |
+
+  - 高度なプロパティ
+
+  | プロパティ          | 説明 |
+  | :------------------ | :--- |
+  | depthTest           |      |
+  | depthWrite          |      |
+  | polygonOffset       |      |
+  | polygonOffsetFactor | 〃   |
+  | polygonOffsetUnits  | 〃   |
+  | alphaTest           |      |
+
+- 単純なマテリアル（MeshBasicMaterial, MeshDepthMaterial, MeshNormalMaterial, MultiMaterial）
+  - MeshBasicMaterial
+  - MeshDepthMaterial
+  - MeshNormalMaterial
+  - MultiMaterial
+
+### ハマったところ
+
+r98 で CanvasRenderer が削除されている
+https://twitter.com/mrdoob/status/1058022036038148096
