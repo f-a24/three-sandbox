@@ -19,6 +19,10 @@ import chapter4_4 from './chapter4-4';
 import chapter4_5 from './chapter4-5';
 import chapter4_6 from './chapter4-6';
 import chapter4_7 from './chapter4-7';
+import chapter4_8 from './chapter4-8';
+import chapter4_9 from './chapter4-9';
+import chapter4_10 from './chapter4-10';
+import chapter4_11 from './chapter4-11';
 import './sass/style.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -42,5 +46,9 @@ window.addEventListener('DOMContentLoaded', () => {
   // chapter4_4();
   // chapter4_5();
   // chapter4_6();
-  chapter4_7();
+  // chapter4_7();
+  // chapter4_8();
+  // chapter4_9();
+  chapter4_10();
+  // chapter4_11();
 });
