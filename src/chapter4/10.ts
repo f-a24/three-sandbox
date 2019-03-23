@@ -34,12 +34,11 @@ export default () => {
   const spotLight = new THREE.SpotLight(0xffffff);
   spotLight.position.set(-40, 60, -10);
   spotLight.castShadow = true;
-  spotLight.intensity = 0.6;
   scene.add(spotLight);
 
   const gosper = (a: number, b: number) => {
     const turtle = [0, 0, 0];
-    const points = [];
+    const points = <{ x: number; y: number; z: number }[]>[];
     const count = 0;
     const rt = (x: number) => {
       turtle[2] += x;
@@ -49,7 +48,7 @@ export default () => {
     };
     const fd = (dist: number) => {
       points.push({ x: turtle[0], y: turtle[1], z: Math.sin(count) * 5 });
-      var dir = turtle[2] * (Math.PI / 180);
+      const dir = turtle[2] * (Math.PI / 180);
       turtle[0] += Math.cos(dir) * dist;
       turtle[1] += Math.sin(dir) * dist;
       points.push({ x: turtle[0], y: turtle[1], z: Math.sin(count) * 5 });
@@ -129,22 +128,25 @@ export default () => {
   const points = gosper(4, 60);
 
   const lines = new THREE.Geometry();
-  const colors = [];
+  const colors = <THREE.Color[]>[];
   let i = 0;
-  points.forEach(function(e) {
+  points.forEach((e: { x: number; y: number; z: number }) => {
     lines.vertices.push(new THREE.Vector3(e.x, e.z, e.y));
     colors[i] = new THREE.Color(0xffffff);
     colors[i].setHSL(e.x / 100 + 0.5, (e.y * 20) / 300, 0.8);
     i++;
   });
   lines.colors = colors;
+
   const material = new THREE.LineDashedMaterial({
+    vertexColors: THREE.VertexColors,
     dashSize: 2,
     gapSize: 2,
     scale: 0.1
   });
   const line = new THREE.Line(lines, material);
   line.position.set(25, -30, -60);
+  line.computeLineDistances();
   scene.add(line);
 
   document.getElementById('WebGL-output').appendChild(webGLRenderer.domElement);

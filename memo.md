@@ -287,3 +287,7 @@ target.position.set(5, 0, 0);
 - THREE.MeshFaceMaterial が削除されている
   - 代わりに material 配列を使用
   - https://threejs.org/docs/#api/en/deprecated/DeprecatedLis
+- computeLineDistances()は lines(THREE.Geometry)ではなく line(THREE.Line)
+- THREE.LineDashedMaterial のオプション vertexColors は boolean ではなく THREE.VertexColors(THREE.Colors)
+
+## 5 章　ジオメトリ

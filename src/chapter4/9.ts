@@ -39,7 +39,7 @@ export default () => {
 
   const gosper = (a: number, b: number) => {
     const turtle = [0, 0, 0];
-    const points = [];
+    const points = <{ x: number; y: number; z: number }[]>[];
     const count = 0;
     const rt = (x: number) => {
       turtle[2] += x;
@@ -129,7 +129,7 @@ export default () => {
   const points = gosper(4, 60);
 
   const lines = new THREE.Geometry();
-  const colors = [];
+  const colors = <THREE.Color[]>[];
   let i = 0;
   points.forEach(function(e) {
     lines.vertices.push(new THREE.Vector3(e.x, e.z, e.y));

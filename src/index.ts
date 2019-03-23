@@ -23,6 +23,18 @@ import chapter4_8 from './chapter4/8';
 import chapter4_9 from './chapter4/9';
 import chapter4_10 from './chapter4/10';
 import chapter4_11 from './chapter4/11';
+import chapter5_1 from './chapter5/1';
+import chapter5_2 from './chapter5/2';
+import chapter5_3 from './chapter5/3';
+import chapter5_4 from './chapter5/4';
+import chapter5_5 from './chapter5/5';
+import chapter5_6 from './chapter5/6';
+import chapter5_7 from './chapter5/7';
+import chapter5_8 from './chapter5/8';
+import chapter5_9 from './chapter5/9';
+import chapter5_10 from './chapter5/10';
+import chapter5_11 from './chapter5/11';
+import chapter5_12 from './chapter5/12';
 import './sass/style.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -49,6 +61,18 @@ window.addEventListener('DOMContentLoaded', () => {
   // chapter4_7();
   // chapter4_8();
   // chapter4_9();
-  chapter4_10();
+  // chapter4_10();
   // chapter4_11();
+  // chapter5_1();
+  // chapter5_2();
+  // chapter5_3();
+  // chapter5_4();
+  // chapter5_5();
+  // chapter5_6();
+  // chapter5_7();
+  // chapter5_8();
+  // chapter5_9();
+  // chapter5_10();
+  // chapter5_11();
+  chapter5_12();
 });
