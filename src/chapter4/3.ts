@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
 
-import createMultiMaterialObject from './createMultiMaterialObject';
+import createMultiMaterialObject from '../utils/createMultiMaterialObject';
 
 export default () => {
   // 画面サイズ
