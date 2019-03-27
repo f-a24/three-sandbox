@@ -35,6 +35,11 @@ import chapter5_9 from './chapter5/9';
 import chapter5_10 from './chapter5/10';
 import chapter5_11 from './chapter5/11';
 import chapter5_12 from './chapter5/12';
+import chapter6_1 from './chapter6/1';
+import chapter6_2 from './chapter6/2';
+import chapter6_3 from './chapter6/3';
+import chapter6_4 from './chapter6/4';
+import chapter6_5 from './chapter6/5';
 import './sass/style.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -74,5 +79,10 @@ window.addEventListener('DOMContentLoaded', () => {
   // chapter5_9();
   // chapter5_10();
   // chapter5_11();
-  chapter5_12();
+  // chapter5_12();
+  // chapter6_1();
+  // chapter6_2();
+  // chapter6_3();
+  // chapter6_4();
+  chapter6_5();
 });

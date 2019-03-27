@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import createMultiMaterialObject from '../utils/createMultiMaterialObject';
-import 'imports-loader?THREE=three!../node_modules/three/examples/js/QuickHull';
-import 'imports-loader?THREE=three!../node_modules/three/examples/js/geometries/ConvexGeometry';
-// import 'imports-loader?THREE=three!../node_modules/three/examples/js/utils/SceneUtils';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/QuickHull';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/geometries/ConvexGeometry';
+// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/utils/SceneUtils';
 
 declare module 'three' {
   function ConvexGeometry(points: THREE.Vector3[]): void;
