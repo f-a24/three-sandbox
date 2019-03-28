@@ -212,7 +212,9 @@ target.position.set(5, 0, 0);
 - THREE にないプロパティ（examples にあるもの）
 
   - WebGLDeferredRenderer（examples）
+    - import-loader & 型拡張で対応
   - FilmicOperator（？）
+    - 見当たらないので除外
   - AreaLight（ → RectAreaLight？）
   - LensFlare（/examples/js/objects/Lensflare.js に移動）
 
@@ -291,3 +293,11 @@ target.position.set(5, 0, 0);
 - THREE.LineDashedMaterial のオプション vertexColors は boolean ではなく THREE.VertexColors(THREE.Colors)
 
 ## 5 章　ジオメトリ
+
+## 6 章　高度なジオメトリとブーリアン演算
+
+### ハマったところ
+
+- THREE.ParametricGeometry の第一引数は func(u: number, v: number, dest: THREE.Vector3)で結果 dest に set する関数
+  - klein は examples/js/ParametricGeometries にある
+- THREE.MeshPhongMaterial 効いてない？

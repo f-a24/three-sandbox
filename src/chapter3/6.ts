@@ -1,11 +1,22 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-import 'imports-loader?THREE=three!../node_modules/three/examples/js/renderers/WebGLDeferredRenderer';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/renderers/WebGLDeferredRenderer';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/EffectComposer';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/shaders/CopyShader';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/RenderPass';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/ShaderPass';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/shaders/FXAAShader';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/lights/RectAreaLightUniformsLib';
 
 declare module 'three' {
-  function WebGLDeferredRenderer(params: any): void;
-  var FilmicOperator: any;
+  function WebGLDeferredRenderer(parameters?: {
+    renderer?: THREE.Renderer;
+    width?: number;
+    height?: number;
+    antialias?: boolean;
+    cacheKeepAlive?: boolean;
+  }): void;
 }
 
 export default () => {
@@ -32,10 +43,8 @@ export default () => {
   const renderer = new THREE.WebGLDeferredRenderer({
     width: window.innerWidth,
     height: window.innerHeight,
-    scale: 1,
     antialias: true,
-    tonemapping: THREE.FilmicOperator,
-    brightness: 2.5
+    cacheKeepAlive: true
   });
 
   /* plane */

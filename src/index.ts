@@ -40,6 +40,7 @@ import chapter6_2 from './chapter6/2';
 import chapter6_3 from './chapter6/3';
 import chapter6_4 from './chapter6/4';
 import chapter6_5 from './chapter6/5';
+import chapter6_6 from './chapter6/6';
 import './sass/style.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -55,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // chapter3_3();
   // chapter3_4();
   // chapter3_5();
-  // [wip]chapter3_6();
+  // chapter3_6();
   // [wip]chapter3_7();
   // chapter4_1();
   // chapter4_2();
@@ -84,5 +85,6 @@ window.addEventListener('DOMContentLoaded', () => {
   // chapter6_2();
   // chapter6_3();
   // chapter6_4();
-  chapter6_5();
+  // chapter6_5();
+  chapter6_6();
 });
