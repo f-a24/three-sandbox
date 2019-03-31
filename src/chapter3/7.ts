@@ -2,11 +2,7 @@ import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
 // import 'imports-loader?THREE=three!../node_modules/three/examples/js/objects/Lensflare.js';
-import 'three/Lensflare';
-
-declare module 'three' {
-  var LensFlare: any;
-}
+import { Lensflare, LensflareElement } from '../utils/Lensflare';
 
 export default () => {
   // 画面サイズ
@@ -109,6 +105,21 @@ export default () => {
   spotLight.shadow.mapSize.height = 2048;
   scene.add(spotLight);
 
+  /* LensFlare */
+  const textureFlare0 = textureLoader.load('./assets/lensflare0.png');
+  const textureFlare3 = textureLoader.load('./assets/lensflare3.png');
+  const flareColor = new THREE.Color(0xffaacc);
+  const lensFlare = new Lensflare();
+  lensFlare.addElement(
+    new LensflareElement(textureFlare0, 350, 0.0, flareColor)
+  );
+  lensFlare.addElement(new LensflareElement(textureFlare3, 60, 0.6));
+  lensFlare.addElement(new LensflareElement(textureFlare3, 70, 0.7));
+  lensFlare.addElement(new LensflareElement(textureFlare3, 120, 0.9));
+  lensFlare.addElement(new LensflareElement(textureFlare3, 70, 1.0));
+  lensFlare.position.copy(spotLight0.position);
+  scene.add(lensFlare);
+
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
   /* stats */
@@ -153,24 +164,6 @@ export default () => {
   gui.add(controls, 'intensity', 0, 5).onChange((e: number) => {
     spotLight.intensity = e;
   });
-
-  const textureFlare0 = textureLoader.load('./assets/lensflare0.png');
-  const textureFlare3 = textureLoader.load('./assets/lensflare3.png');
-  const flareColor = new THREE.Color(0xffaacc);
-  console.log('-------', THREE);
-  const lensFlare = new THREE.LensFlare(
-    textureFlare0,
-    350,
-    0.0,
-    THREE.AdditiveBlending,
-    flareColor
-  );
-  lensFlare.add(textureFlare3, 60, 0.6, THREE.AdditiveBlending);
-  lensFlare.add(textureFlare3, 70, 0.7, THREE.AdditiveBlending);
-  lensFlare.add(textureFlare3, 120, 0.9, THREE.AdditiveBlending);
-  lensFlare.add(textureFlare3, 70, 1.0, THREE.AdditiveBlending);
-  lensFlare.position.copy(spotLight.position);
-  scene.add(lensFlare);
 
   /* resize */
   window.addEventListener(
