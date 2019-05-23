@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[72],{362:function(module,exports){module.exports="# 初めての Three.js【メモ】\r\n\r\nTypeScript x Webpack での挑戦\r\n\r\n## 6 章　高度なジオメトリとブーリアン演算\r\n\r\n### ハマったところ\r\n\r\n- THREE.ParametricGeometry の第一引数は func(u: number, v: number, dest: THREE.Vector3)で結果 dest に set する関数\r\n  - klein は examples/js/ParametricGeometries にある\r\n- THREE.MeshPhongMaterial 効いてない？\r\n"}}]);
+//# sourceMappingURL=72.c8f2cf5d170200fd0583.bundle.js.map

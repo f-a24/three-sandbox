@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[70],{360:function(module,exports){module.exports="# 初めての Three.js【メモ】\r\n\r\nTypeScript x Webpack での挑戦\r\n\r\n## 7 章　パーティクル、スプライト、ポイントクラウド\r\n\r\n### ハマったところ\r\n\r\n- 4 で THREE.CanvasRenderer や THREE.SpriteCanvasMaterial がない\r\n  - THREE.SpriteMaterial に{map: THREE.CanvasTexture}で試したらいけた！\r\n    - 05b-program-based-sprites-webgl.html にありました…\r\n"}}]);
-//# sourceMappingURL=70.5c7e7b0908d5d45295ef.bundle.js.map
