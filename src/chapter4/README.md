@@ -60,11 +60,102 @@ TypeScript x Webpack での挑戦
   | polygonOffsetUnits  | 〃                                                          |
   | alphaTest           | 透明度に関係するアーチファクトのいくつかを解決              |
 
-- 単純なマテリアル（MeshBasicMaterial, MeshDepthMaterial, MeshNormalMaterial, MultiMaterial）
+- **単純なマテリアル（MeshBasicMaterial, MeshDepthMaterial, MeshNormalMaterial, MultiMaterial）**
+
   - MeshBasicMaterial
+
+  | プロパティ         | 説明                                                                                                    |
+  | :----------------- | :------------------------------------------------------------------------------------------------------ |
+  | color              | マテリアルの色を設定                                                                                    |
+  | wireframe          | マテリアルをワイヤーフレームとして描画                                                                  |
+  | wireframeLinewidth | ワイヤーフレームが有効の場合、ワイヤーフレームのワイヤーの太さを設定                                    |
+  | wireframeLinecap   | ワイヤーフレームが有効の場合、線の終端を butt、round、square から設定(WebGLRenderer では未サポート)     |
+  | wireframeLinejoin  | ワイヤーフレームが有効の場合、線の結合部分を round、bevel、miter から設定(WebGLRenderer では未サポート) |
+  | vertexColors       | それぞれの頂点に適用される色を個別に設定                                                                |
+  | fog                | グローバルな fog 設定の影響を受けるかどうか指定                                                         |
+
   - MeshDepthMaterial
+
+  | プロパティ         | 説明                                                                 |
+  | :----------------- | :------------------------------------------------------------------- |
+  | wireframe          | マテリアルをワイヤーフレームとして描画                               |
+  | wireframeLinewidth | ワイヤーフレームが有効の場合、ワイヤーフレームのワイヤーの太さを設定 |
+
   - MeshNormalMaterial
+
+  | プロパティ         | 説明                                                                 |
+  | :----------------- | :------------------------------------------------------------------- |
+  | wireframe          | マテリアルをワイヤーフレームとして描画                               |
+  | wireframeLinewidth | ワイヤーフレームが有効の場合、ワイヤーフレームのワイヤーの太さを設定 |
+
   - MultiMaterial
+
+- **高度なマテリアル（MeshLambertMaterial, MeshPhongMaterial, MeshStandardMaterial, ShaderMaterial）**
+
+  - MeshLambertMaterial
+
+  | プロパティ | 説明                 |
+  | :--------- | :------------------- |
+  | emissive   | マテリアルが発する色 |
+
+  - MeshPhongMaterial
+
+  | プロパティ | 説明                                                     |
+  | :--------- | :------------------------------------------------------- |
+  | emissive   | マテリアルが発する色                                     |
+  | specular   | マテリアルにどのくらい光沢があるかと、その光沢の色を指定 |
+  | shininess  | 反射するハイライトがどのくらい明るいか指定               |
+  | shading    | シェーディングがどのように適用されるか定義               |
+
+  - MeshStandardMaterial
+
+  | プロパティ   | 説明                                             |
+  | :----------- | :----------------------------------------------- |
+  | metalness    | 金属性、光をどの程度どのような色で反射するか決定 |
+  | metalnessMap | metalness をより細かく指定するテクスチャ         |
+  | roughness    | 表面の粗さ、光沢の度合いを指定                   |
+  | roughnessMap | roughness をより細かく指定するテクスチャ         |
+
+  - ShaderMaterial
+
+  | プロパティ         | 説明                                                                 |
+  | :----------------- | :------------------------------------------------------------------- |
+  | wireframe          | マテリアルをワイヤーフレームとして描画                               |
+  | wireframeLinewidth | ワイヤーフレームが有効の場合、ワイヤーフレームのワイヤーの太さを設定 |
+  | linewidth          | 描画される線の太さを指定                                             |
+  | shading            | シェーディングがどのように適用されるか定義                           |
+  | vertexColors       | それぞれの頂点に適用される色を個別に設定                             |
+  | fog                | グローバルな fog 設定の影響を受けるかどうか指定                      |
+
+  | 特殊なプロパティ | 説明                                                                                           |
+  | :--------------- | :--------------------------------------------------------------------------------------------- |
+  | fragmentShader   | 受け取ったピクセルの色を指定、フラグメントシェーダープログラムを文字列で渡す                   |
+  | vertexShader     | 頂点の位置を変更、頂点シェーダープログラムを文字列で渡す                                       |
+  | uniforms         | シェーダーに情報を送ることができ、頂点シェーダーとフラグメントシェーダーの両方に同じ情報を送信 |
+  | defines          | #defines に変換され、シェーダープログラムにグローバル変数を追加                                |
+  | attributes       | 頂点シェーダーとフラグメントシェーダーの呼び出しごとに異なる値を設定                           |
+  | lights           | ライトのデータをシェーダーに渡すかどうか指定                                                   |
+
+* **ラインジオメトリで利用できるマテリアル（LineBasicMaterial, LineDashedMaterial）**
+
+  - LineBasicMaterial
+
+  | プロパティ   | 説明                                                                      |
+  | :----------- | :------------------------------------------------------------------------ |
+  | color        | 線の色を指定（vertexColors を指定すると無視）                             |
+  | linewidth    | 線の幅を指定                                                              |
+  | linecap      | 線の終端を butt、round、square から設定(WebGLRenderer では未サポート)     |
+  | linejoin     | 線の結合部分を round、bevel、miter から設定(WebGLRenderer では未サポート) |
+  | vertexColors | それぞれの頂点に適用される色を個別に設定                                  |
+  | fog          | グローバルな fog 設定の影響を受けるかどうか指定                           |
+
+  - LineDashedMaterial
+
+  | プロパティ | 説明                           |
+  | :--------- | :----------------------------- |
+  | scale      | dashSize と gapSize を拡大縮小 |
+  | dashSize   | 点の長さ                       |
+  | gapSize    | 点間の長さ                     |
 
 ### ハマったところ
 
