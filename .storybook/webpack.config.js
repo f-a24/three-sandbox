@@ -12,5 +12,7 @@ module.exports = ({ config, mode }) => {
     }
   );
   config.resolve.extensions.push('.ts', '.tsx');
+  config.node = { fs: 'empty' };
+
   return config;
 };

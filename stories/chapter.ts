@@ -1,4 +1,4 @@
-export default {
+export const chapter = {
   1: ['sample', '1'],
   2: ['1', '2', '3', '4', '5'],
   3: ['1', '2', '3', '4', '5', '6', '7'],
@@ -11,4 +11,9 @@ export default {
   10: [],
   11: [],
   12: []
+};
+
+export const appendix = {
+  A: [],
+  B: ['1', '2']
 };

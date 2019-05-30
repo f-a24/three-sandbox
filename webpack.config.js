@@ -47,6 +47,9 @@ module.exports = {
   externals: {
     THREE: 'three'
   },
+  node: {
+    fs: 'empty'
+  },
   devServer: {
     contentBase: `${__dirname}/public`,
     port: 3000,
