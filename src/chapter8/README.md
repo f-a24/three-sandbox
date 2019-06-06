@@ -7,3 +7,4 @@ TypeScript x Webpack での挑戦
 ### ハマったところ
 
 - r99 で THREE.JSONLoader が削除されている
+  - examples/js/loaders/deprecated/LegacyJSONLoader.js で対応

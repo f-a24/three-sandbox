@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[72],{361:function(module,exports){module.exports="# 初めての Three.js【メモ】\r\n\r\nTypeScript x Webpack での挑戦\r\n\r\n## 12 章　物理演算と立体音響\r\n"}}]);
-//# sourceMappingURL=72.f48b93ed6205ae3d8d7b.bundle.js.map

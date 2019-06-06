@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import * as Stats from 'stats.js';
-import * as dat from 'dat.gui';
+import 'imports-loader?THREE=three!../../node_modules/three/examples/js/vr/WebVR.js';
+import createMultiMaterialObject from '../utils/createMultiMaterialObject';
 
 export default () => {
   // 画面サイズ
@@ -13,104 +13,225 @@ export default () => {
   /* camera */
   const camera = new THREE.PerspectiveCamera(
     45,
-    VIEWPORT_W / VIEWPORT_H,
+    window.innerWidth / window.innerHeight,
     0.1,
     1000
   );
-  camera.position.x = 20;
-  camera.position.y = 0;
-  camera.position.z = 150;
+  camera.position.x = 8;
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   /* renderer */
   const renderer = new THREE.WebGLRenderer();
   renderer.setClearColor(new THREE.Color(0x000000));
   renderer.setSize(VIEWPORT_W, VIEWPORT_H);
+  // renderer.vr.enabled = true;
 
-  let cloud: THREE.Points;
-  const createParticles = (
+  const raycaster = new THREE.Raycaster();
+  var selectedDebri;
+
+  const createEarthMesh = (geom: THREE.Geometry) => {
+    const textureLoader = new THREE.TextureLoader();
+    const planetTexture = textureLoader.load('./assets/Earth.png');
+    const specularTexture = textureLoader.load('./assets/EarthSpec.png');
+    const normalTexture = textureLoader.load('./assets/EarthNormal.png');
+    const planetMaterial = new THREE.MeshPhongMaterial();
+    planetMaterial.specularMap = specularTexture;
+    planetMaterial.specular = new THREE.Color(0x4444aa);
+    planetMaterial.shininess = 5;
+    planetMaterial.normalMap = normalTexture;
+    planetMaterial.normalScale = new THREE.Vector2(5, 5);
+    planetMaterial.map = planetTexture;
+    return createMultiMaterialObject(geom, [planetMaterial]);
+  };
+
+  const createAirMesh = (geom: THREE.Geometry) => {
+    const planetMaterial = new THREE.MeshPhongMaterial();
+    planetMaterial.side = THREE.BackSide;
+    planetMaterial.transparent = true;
+    planetMaterial.opacity = 0.2;
+    planetMaterial.color = new THREE.Color(0xffffff);
+    return createMultiMaterialObject(geom, [planetMaterial]);
+  };
+
+  const createMoonMesh = (geom: THREE.Geometry) => {
+    const textureLoader = new THREE.TextureLoader();
+    const planetTexture = textureLoader.load('./assets/Moon.png');
+    const normalTexture = textureLoader.load('./assets/Mars-normalmap_2k.png');
+    const planetMaterial = new THREE.MeshPhongMaterial();
+    planetMaterial.normalMap = normalTexture;
+    planetMaterial.normalScale = new THREE.Vector2(5, 5);
+    planetMaterial.map = planetTexture;
+    planetMaterial.specularMap = planetTexture;
+    planetMaterial.specular = new THREE.Color(0x444400);
+    planetMaterial.shininess = 0;
+    return new THREE.Mesh(geom, planetMaterial);
+  };
+
+  const createStarPoints = (
+    num: number,
     size: number,
-    transparent: boolean,
-    opacity: number,
-    vertexColors: boolean,
-    sizeAttenuation: boolean,
-    color: string | number | THREE.Color
+    center: THREE.Vector3,
+    radius: number,
+    red?: boolean
   ) => {
     const geom = new THREE.Geometry();
-    const material = new THREE.PointsMaterial({
-      size: size,
-      transparent: transparent,
-      opacity: opacity,
-      vertexColors: vertexColors ? THREE.VertexColors : THREE.NoColors,
-      sizeAttenuation: sizeAttenuation,
-      color: color
-    });
-    const range = 500;
-    for (let i = 0; i < 15000; i++) {
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load(
+      red ? './assets/lensflare0.png' : './assets/lensflare0_white.png'
+    );
+    const material = new THREE.PointsMaterial({ size: size, map: texture });
+    for (let i = 0; i < num; i++) {
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.random() * 2 * Math.PI;
+      const r = radius * (1.5 + Math.random() / 10);
       const particle = new THREE.Vector3(
-        Math.random() * range - range / 2,
-        Math.random() * range - range / 2,
-        Math.random() * range - range / 2
+        r * Math.sin(theta) * Math.cos(phi),
+        r * Math.sin(theta) * Math.sin(phi),
+        r * Math.cos(theta)
       );
       geom.vertices.push(particle);
-      const color = new THREE.Color(0x00ff00);
-      color.setHSL(
-        color.getHSL({ h: 0, s: 0, l: 0 }).h,
-        color.getHSL({ h: 0, s: 0, l: 0 }).s,
-        Math.random() * color.getHSL({ h: 0, s: 0, l: 0 }).l
-      );
-      geom.colors.push(color);
     }
-    cloud = new THREE.Points(geom, material);
-    cloud.name = 'particles';
-    scene.add(cloud);
+    return new THREE.Points(geom, material);
   };
+
+  const putDebriRandom = (
+    mesh: THREE.Mesh,
+    limitRadius: number,
+    center: THREE.Vector3
+  ) => {
+    const theta = Math.random() * 2 * Math.PI;
+    const phi = Math.random() * 2 * Math.PI;
+    const r = limitRadius * 2 + Math.random() / 100;
+    mesh.position.set(
+      center.x + r * Math.sin(theta) * Math.cos(phi),
+      center.y + r * Math.sin(theta) * Math.sin(phi),
+      center.z + r * Math.cos(theta)
+    );
+  };
+
+  const createDebri = (limitRadius: number, center: THREE.Vector3) => {
+    const geom = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshPhongMaterial();
+    material.color = new THREE.Color(Math.random() * 0xffffff);
+    material.emissive = new THREE.Color(0x333333);
+    material.specular = new THREE.Color(0x4444aa);
+    material.shininess = 100;
+    const mesh = new THREE.Mesh(geom, material);
+    putDebriRandom(mesh, limitRadius, center);
+    mesh.rotation.x = Math.random() * 2 * Math.PI;
+    mesh.rotation.y = Math.random() * 2 * Math.PI;
+    mesh.rotation.z = Math.random() * 2 * Math.PI;
+    (mesh as any).drotx = (Math.random() - 0.5) / 10;
+    (mesh as any).droty = (Math.random() - 0.5) / 10;
+    (mesh as any).drotz = (Math.random() - 0.5) / 10;
+    return mesh;
+  };
+
+  const removeSelectedDebri = (limitRadius, center) => {
+    if (selectedDebri) {
+      putDebriRandom(selectedDebri, limitRadius, center);
+      deselectDebri();
+    }
+  };
+
+  const deselectDebri = () => {
+    if (selectedDebri) {
+      selectedDebri.material.emissive.setHex(0x333333);
+      selectedDebri.scale.set(1, 1, 1);
+    }
+    selectedDebri = null;
+  };
+
+  const selectDebri = () => {
+    raycaster.setFromCamera({ x: 0, y: 0 }, camera);
+    const intersects = raycaster.intersectObjects(earthAndDebris);
+    if (intersects.length === 0) {
+      deselectDebri();
+    } else {
+      for (let i = 0; i < intersects.length; i++) {
+        const debri = intersects[i].object;
+        if (debri === earth) {
+          console.log(debri === earth);
+          break;
+        }
+        if (selectedDebri !== debri) {
+          deselectDebri();
+          selectedDebri = debri;
+          (debri as any).material.emissive.setHex(0xff3333);
+          debri.scale.set(2, 2, 2);
+          break;
+        }
+      }
+    }
+  };
+
+  /* earth */
+  const earth = createEarthMesh(new THREE.SphereGeometry(10, 80, 80));
+  earth.position.y = -10;
+  scene.add(earth);
+
+  /* air */
+  const air = createAirMesh(new THREE.SphereGeometry(10.1, 80, 80));
+  air.position.copy(earth.position);
+  scene.add(air);
+
+  /* moon */
+  const moon = createMoonMesh(new THREE.SphereGeometry(5, 20, 20));
+  moon.position.x = -50;
+  earth.add(moon);
+
+  /* stars */
+  const pos = earth.position;
+  const rad = Math.abs(moon.position.x);
+  earth.add(createStarPoints(100, 5, pos, rad, true));
+  earth.add(createStarPoints(500, 3, pos, rad));
+  earth.add(createStarPoints(2000, 2, pos, rad));
+
+  /* debris */
+  const earthAndDebris = [earth];
+  const debris = [];
+  for (let i = 0; i < 30; i++) {
+    const debri = createDebri(10.2, earth.position);
+    earth.add(debri);
+    debris.push(debri);
+    const earthGroup = new THREE.Group();
+    earthGroup.add(debri);
+    earthAndDebris.push(earthGroup);
+  }
+
+  const ambi = new THREE.AmbientLight(0x181818);
+  scene.add(ambi);
+
+  const directionalLight = new THREE.DirectionalLight(0xffffff);
+  directionalLight.position.set(100, 0, 150);
+  earth.add(directionalLight);
+
+  const directionalBackLight = new THREE.DirectionalLight(0xffffff);
+  directionalBackLight.position.copy(
+    directionalLight.position.clone().negate()
+  );
+  directionalBackLight.intensity = 0.7;
+  earth.add(directionalBackLight);
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  /* stats */
-  const initStats = () => {
-    const statsObj = new Stats();
-    statsObj.showPanel(0);
-    statsObj.dom.style.position = 'absolute';
-    statsObj.dom.style.left = '0px';
-    statsObj.dom.style.top = '0px';
-    document.getElementById('Stats-output').appendChild(statsObj.dom);
-    return statsObj;
-  };
-  const stats = initStats();
-
-  /* gui */
-  const controls = {
-    size: 4,
-    transparent: true,
-    opacity: 0.6,
-    vertexColors: true,
-    color: 0xffffff,
-    sizeAttenuation: true,
-    rotateSystem: true,
-    redraw: () => {
-      if (scene.getObjectByName('particles')) {
-        scene.remove(scene.getObjectByName('particles'));
+  renderer.domElement.addEventListener(
+    'click',
+    function() {
+      if (
+        !(document as any).mozFullScreen &&
+        !(document as any).webkitIsFullScreen
+      ) {
+        const canvas = renderer.domElement;
+        const requestFullScreen =
+          (canvas as any).mozRequestFullScreen ||
+          (canvas as any).webkitRequestFullScreen;
+        requestFullScreen.bind(canvas)();
+      } else {
+        removeSelectedDebri(10.2, earth.position);
       }
-      createParticles(
-        controls.size,
-        controls.transparent,
-        controls.opacity,
-        controls.vertexColors,
-        controls.sizeAttenuation,
-        controls.color
-      );
-    }
-  };
-
-  const gui = new dat.GUI();
-  gui.add(controls, 'size', 0, 10).onChange(controls.redraw);
-  gui.add(controls, 'transparent').onChange(controls.redraw);
-  gui.add(controls, 'opacity', 0, 1).onChange(controls.redraw);
-  gui.add(controls, 'vertexColors').onChange(controls.redraw);
-  gui.addColor(controls, 'color').onChange(controls.redraw);
-  gui.add(controls, 'sizeAttenuation').onChange(controls.redraw);
-  gui.add(controls, 'rotateSystem');
+    }.bind(this)
+  );
 
   /* resize */
   window.addEventListener(
@@ -124,19 +245,16 @@ export default () => {
   );
 
   /* render */
-  let step = 0;
   const renderScene = () => {
-    stats.update();
-
-    if (controls.rotateSystem) {
-      step += 0.01;
-      cloud.rotation.x = step;
-      cloud.rotation.z = step;
-    }
-
+    debris.forEach(function(debri) {
+      debri.rotation.x += debri.drotx;
+      debri.rotation.y += debri.droty;
+      debri.rotation.z += debri.drotz;
+    });
+    selectDebri();
+    earth.rotation.z -= 0.001;
+    // render using requestAnimationFrame
     requestAnimationFrame(renderScene);
-    renderer.render(scene, camera);
   };
-  controls.redraw();
   renderScene();
 };

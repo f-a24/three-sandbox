@@ -1,14 +1,9 @@
 import * as THREE from 'three';
 // import 'imports-loader?THREE=three!../../node_modules/three/examples/js/libs/mmdparser.min.js';
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/libs/ammo.js';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/TGALoader.js';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/MMDLoader.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/animation/CCDIKSolver.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/animation/MMDPhysics.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/animation/MMDAnimationHelper.js';
 
 (window as any).MMDParser = require('../../node_modules/three/examples/js/libs/mmdparser.min.js');
-(window as any).Ammo = require('../../node_modules/three/examples/js/libs/ammo.js')();
 
 export default () => {
   // 画面サイズ
@@ -25,7 +20,7 @@ export default () => {
     1,
     2000
   );
-  camera.position.z = 50;
+  camera.position.z = 30;
   camera.lookAt(scene.position);
 
   /* renderer */

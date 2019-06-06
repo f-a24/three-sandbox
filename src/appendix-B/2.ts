@@ -26,7 +26,7 @@ export default () => {
     1,
     2000
   );
-  camera.position.z = 50;
+  camera.position.z = 30;
   camera.lookAt(scene.position);
 
   /* renderer */
