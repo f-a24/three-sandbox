@@ -1,7 +1,5 @@
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/libs/mmdparser.min.js';
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/libs/ammo.js';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/TGALoader.js';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/MMDLoader.js';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/animation/CCDIKSolver.js';

@@ -8,3 +8,11 @@ TypeScript x Webpack での挑戦
 
 - r99 で THREE.JSONLoader が削除されている
   - examples/js/loaders/deprecated/LegacyJSONLoader.js で対応
+- 11. PDBLoader の onload コールバック関数の引数が違う
+  - ×(geometry, geometryBonds)
+  - ○(pdb: { geometryAtoms: THREE.BufferGeometry,
+    geometryBonds: THREE.BufferGeometry,
+    json: {
+    atoms: any[],
+    bonds: any[]
+    }})
