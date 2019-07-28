@@ -61,7 +61,7 @@ export default () => {
 
   const loader = new (THREE as any).PLYLoader();
   let group = new THREE.Object3D();
-  loader.load('./assets/test.ply', (geometry: THREE.Geometry) => {
+  loader.load('./assets/test.ply', (geometry: THREE.BufferGeometry) => {
     const material = new THREE.PointsMaterial({
       color: 0xffffff,
       size: 0.4,
