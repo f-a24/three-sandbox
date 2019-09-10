@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/AssimpJSONLoader.js';
+import { AssimpJSONLoader } from '../../node_modules/three/examples/jsm/loaders/AssimpJSONLoader';
 
 export default () => {
   // 画面サイズ
@@ -50,8 +50,8 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  const loader = new (THREE as any).AssimpJSONLoader();
-  let group = new THREE.Object3D();
+  const loader = new AssimpJSONLoader();
+  const group = new THREE.Object3D();
   loader.load('./assets/spider.obj.assimp.json', (model: THREE.Object3D) => {
     model.scale.set(0.1, 0.1, 0.1);
     scene.add(model);

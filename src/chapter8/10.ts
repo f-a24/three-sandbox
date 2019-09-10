@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/VTKLoader.js';
+import { VTKLoader } from '../../node_modules/three/examples/jsm/loaders/VTKLoader';
 
 export default () => {
   // 画面サイズ
@@ -35,10 +35,10 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  const loader = new (THREE as any).VTKLoader();
+  const loader = new VTKLoader();
   let group = new THREE.Object3D();
-  loader.load('./assets/moai_fixed.vtk', (geometry: THREE.Geometry) => {
-    geometry.computeFaceNormals();
+  loader.load('./assets/moai_fixed.vtk', geometry => {
+    // geometry.computeFaceNormals();
     geometry.computeVertexNormals();
     const mat = new THREE.MeshLambertMaterial({ color: 0xaaffaa });
     group = new THREE.Mesh(geometry, mat);

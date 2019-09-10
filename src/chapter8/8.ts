@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/STLLoader.js';
+import { STLLoader } from '../../node_modules/three/examples/js/loaders/STLLoader';
 
 export default () => {
   // 画面サイズ
@@ -35,7 +35,7 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  const loader = new (THREE as any).STLLoader();
+  const loader = new STLLoader();
   let group = new THREE.Object3D();
   loader.load(
     './assets/SolidHead_2_lowPoly_42k.stl',

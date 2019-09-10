@@ -3,13 +3,7 @@ import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
 
 import createMultiMaterialObject from '../utils/createMultiMaterialObject';
-
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/QuickHull';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/geometries/ConvexGeometry';
-
-declare module 'three' {
-  function ConvexGeometry(points: THREE.Vector3[]): void;
-}
+import { ConvexGeometry } from '../../node_modules/three/examples/jsm/geometries/ConvexGeometry';
 
 export default () => {
   // 画面サイズ
@@ -59,7 +53,7 @@ export default () => {
       spGroup.add(spMesh);
     });
     scene.add(spGroup);
-    const hullGeometry: THREE.Geometry = new THREE.ConvexGeometry(points);
+    const hullGeometry: THREE.Geometry = new ConvexGeometry(points);
     hullMesh = createMesh(hullGeometry);
     scene.add(hullMesh);
   };

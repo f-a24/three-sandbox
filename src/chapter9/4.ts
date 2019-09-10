@@ -56,15 +56,13 @@ export default () => {
     object: THREE.Group | THREE.Mesh,
     scale: chroma.Scale<chroma.Color>
   ) => {
-    const children = object.children;
+    const { children } = object;
     if (children && children.length > 0) {
       children.forEach((e: THREE.Mesh) => {
         setRandomColors(e, scale);
       });
-    } else {
-      if (object instanceof THREE.Mesh) {
-        _setRandomColors(object.material, scale);
-      }
+    } else if (object instanceof THREE.Mesh) {
+      _setRandomColors(object.material, scale);
     }
   };
 
@@ -99,7 +97,7 @@ export default () => {
   mtlLoader.load('./assets/city.mtl', materials => {
     materials.preload();
     const objLoader = new OBJLoader();
-    objLoader.setMaterials((materials as any) as THREE.Material[]);
+    objLoader.setMaterials(materials);
     objLoader.load('./assets/city.obj', load);
   });
 

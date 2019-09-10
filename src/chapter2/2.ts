@@ -1,13 +1,8 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import createMultiMaterialObject from '../utils/createMultiMaterialObject';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/QuickHull';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/geometries/ConvexGeometry';
+import { ConvexGeometry } from '../../node_modules/three/examples/jsm/geometries/ConvexGeometry';
 // import 'imports-loader?THREE=three!../../node_modules/three/examples/js/utils/SceneUtils';
-
-declare module 'three' {
-  function ConvexGeometry(points: THREE.Vector3[]): void;
-}
 
 export default () => {
   // 画面サイズ
@@ -73,7 +68,7 @@ export default () => {
       new THREE.Vector3(-2, -2, -2),
       new THREE.Vector3(-2, -2, 2)
     ];
-    geoms.push(new THREE.ConvexGeometry(points));
+    geoms.push(new ConvexGeometry(points));
 
     const pts = [];
     const detail = 0.1;
@@ -90,7 +85,7 @@ export default () => {
         (u, t, target) => {
           u *= Math.PI;
           t *= 2 * Math.PI;
-          u = u * 2;
+          u *= 2;
           const phi = u / 2;
           const major = 2.25;
           const a = 0.125;

@@ -42,7 +42,7 @@ export default () => {
   const mtlLoader = new MTLLoader();
   mtlLoader.load('./assets/butterfly.mtl', materials => {
     const objLoader = new OBJLoader();
-    objLoader.setMaterials((materials as any) as THREE.Material[]);
+    objLoader.setMaterials(materials);
     objLoader.materials;
     objLoader.load('./assets/butterfly.obj', object => {
       const wing2 = object.children[5] as THREE.Mesh;

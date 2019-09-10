@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as TWEEN from '@tweenjs/tween.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/PLYLoader.js';
+import { PLYLoader } from '../../node_modules/three/examples/jsm/loaders/PLYLoader';
 
 export default () => {
   // 画面サイズ
@@ -102,7 +102,7 @@ export default () => {
     return texture;
   };
 
-  const loader = new (THREE as any).PLYLoader();
+  const loader = new PLYLoader();
   loader.load('./assets/test.ply', (geometry: THREE.BufferGeometry) => {
     loadedGeometry = geometry.clone();
     const material = new THREE.PointsMaterial({

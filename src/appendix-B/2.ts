@@ -1,12 +1,8 @@
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/TGALoader.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/MMDLoader.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/animation/CCDIKSolver.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/animation/MMDPhysics.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/animation/MMDAnimationHelper.js';
+import { MMDLoader } from '../../node_modules/three/examples/jsm/loaders/MMDLoader';
+import { MMDAnimationHelper } from '../../node_modules/three/examples/jsm/animation/MMDAnimationHelper';
 
-(window as any).MMDParser = require('../../node_modules/three/examples/js/libs/mmdparser.min.js');
 (window as any).Ammo = require('../../node_modules/three/examples/js/libs/ammo.js')();
 
 export default () => {
@@ -61,7 +57,7 @@ export default () => {
     const onChangePose = () => {
       const index = parseInt(controls.pose);
       if (index === -1) {
-        (mesh as any).pose();
+        mesh.pose();
       } else {
         helper.pose(mesh, vpds[index]);
       }
@@ -90,7 +86,7 @@ export default () => {
   const onProgress = xhr => {
     if (xhr.lengthComputable) {
       const percentComplete = (xhr.loaded / xhr.total) * 100;
-      console.log(Math.round(percentComplete) + '% downloaded');
+      console.log(`${Math.round(percentComplete)}% downloaded`);
     }
   };
 
@@ -98,12 +94,12 @@ export default () => {
     console.log('ERROR:', error);
   };
 
-  let mesh: THREE.Mesh;
+  let mesh: THREE.SkinnedMesh;
   const vpds = [];
 
   //   const helper = new (THREE as any).MMDHelper(renderer);
-  const helper = new (THREE as any).MMDAnimationHelper();
-  const loader = new (THREE as any).MMDLoader();
+  const helper = new MMDAnimationHelper();
+  const loader = new MMDLoader();
 
   const vpdFiles = [
     'vpds/01.vpd',
@@ -121,8 +117,7 @@ export default () => {
 
   loader.load(
     'model/kizunaai.pmx',
-    (object: THREE.Mesh) => {
-      mesh = object;
+    mesh => {
       mesh.position.y = -10;
       scene.add(mesh);
       let vpdIndex = 0;
@@ -130,7 +125,6 @@ export default () => {
         const vpdFile = vpdFiles[vpdIndex];
         loader.loadVPD(
           vpdFile,
-          false,
           vpd => {
             vpds.push(vpd);
             vpdIndex++;

@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 // import 'imports-loader?THREE=three!../../node_modules/three/examples/js/libs/mmdparser.min.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/TGALoader.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/MMDLoader.js';
+// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/TGALoader.js';
+import { MMDLoader } from '../../node_modules/three/examples/jsm/loaders/MMDLoader';
+// import { MMDParser } from '../../node_modules/three/examples/jsm/libs/mmdparser.module.js';
 
-(window as any).MMDParser = require('../../node_modules/three/examples/js/libs/mmdparser.min.js');
+// (window as any).MMDParser = MMDParser;
 
 export default () => {
   // 画面サイズ
@@ -36,7 +37,7 @@ export default () => {
   scene.add(directionalLight);
 
   let mesh: THREE.Mesh;
-  const loader = new (THREE as any).MMDLoader();
+  const loader = new MMDLoader();
 
   loader.load(
     'model/kizunaai.pmx',
@@ -48,7 +49,7 @@ export default () => {
     xhr => {
       if (xhr.lengthComputable) {
         const percentComplete = (xhr.loaded / xhr.total) * 100;
-        console.log(Math.round(percentComplete) + '% downloaded');
+        console.log(`${Math.round(percentComplete)}% downloaded`);
       }
     },
     error => {

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/ColladaLoader.js';
+import { ColladaLoader } from '../../node_modules/three/examples/js/loaders/ColladaLoader.js';
 
 export default () => {
   // 画面サイズ
@@ -36,7 +36,7 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  const loader = new (THREE as any).ColladaLoader();
+  const loader = new ColladaLoader();
   let mesh: THREE.Mesh;
   loader.load('./assets/Truck_dae.dae', result => {
     mesh = result.scene.children[0].children[0].clone();

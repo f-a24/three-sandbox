@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/BabylonLoader.js';
+import { BabylonLoader } from '../../node_modules/three/examples/jsm/loaders/BabylonLoader';
 
 export default () => {
   // 画面サイズ
@@ -33,7 +33,7 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  const loader = new (THREE as any).BabylonLoader();
+  const loader = new BabylonLoader();
   loader.load('./assets/skull.babylon', (loadedScene: THREE.Scene) => {
     loadedScene.traverse((object: THREE.Object3D) => {
       if (object instanceof THREE.Mesh) {

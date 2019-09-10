@@ -1,23 +1,13 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/renderers/WebGLDeferredRenderer';
+import { WebGLDeferredRenderer } from '../../node_modules/three/examples/jsm/renderers/WebGLDeferredRenderer';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/EffectComposer';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/shaders/CopyShader';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/RenderPass';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/ShaderPass';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/shaders/FXAAShader';
 import 'imports-loader?THREE=three!../../node_modules/three/examples/js/lights/RectAreaLightUniformsLib';
-
-declare module 'three' {
-  function WebGLDeferredRenderer(parameters?: {
-    renderer?: THREE.Renderer;
-    width?: number;
-    height?: number;
-    antialias?: boolean;
-    cacheKeepAlive?: boolean;
-  }): void;
-}
 
 export default () => {
   // 画面サイズ
@@ -40,7 +30,7 @@ export default () => {
   camera.lookAt(new THREE.Vector3(0, 0, -30));
 
   /* renderer */
-  const renderer = new THREE.WebGLDeferredRenderer({
+  const renderer = new WebGLDeferredRenderer({
     width: window.innerWidth,
     height: window.innerHeight,
     antialias: true,

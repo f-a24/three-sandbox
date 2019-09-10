@@ -1,9 +1,6 @@
-/**
- * TODO
- */
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/PDBLoader.js';
+import { PDBLoader } from '../../node_modules/three/examples/jsm/loaders/PDBLoader';
 
 export default () => {
   // 画面サイズ
@@ -50,8 +47,8 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  const loader = new (THREE as any).PDBLoader();
-  let group = new THREE.Group();
+  const loader = new PDBLoader();
+  const group = new THREE.Group();
   loader.load(
     './assets/aspirin.pdb',
     ({

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/deprecated/LegacyJSONLoader.js';
+import { LegacyJSONLoader } from '../../node_modules/three/examples/jsm/loaders/deprecated/LegacyJSONLoader';
 
 export default () => {
   // 画面サイズ
@@ -38,17 +38,14 @@ export default () => {
 
   let mesh: THREE.Mesh;
   //   const loader = new THREE.JSONLoader();
-  const loader = new (THREE as any).LegacyJSONLoader();
-  loader.load(
-    './assets/misc_chair01.js',
-    (geometry: THREE.Geometry, mat: THREE.Material[]) => {
-      mesh = new THREE.Mesh(geometry, mat[0]);
-      mesh.scale.x = 15;
-      mesh.scale.y = 15;
-      mesh.scale.z = 15;
-      scene.add(mesh);
-    }
-  );
+  const loader = new LegacyJSONLoader();
+  loader.load('./assets/misc_chair01.js', res => {
+    mesh = new THREE.Mesh(res.geometry, res.materials);
+    mesh.scale.x = 15;
+    mesh.scale.y = 15;
+    mesh.scale.z = 15;
+    scene.add(mesh);
+  });
 
   /* stats */
   const initStats = () => {
