@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 import { ConvexGeometry } from '../../node_modules/three/examples/jsm/geometries/ConvexGeometry';
 
 export default () => {
@@ -32,7 +31,7 @@ export default () => {
   renderer.shadowMap.enabled = true;
 
   let spGroup: THREE.Group;
-  let hullMesh: THREE.Group;
+  let hullMesh: THREE.Object3D;
   const generatePoints = () => {
     const points = <THREE.Vector3[]>[];
     for (let i = 0; i < 20; i++) {
@@ -63,7 +62,10 @@ export default () => {
     meshMaterial.side = THREE.DoubleSide;
     const wireFrameMat = new THREE.MeshBasicMaterial();
     wireFrameMat.wireframe = true;
-    const mesh = createMultiMaterialObject(geom, [meshMaterial, wireFrameMat]);
+    const mesh = SceneUtils.createMultiMaterialObject(geom, [
+      meshMaterial,
+      wireFrameMat
+    ]);
     return mesh;
   };
 

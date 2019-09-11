@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
   // 画面サイズ
@@ -30,7 +30,7 @@ export default () => {
   renderer.shadowMap.enabled = true;
 
   const ground = new THREE.PlaneGeometry(100, 100, 50, 50);
-  const groundMesh = createMultiMaterialObject(ground, [
+  const groundMesh = SceneUtils.createMultiMaterialObject(ground, [
     new THREE.MeshBasicMaterial({
       wireframe: true,
       overdraw: 1,
@@ -50,7 +50,10 @@ export default () => {
     meshMaterial.side = THREE.DoubleSide;
     const wireFrameMat = new THREE.MeshBasicMaterial();
     wireFrameMat.wireframe = true;
-    return createMultiMaterialObject(geom, [meshMaterial, wireFrameMat]);
+    return SceneUtils.createMultiMaterialObject(geom, [
+      meshMaterial,
+      wireFrameMat
+    ]);
   };
 
   const setFromObject = (object: THREE.Group) => {
@@ -63,7 +66,7 @@ export default () => {
         node.geometry !== undefined &&
         (node.geometry as THREE.Geometry).vertices !== undefined
       ) {
-        const vertices = (node.geometry as THREE.Geometry).vertices;
+        const { vertices } = node.geometry as THREE.Geometry;
         for (let i = 0, il = vertices.length; i < il; i++) {
           v1.copy(vertices[i]);
           v1.applyMatrix4(node.matrixWorld);
@@ -88,8 +91,8 @@ export default () => {
   };
   const stats = initStats();
 
-  let sphere: THREE.Group;
-  let cube: THREE.Group;
+  let sphere: THREE.Object3D;
+  let cube: THREE.Object3D;
   let group: THREE.Group;
   let bboxMesh: THREE.Mesh;
 
@@ -227,7 +230,7 @@ export default () => {
   );
 
   /* render */
-  let step = 0.03;
+  const step = 0.03;
   const renderScene = () => {
     stats.update();
 

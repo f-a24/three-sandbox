@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
   // 画面サイズ
@@ -70,7 +69,7 @@ export default () => {
         transparent: true,
         blending: THREE.MultiplyBlending
       });
-      const cube = createMultiMaterialObject(cubeGeometry, [
+      const cube = SceneUtils.createMultiMaterialObject(cubeGeometry, [
         colorMaterial,
         cubeMaterial
       ]);

@@ -1,13 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/ParametricGeometries';
-
-// declare module 'three' {
-//   const ParametricGeometries: {
-//     [func: string]: (u: number, v: number, dest: THREE.Vector3) => void;
-//   };
-// }
 
 export default () => {
   // 画面サイズ
@@ -46,8 +39,10 @@ export default () => {
   const klein = (u: number, v: number, dest: THREE.Vector3) => {
     u *= Math.PI;
     v *= 2 * Math.PI;
-    u = u * 2;
-    var x, y, z;
+    u *= 2;
+    let x;
+    let y;
+    let z;
     if (u < Math.PI) {
       x =
         3 * Math.cos(u) * (1 + Math.sin(u)) +

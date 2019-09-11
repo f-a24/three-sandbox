@@ -97,7 +97,6 @@ export default () => {
   let mesh: THREE.SkinnedMesh;
   const vpds = [];
 
-  //   const helper = new (THREE as any).MMDHelper(renderer);
   const helper = new MMDAnimationHelper();
   const loader = new MMDLoader();
 
@@ -117,7 +116,8 @@ export default () => {
 
   loader.load(
     'model/kizunaai.pmx',
-    mesh => {
+    pmx => {
+      mesh = pmx;
       mesh.position.y = -10;
       scene.add(mesh);
       let vpdIndex = 0;
@@ -125,6 +125,7 @@ export default () => {
         const vpdFile = vpdFiles[vpdIndex];
         loader.loadVPD(
           vpdFile,
+          false,
           vpd => {
             vpds.push(vpd);
             vpdIndex++;

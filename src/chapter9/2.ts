@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-// THREE.Projector has been moved to /examples/js/renderers/Projector.jsが出て効かない
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/renderers/Projector.js';
+import { Projector } from '../../node_modules/three/examples/jsm/renderers/Projector';
 
 export default () => {
   // 画面サイズ
@@ -31,7 +30,7 @@ export default () => {
 
   // 無くても良さ気？
   // const projector = new (THREE as any).Projector();
-
+  const projector = new Projector();
   const planeGeometry = new THREE.PlaneGeometry(60, 20, 1, 1);
   const planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
   const plane = new THREE.Mesh(planeGeometry, planeMaterial);

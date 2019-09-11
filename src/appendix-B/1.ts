@@ -1,10 +1,5 @@
 import * as THREE from 'three';
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/libs/mmdparser.min.js';
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/TGALoader.js';
 import { MMDLoader } from '../../node_modules/three/examples/jsm/loaders/MMDLoader';
-// import { MMDParser } from '../../node_modules/three/examples/jsm/libs/mmdparser.module.js';
-
-// (window as any).MMDParser = MMDParser;
 
 export default () => {
   // 画面サイズ
@@ -36,13 +31,10 @@ export default () => {
   directionalLight.position.set(-1, 1, 1).normalize();
   scene.add(directionalLight);
 
-  let mesh: THREE.Mesh;
   const loader = new MMDLoader();
-
   loader.load(
     'model/kizunaai.pmx',
-    (object: THREE.Mesh) => {
-      mesh = object;
+    mesh => {
       mesh.position.y = -10;
       scene.add(mesh);
     },

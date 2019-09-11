@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
   // 画面サイズ
@@ -35,7 +34,10 @@ export default () => {
     meshMaterial.side = THREE.DoubleSide;
     const wireFrameMat = new THREE.MeshBasicMaterial();
     wireFrameMat.wireframe = true;
-    const mesh = createMultiMaterialObject(geom, [meshMaterial, wireFrameMat]);
+    const mesh = SceneUtils.createMultiMaterialObject(geom, [
+      meshMaterial,
+      wireFrameMat
+    ]);
     return mesh;
   };
 

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import * as TWEEN from '@tweenjs/tween.js';
 import { PLYLoader } from '../../node_modules/three/examples/jsm/loaders/PLYLoader';
+import { TWEEN } from '../../node_modules/three/examples/jsm/libs/tween.module.min.js';
 
 export default () => {
   // 画面サイズ

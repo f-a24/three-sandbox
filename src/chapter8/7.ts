@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import { ColladaLoader } from '../../node_modules/three/examples/js/loaders/ColladaLoader.js';
+import { ColladaLoader } from '../../node_modules/three/examples/js/loaders/ColladaLoader';
 
 export default () => {
   // 画面サイズ

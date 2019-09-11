@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
   // 画面サイズ
@@ -38,12 +37,15 @@ export default () => {
     });
     const wireFrameMat = new THREE.MeshBasicMaterial();
     wireFrameMat.wireframe = true;
-    const mesh = createMultiMaterialObject(geom, [meshMaterial, wireFrameMat]);
+    const mesh = SceneUtils.createMultiMaterialObject(geom, [
+      meshMaterial,
+      wireFrameMat
+    ]);
     return mesh;
   };
 
   let spGroup: THREE.Object3D;
-  let tubeMesh: THREE.Group;
+  let tubeMesh: THREE.Object3D;
   const generatePoints = (
     points: THREE.Vector3[],
     segments: number,

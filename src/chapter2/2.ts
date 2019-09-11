@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
 import { ConvexGeometry } from '../../node_modules/three/examples/jsm/geometries/ConvexGeometry';
-// import 'imports-loader?THREE=three!../../node_modules/three/examples/js/utils/SceneUtils';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
   // 画面サイズ
@@ -90,9 +89,9 @@ export default () => {
           const major = 2.25;
           const a = 0.125;
           const b = 0.65;
-          let x;
-          let y;
-          let z;
+          let x: number;
+          let y: number;
+          let z: number;
 
           x = a * Math.cos(t) * Math.cos(phi) - b * Math.sin(t) * Math.sin(phi);
           z = a * Math.cos(t) * Math.sin(phi) + b * Math.sin(t) * Math.cos(phi);
@@ -122,7 +121,7 @@ export default () => {
         })
       ];
 
-      const mesh = createMultiMaterialObject(geoms[i], materials);
+      const mesh = SceneUtils.createMultiMaterialObject(geoms[i], materials);
       mesh.traverse(e => {
         e.castShadow = true;
       });

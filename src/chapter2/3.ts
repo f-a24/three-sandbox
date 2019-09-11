@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
   // 画面サイズ
@@ -87,7 +87,7 @@ export default () => {
     new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true })
   ];
 
-  const mesh = createMultiMaterialObject(geom, materials);
+  const mesh = SceneUtils.createMultiMaterialObject(geom, materials);
   mesh.children.forEach(e => {
     e.castShadow = true;
   });
@@ -124,7 +124,10 @@ export default () => {
           }),
           new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true })
         ];
-        const mesh2 = createMultiMaterialObject(clonedGeometry, materials);
+        const mesh2 = SceneUtils.createMultiMaterialObject(
+          clonedGeometry as THREE.Geometry,
+          materials
+        );
         mesh2.children.forEach(e => {
           e.castShadow = true;
         });
@@ -138,8 +141,8 @@ export default () => {
     'clone'
   );
 
-  for (var i = 0; i < 8; i++) {
-    const f1 = gui.addFolder('Vertices ' + (i + 1));
+  for (let i = 0; i < 8; i++) {
+    const f1 = gui.addFolder(`Vertices ${i + 1}`);
     f1.add(controlPoints[i], 'x', -10, 10);
     f1.add(controlPoints[i], 'y', -10, 10);
     f1.add(controlPoints[i], 'z', -10, 10);
@@ -164,7 +167,7 @@ export default () => {
   const render = () => {
     stats.update();
     mesh.children.forEach(e => {
-      for (var i = 0; i < 8; i++) {
+      for (let i = 0; i < 8; i++) {
         ((e as THREE.Mesh).geometry as THREE.Geometry).vertices[i].set(
           controlPoints[i].x,
           controlPoints[i].y,

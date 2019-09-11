@@ -1,8 +1,11 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
-// import 'imports-loader?THREE=three!../node_modules/three/examples/js/objects/Lensflare.js';
-import { Lensflare, LensflareElement } from '../utils/Lensflare';
+import {
+  Lensflare,
+  LensflareElement
+} from '../../node_modules/three/examples/jsm/objects/Lensflare';
+// import { Lensflare, LensflareElement } from '../utils/Lensflare';
 
 export default () => {
   // 画面サイズ
@@ -139,7 +142,7 @@ export default () => {
     rotationSpeed: 0.03,
     bouncingSpeed: 0.03,
     ambientColor: ambiColor,
-    pointColor: pointColor,
+    pointColor,
     intensity: 0.1,
     distance: 0,
     exponent: 30,

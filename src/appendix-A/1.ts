@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/vr/WebVR.js';
-import createMultiMaterialObject from '../utils/createMultiMaterialObject';
+import { WEBVR } from '../../node_modules/three/examples/jsm/vr/WebVR';
+import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
   // 画面サイズ
@@ -27,7 +27,7 @@ export default () => {
   // renderer.vr.enabled = true;
 
   const raycaster = new THREE.Raycaster();
-  var selectedDebri;
+  let selectedDebri;
 
   const createEarthMesh = (geom: THREE.Geometry) => {
     const textureLoader = new THREE.TextureLoader();
@@ -41,7 +41,7 @@ export default () => {
     planetMaterial.normalMap = normalTexture;
     planetMaterial.normalScale = new THREE.Vector2(5, 5);
     planetMaterial.map = planetTexture;
-    return createMultiMaterialObject(geom, [planetMaterial]);
+    return SceneUtils.createMultiMaterialObject(geom, [planetMaterial]);
   };
 
   const createAirMesh = (geom: THREE.Geometry) => {
@@ -50,7 +50,7 @@ export default () => {
     planetMaterial.transparent = true;
     planetMaterial.opacity = 0.2;
     planetMaterial.color = new THREE.Color(0xffffff);
-    return createMultiMaterialObject(geom, [planetMaterial]);
+    return SceneUtils.createMultiMaterialObject(geom, [planetMaterial]);
   };
 
   const createMoonMesh = (geom: THREE.Geometry) => {
@@ -79,7 +79,7 @@ export default () => {
     const texture = textureLoader.load(
       red ? './assets/lensflare0.png' : './assets/lensflare0_white.png'
     );
-    const material = new THREE.PointsMaterial({ size: size, map: texture });
+    const material = new THREE.PointsMaterial({ size, map: texture });
     for (let i = 0; i < num; i++) {
       const theta = Math.random() * 2 * Math.PI;
       const phi = Math.random() * 2 * Math.PI;
@@ -215,23 +215,22 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  renderer.domElement.addEventListener(
-    'click',
-    function() {
-      if (
-        !(document as any).mozFullScreen &&
-        !(document as any).webkitIsFullScreen
-      ) {
-        const canvas = renderer.domElement;
-        const requestFullScreen =
-          (canvas as any).mozRequestFullScreen ||
-          (canvas as any).webkitRequestFullScreen;
-        requestFullScreen.bind(canvas)();
-      } else {
-        removeSelectedDebri(10.2, earth.position);
-      }
-    }.bind(this)
-  );
+  document.body.appendChild(WEBVR.createButton(renderer, undefined));
+
+  renderer.domElement.addEventListener('click', function() {
+    if (
+      !(document as any).mozFullScreen &&
+      !(document as any).webkitIsFullScreen
+    ) {
+      const canvas = renderer.domElement;
+      const requestFullScreen =
+        (canvas as any).mozRequestFullScreen ||
+        (canvas as any).webkitRequestFullScreen;
+      requestFullScreen.bind(canvas)();
+    } else {
+      removeSelectedDebri(10.2, earth.position);
+    }
+  });
 
   /* resize */
   window.addEventListener(

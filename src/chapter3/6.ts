@@ -2,12 +2,6 @@ import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
 import { WebGLDeferredRenderer } from '../../node_modules/three/examples/jsm/renderers/WebGLDeferredRenderer';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/EffectComposer';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/shaders/CopyShader';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/RenderPass';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/postprocessing/ShaderPass';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/shaders/FXAAShader';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/lights/RectAreaLightUniformsLib';
 
 export default () => {
   // 画面サイズ

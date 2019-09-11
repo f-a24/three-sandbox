@@ -1,7 +1,5 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import * as TWEEN from '@tweenjs/tween.js';
-import 'imports-loader?THREE=three!../../node_modules/three/examples/js/loaders/PLYLoader.js';
 import * as chroma from 'chroma-js';
 import { OBJLoader } from '../../node_modules/three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from '../../node_modules/three/examples/jsm/loaders/MTLLoader';
