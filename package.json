@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
-    "@storybook/html": "^5.1.11",
+    "@storybook/html": "^5.2.0",
     "@types/chroma-js": "^1.4.2",
     "@types/dat.gui": "^0.7.4",
     "@types/node": "^12.7.5",
@@ -37,12 +37,12 @@
     "@types/stats.js": "^0.17.0",
     "@types/three": "^0.103.2",
     "@types/tween.js": "^17.2.0",
-    "@typescript-eslint/eslint-plugin": "^2.2.0",
-    "@typescript-eslint/parser": "^2.2.0",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
     "autoprefixer": "^9.5.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
-    "eslint": "^6.3.0",
+    "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-import": "^2.17.3",
@@ -61,12 +61,12 @@
     "raw-loader": "^3.1.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "ts-jest": "^24.0.0",
+    "ts-jest": "^24.1.0",
     "ts-loader": "^6.1.0",
     "typescript": "^3.6.3",
     "url-loader": "^2.1.0",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8",
-    "webpack-dev-server": "^3.8.0"
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
   }
 }
