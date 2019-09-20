@@ -73,7 +73,6 @@ export default () => {
         _setRandomColors(mat, scale);
       });
     } else {
-      console.log('*****', material.color);
       material.color = new THREE.Color(scale(Math.random()).hex());
       if (material.name && material.name.indexOf('building') == 0) {
         material.emissive = new THREE.Color(0x444444);

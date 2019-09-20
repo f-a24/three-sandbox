@@ -39,8 +39,8 @@ export default () => {
   let mesh: THREE.Mesh;
   //   const loader = new THREE.JSONLoader();
   const loader = new LegacyJSONLoader();
-  loader.load('./assets/misc_chair01.js', res => {
-    mesh = new THREE.Mesh(res.geometry, res.materials);
+  loader.load('./assets/misc_chair01.js', (geometry, materials) => {
+    mesh = new THREE.Mesh(geometry, materials);
     mesh.scale.x = 15;
     mesh.scale.y = 15;
     mesh.scale.z = 15;
