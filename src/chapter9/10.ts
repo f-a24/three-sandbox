@@ -29,15 +29,6 @@ export default () => {
   renderer.setSize(VIEWPORT_W, VIEWPORT_H);
   renderer.shadowMap.enabled = true;
 
-  const planeGeometry = new THREE.PlaneGeometry(20, 20, 1, 1);
-  const planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
-  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-
-  plane.rotation.x = -0.5 * Math.PI;
-  plane.position.y = 0;
-  plane.position.z = 0;
-  scene.add(plane);
-
   const spotLight = new THREE.SpotLight(0xffffff);
   spotLight.position.set(0, 50, 30);
   spotLight.intensity = 2;
@@ -46,39 +37,39 @@ export default () => {
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
   let mesh: THREE.SkinnedMesh;
-
-  const onUpdate = function() {
-    const { pos } = this;
-    mesh.skeleton.bones[5].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[6].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[10].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[11].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[15].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[16].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[20].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[21].rotation.set(0, 0, pos);
-    mesh.skeleton.bones[1].rotation.set(pos, 0, 0);
-  };
-
   const tween = new TWEEN.Tween({ pos: -1 })
     .to({ pos: 0 }, 3000)
     .easing(TWEEN.Easing.Cubic.InOut)
     .yoyo(true)
     .repeat(Infinity)
-    .onUpdate(onUpdate);
+    .onUpdate(({ pos }: { pos: number }) => {
+      mesh.skeleton.bones[5].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[6].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[10].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[11].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[15].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[16].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[20].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[21].rotation.set(0, 0, pos);
+      mesh.skeleton.bones[1].rotation.set(pos, 0, 0);
+    });
 
   const manager = new THREE.LoadingManager();
   const loader = new LegacyJSONLoader(manager);
-  loader.load('./assets/hand-1.js', geometry => {
-    const mat = new THREE.MeshLambertMaterial({
-      color: 0xf0c8c9,
-      skinning: true
-    });
+  loader.load('./assets/hand-1.js', (geometry, materials) => {
     mesh = new THREE.SkinnedMesh(
       new THREE.BufferGeometry().fromGeometry(geometry),
-      mat
+      materials
     );
-    console.log(mesh);
+    const bones: THREE.Bone[] = [];
+    geometry.bones.forEach((bone: any) => {
+      const newBone = new THREE.Bone();
+      newBone.position.set(bone.pos[0], bone.pos[1], bone.pos[2]);
+      bones.push(newBone);
+    });
+    const skeleton = new THREE.Skeleton(bones);
+    mesh.add(skeleton.bones[0]);
+    mesh.bind(skeleton);
     mesh.rotation.x = 0.5 * Math.PI;
     mesh.rotation.z = 0.7 * Math.PI;
     scene.add(mesh);
