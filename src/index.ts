@@ -1,4 +1,4 @@
-import render from './chapter11/2';
+import render from './chapter11/3';
 import './sass/style.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
