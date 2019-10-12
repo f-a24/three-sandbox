@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[135],{698:function(module,__webpack_exports__,__webpack_require__){"use strict";__webpack_require__.r(__webpack_exports__),__webpack_exports__.default="# 初めての Three.js【メモ】\r\n\r\nTypeScript x Webpack での挑戦\r\n\r\n## 9 章　アニメーションとカメラの移動\r\n\r\n### ハマったところ\r\n\r\n- THREE.Projector has been moved to /examples/js/renderers/Projector.js\r\n  - Projector.js 無くても問題なさ気？\r\n- PLYLoader のコールバック関数の引数は THREE.BufferGeometry なので vertices の変換が必要\r\n"}}]);
-//# sourceMappingURL=135.cc27d5e188ce5d2d6e25.bundle.js.map
