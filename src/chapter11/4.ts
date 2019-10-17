@@ -128,10 +128,10 @@ export default () => {
   const marsMask = new MaskPass(sceneMars, camera);
 
   const effectSepia = new ShaderPass(SepiaShader);
-  effectSepia.uniforms.amount.value = 0.8;
+  (effectSepia.uniforms as any).amount.value = 0.8;
 
   const effectColorify = new ShaderPass(ColorifyShader);
-  effectColorify.uniforms.color.value.setRGB(0.5, 0.5, 1);
+  (effectColorify.uniforms as any).color.value.setRGB(0.5, 0.5, 1);
 
   const composer = new EffectComposer(renderer);
   composer.renderTarget1.stencilBuffer = true;

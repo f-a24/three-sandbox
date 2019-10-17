@@ -33,6 +33,7 @@
     "@types/chroma-js": "^1.4.3",
     "@types/dat.gui": "^0.7.4",
     "@types/node": "^12.7.9",
+    "@types/physijs": "^0.0.30",
     "@types/spin.js": "^3.0.0",
     "@types/stats.js": "^0.17.0",
     "@types/three": "^0.103.2",
