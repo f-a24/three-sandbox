@@ -3,8 +3,7 @@ import * as chroma from 'chroma-js';
 import * as dat from 'dat.gui';
 import * as Stats from 'stats.js';
 import 'imports-loader?THREE=three!../libs/physi';
-
-const Perlin = require('exports-loader?Perlin!../libs/perlin.js');
+import Perlin from '../libs/perlin.js';
 
 export default () => {
   // 画面サイズ
@@ -14,7 +13,7 @@ export default () => {
   const scale = chroma.scale(['blue', 'white']);
 
   // physijs設定
-  Physijs.scripts.worker = '../libs/physijs_worker.js';
+  Physijs.scripts.worker = './libs/physijs_worker.js';
   Physijs.scripts.ammo = '../libs/ammo.js';
 
   /* scene */
@@ -171,7 +170,7 @@ export default () => {
     const textureLoader = new THREE.TextureLoader();
     const groundMaterial = Physijs.createMaterial(
       new THREE.MeshLambertMaterial({
-        map: textureLoader.load('../assets/tex/grasslight-big.jpg')
+        map: textureLoader.load('./assets/tex/grasslight-big.jpg')
       }),
       0.3,
       0.8

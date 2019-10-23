@@ -12,7 +12,7 @@ export default () => {
   const scale = chroma.scale(['white', 'blue', 'red', 'yellow']);
 
   // physijs設定
-  Physijs.scripts.worker = '../libs/physijs_worker.js';
+  Physijs.scripts.worker = './libs/physijs_worker.js';
   Physijs.scripts.ammo = '../libs/ammo.js';
 
   /* scene */
