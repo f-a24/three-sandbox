@@ -388,6 +388,12 @@ if ( description.children ) {
 	}
 
 	body = new Ammo.btRigidBody( rbInfo );
+
+    // never sleep
+    // ref. http://stackoverflow.com/questions/29988253/physijs-stops-updating
+    var DISABLE_DEACTIVATION = 4;
+    body.setActivationState(DISABLE_DEACTIVATION);
+
 	Ammo.destroy(rbInfo);
 
 	if ( typeof description.collision_flags !== 'undefined' ) {
@@ -971,6 +977,7 @@ public_functions.hinge_enableAngularMotor = function( params ) {
 	}
 };
 public_functions.hinge_disableMotor = function( params ) {
+	var constraint = _constraints[ params.constraint ];
 	_constraints[ params.constraint ].enableMotor( false );
 	if ( constraint.getRigidBodyB() ) {
 		constraint.getRigidBodyB().activate();
@@ -1355,6 +1362,7 @@ reportConstraints = function() {
 		if ( _constraints.hasOwnProperty( index ) ) {
 			constraint = _constraints[index];
 			offset_body = constraint.getRigidBodyA();
+            if (!constraint.getFrameOffsetA) continue;
 			transform = constraint.getFrameOffsetA();
 			origin = transform.getOrigin();
 
