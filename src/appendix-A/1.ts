@@ -1,8 +1,18 @@
 import * as THREE from 'three';
-import { WEBVR } from '../../node_modules/three/examples/jsm/vr/WebVR';
+import 'imports-loader?THREE=three!../libs/CardboardEffect';
+import { DeviceOrientationControls } from '../../node_modules/three/examples/jsm/controls/DeviceOrientationControls';
 import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
+declare module 'three' {
+  function CardboardEffect(renderer: THREE.WebGLRenderer): void;
+}
+
 export default () => {
+  alert(`
+  r76でCardboardEffect削除
+  https://github.com/mrdoob/three.js/commit/7af1717056499a4ad5cbb3c6cc9cd6b717d0970a
+  `);
+
   // 画面サイズ
   const VIEWPORT_W = window.innerWidth;
   const VIEWPORT_H = window.innerHeight;
@@ -20,14 +30,23 @@ export default () => {
   camera.position.x = 8;
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
+  /**
+   * r76でCardboardEffect削除
+   * https://github.com/mrdoob/three.js/commit/7af1717056499a4ad5cbb3c6cc9cd6b717d0970a
+   */
+  // const effect = new THREE.CardboardEffect(webGLRenderer);
+
   /* renderer */
   const renderer = new THREE.WebGLRenderer();
   renderer.setClearColor(new THREE.Color(0x000000));
   renderer.setSize(VIEWPORT_W, VIEWPORT_H);
-  // renderer.vr.enabled = true;
+  renderer.shadowMap.enabled = true;
+
+  const controls = new DeviceOrientationControls(camera);
+  const effect = new THREE.CardboardEffect(renderer);
 
   const raycaster = new THREE.Raycaster();
-  let selectedDebri;
+  let selectedDebri: THREE.Mesh;
 
   const createEarthMesh = (geom: THREE.Geometry) => {
     const textureLoader = new THREE.TextureLoader();
@@ -35,12 +54,14 @@ export default () => {
     const specularTexture = textureLoader.load('./assets/EarthSpec.png');
     const normalTexture = textureLoader.load('./assets/EarthNormal.png');
     const planetMaterial = new THREE.MeshPhongMaterial();
+
     planetMaterial.specularMap = specularTexture;
     planetMaterial.specular = new THREE.Color(0x4444aa);
     planetMaterial.shininess = 5;
     planetMaterial.normalMap = normalTexture;
     planetMaterial.normalScale = new THREE.Vector2(5, 5);
     planetMaterial.map = planetTexture;
+
     return SceneUtils.createMultiMaterialObject(geom, [planetMaterial]);
   };
 
@@ -121,13 +142,16 @@ export default () => {
     mesh.rotation.x = Math.random() * 2 * Math.PI;
     mesh.rotation.y = Math.random() * 2 * Math.PI;
     mesh.rotation.z = Math.random() * 2 * Math.PI;
-    (mesh as any).drotx = (Math.random() - 0.5) / 10;
-    (mesh as any).droty = (Math.random() - 0.5) / 10;
-    (mesh as any).drotz = (Math.random() - 0.5) / 10;
-    return mesh;
+
+    return {
+      mesh,
+      drotx: (Math.random() - 0.5) / 10,
+      droty: (Math.random() - 0.5) / 10,
+      drotz: (Math.random() - 0.5) / 10
+    };
   };
 
-  const removeSelectedDebri = (limitRadius, center) => {
+  const removeSelectedDebri = (limitRadius: number, center: THREE.Vector3) => {
     if (selectedDebri) {
       putDebriRandom(selectedDebri, limitRadius, center);
       deselectDebri();
@@ -136,7 +160,9 @@ export default () => {
 
   const deselectDebri = () => {
     if (selectedDebri) {
-      selectedDebri.material.emissive.setHex(0x333333);
+      (selectedDebri.material as THREE.MeshLambertMaterial).emissive.setHex(
+        0x333333
+      );
       selectedDebri.scale.set(1, 1, 1);
     }
     selectedDebri = null;
@@ -149,7 +175,7 @@ export default () => {
       deselectDebri();
     } else {
       for (let i = 0; i < intersects.length; i++) {
-        const debri = intersects[i].object;
+        const debri = intersects[i].object as THREE.Mesh;
         if (debri === earth) {
           console.log(debri === earth);
           break;
@@ -157,7 +183,9 @@ export default () => {
         if (selectedDebri !== debri) {
           deselectDebri();
           selectedDebri = debri;
-          (debri as any).material.emissive.setHex(0xff3333);
+          (debri.material as THREE.MeshLambertMaterial).emissive.setHex(
+            0xff3333
+          );
           debri.scale.set(2, 2, 2);
           break;
         }
@@ -189,13 +217,18 @@ export default () => {
 
   /* debris */
   const earthAndDebris = [earth];
-  const debris = [];
+  const debris: {
+    mesh: THREE.Mesh;
+    drotx: number;
+    droty: number;
+    drotz: number;
+  }[] = [];
   for (let i = 0; i < 30; i++) {
     const debri = createDebri(10.2, earth.position);
-    earth.add(debri);
+    earth.add(debri.mesh);
     debris.push(debri);
     const earthGroup = new THREE.Group();
-    earthGroup.add(debri);
+    earthGroup.add(debri.mesh);
     earthAndDebris.push(earthGroup);
   }
 
@@ -214,10 +247,7 @@ export default () => {
   earth.add(directionalBackLight);
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
-
-  document.body.appendChild(WEBVR.createButton(renderer, undefined));
-
-  renderer.domElement.addEventListener('click', function() {
+  renderer.domElement.addEventListener('click', () => {
     if (
       !(document as any).mozFullScreen &&
       !(document as any).webkitIsFullScreen
@@ -238,22 +268,26 @@ export default () => {
     () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      effect.setSize(VIEWPORT_W, VIEWPORT_H);
     },
     false
   );
 
   /* render */
   const renderScene = () => {
-    debris.forEach(function(debri) {
-      debri.rotation.x += debri.drotx;
-      debri.rotation.y += debri.droty;
-      debri.rotation.z += debri.drotz;
+    debris.forEach(({ mesh, drotx, droty, drotz }) => {
+      mesh.rotation.x += drotx;
+      mesh.rotation.y += droty;
+      mesh.rotation.z += drotz;
     });
+
     selectDebri();
+    controls.update();
     earth.rotation.z -= 0.001;
-    // render using requestAnimationFrame
+
     requestAnimationFrame(renderScene);
+    renderer.render(scene, camera);
+    // effect.render(scene, camera);
   };
   renderScene();
 };

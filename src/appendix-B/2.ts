@@ -3,7 +3,12 @@ import * as dat from 'dat.gui';
 import { MMDLoader } from '../../node_modules/three/examples/jsm/loaders/MMDLoader';
 import { MMDAnimationHelper } from '../../node_modules/three/examples/jsm/animation/MMDAnimationHelper';
 
-(window as any).Ammo = require('../../node_modules/three/examples/js/libs/ammo.js')();
+declare global {
+  interface Window {
+    Ammo: any;
+  }
+}
+window.Ammo = require('../../node_modules/three/examples/js/libs/ammo.js')();
 
 export default () => {
   // 画面サイズ
