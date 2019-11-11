@@ -3,7 +3,7 @@ import 'imports-loader?THREE=three!../libs/CardboardEffect';
 import { DeviceOrientationControls } from '../../node_modules/three/examples/jsm/controls/DeviceOrientationControls';
 import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
-declare module 'three' {
+declare module 'THREE' {
   function CardboardEffect(renderer: THREE.WebGLRenderer): void;
 }
 

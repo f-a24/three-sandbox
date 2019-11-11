@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import { ColladaLoader } from '../../node_modules/three/examples/js/loaders/ColladaLoader';
+import { ColladaLoader } from '../../node_modules/three/examples/jsm/loaders/ColladaLoader';
 
 export default () => {
   // 画面サイズ
@@ -39,7 +39,7 @@ export default () => {
   const loader = new ColladaLoader();
   let mesh: THREE.Mesh;
   loader.load('./assets/Truck_dae.dae', result => {
-    mesh = result.scene.children[0].children[0].clone();
+    mesh = result.scene.children[0].children[0].clone() as THREE.Mesh;
     mesh.scale.set(4, 4, 4);
     scene.add(mesh);
   });

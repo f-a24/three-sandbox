@@ -33,7 +33,6 @@ export default () => {
   const groundMesh = SceneUtils.createMultiMaterialObject(ground, [
     new THREE.MeshBasicMaterial({
       wireframe: true,
-      overdraw: 1,
       color: 0x000000
     }),
     new THREE.MeshBasicMaterial({

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
-import { STLLoader } from '../../node_modules/three/examples/js/loaders/STLLoader';
+import { STLLoader } from '../../node_modules/three/examples/jsm/loaders/STLLoader';
 
 export default () => {
   // 画面サイズ
@@ -37,16 +37,13 @@ export default () => {
 
   const loader = new STLLoader();
   let group = new THREE.Object3D();
-  loader.load(
-    './assets/SolidHead_2_lowPoly_42k.stl',
-    (geometry: THREE.Geometry) => {
-      const mat = new THREE.MeshLambertMaterial({ color: 0x7777ff });
-      group = new THREE.Mesh(geometry, mat);
-      group.rotation.x = -0.5 * Math.PI;
-      group.scale.set(0.6, 0.6, 0.6);
-      scene.add(group);
-    }
-  );
+  loader.load('./assets/SolidHead_2_lowPoly_42k.stl', geometry => {
+    const mat = new THREE.MeshLambertMaterial({ color: 0x7777ff });
+    group = new THREE.Mesh(geometry, mat);
+    group.rotation.x = -0.5 * Math.PI;
+    group.scale.set(0.6, 0.6, 0.6);
+    scene.add(group);
+  });
 
   /* stats */
   const initStats = () => {

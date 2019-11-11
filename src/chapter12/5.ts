@@ -16,7 +16,7 @@ export default () => {
   Physijs.scripts.ammo = '../libs/ammo.js';
 
   /* scene */
-  const scene = new Physijs.Scene({ reportSize: 10, fixedTimeStep: 1 / 60 });
+  const scene = new Physijs.Scene({ fixedTimeStep: 1 / 60 });
   scene.setGravity(new THREE.Vector3(0, -40, 0));
 
   /* camera */

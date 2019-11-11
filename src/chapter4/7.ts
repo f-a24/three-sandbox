@@ -78,7 +78,6 @@ export default () => {
     bouncingSpeed: 0.03,
     opacity: meshMaterial.opacity,
     transparent: meshMaterial.transparent,
-    overdraw: meshMaterial.overdraw,
     visible: meshMaterial.visible,
     emissive: meshMaterial.emissive.getHex(),
     specular: meshMaterial.specular.getHex(),

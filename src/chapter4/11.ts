@@ -70,7 +70,6 @@ export default () => {
     bouncingSpeed: 0.03,
     opacity: meshMaterial.opacity,
     transparent: meshMaterial.transparent,
-    overdraw: meshMaterial.overdraw,
     visible: meshMaterial.visible,
     roughness: meshMaterial.roughness,
     metalness: meshMaterial.metalness,

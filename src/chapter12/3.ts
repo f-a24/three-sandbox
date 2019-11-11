@@ -17,8 +17,7 @@ export default () => {
   Physijs.scripts.ammo = '../libs/ammo.js';
 
   /* scene */
-  // reportSizeが型定義（@types/physijs）に不足していたので追加
-  const scene = new Physijs.Scene({ reportSize: 10, fixedTimeStep: 1 / 60 });
+  const scene = new Physijs.Scene({ fixedTimeStep: 1 / 60 });
   scene.setGravity(new THREE.Vector3(0, -20, 0));
 
   /* camera */

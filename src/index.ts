@@ -1,4 +1,4 @@
-import render from './appendix-B/4';
+import render from './chapter8/6';
 import './sass/style.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
