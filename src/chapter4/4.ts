@@ -130,7 +130,6 @@ export default () => {
   spGui
     .add(controls, 'side', ['front', 'back', 'double'])
     .onChange((e: 'front' | 'back' | 'double') => {
-      console.log(e);
       switch (e) {
         case 'front':
           meshMaterial.side = THREE.FrontSide;
@@ -177,7 +176,6 @@ export default () => {
           break;
       }
       meshMaterial.needsUpdate = true;
-      console.log(meshMaterial);
     });
   spGui
     .add(controls, 'selectedMesh', ['cube', 'sphere', 'plane'])

@@ -59,7 +59,7 @@ export default () => {
       ]);
     }
     const vertices = new Float32Array(vertexPositions.flat());
-    (pointCloud.geometry as THREE.BufferGeometry).addAttribute(
+    (pointCloud.geometry as THREE.BufferGeometry).setAttribute(
       'position',
       new THREE.BufferAttribute(vertices, 3)
     );

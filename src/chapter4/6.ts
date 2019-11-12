@@ -106,7 +106,6 @@ export default () => {
   spGui
     .add(controls, 'side', ['front', 'back', 'double'])
     .onChange((e: 'front' | 'back' | 'double') => {
-      console.log(e);
       switch (e) {
         case 'front':
           meshMaterial.side = THREE.FrontSide;

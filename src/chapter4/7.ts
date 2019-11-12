@@ -115,7 +115,6 @@ export default () => {
   spGui
     .add(controls, 'side', ['front', 'back', 'double'])
     .onChange((e: 'front' | 'back' | 'double') => {
-      console.log(e);
       switch (e) {
         case 'front':
           meshMaterial.side = THREE.FrontSide;
@@ -132,7 +131,6 @@ export default () => {
   spGui
     .add(controls, 'shading', ['flat', 'smooth'])
     .onChange((e: 'flat' | 'smooth') => {
-      console.log(e);
       switch (e) {
         case 'flat':
           meshMaterial.flatShading = true;
@@ -142,7 +140,6 @@ export default () => {
           break;
       }
       meshMaterial.needsUpdate = true;
-      console.log(meshMaterial);
     });
   spGui.addColor(controls, 'color').onChange((e: string) => {
     meshMaterial.color.setStyle(e);

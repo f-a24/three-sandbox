@@ -3,7 +3,6 @@ import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
 
 export default () => {
-  console.log(THREE);
   // 画面サイズ
   const VIEWPORT_W = window.innerWidth;
   const VIEWPORT_H = window.innerHeight;
