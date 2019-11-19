@@ -73,7 +73,7 @@ export default () => {
   scene.add(mesh2);
   scene.add(mesh3);
 
-  const consoleXHR = xhr => {
+  const consoleXHR = (xhr: ProgressEvent<EventTarget>) => {
     console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`);
   };
   const consoleErr = () => {

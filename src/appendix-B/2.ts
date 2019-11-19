@@ -88,14 +88,14 @@ export default () => {
     morphs.open();
   };
 
-  const onProgress = xhr => {
+  const onProgress = (xhr: ProgressEvent<EventTarget>) => {
     if (xhr.lengthComputable) {
       const percentComplete = (xhr.loaded / xhr.total) * 100;
       console.log(`${Math.round(percentComplete)}% downloaded`);
     }
   };
 
-  const onError = error => {
+  const onError = (error: ErrorEvent) => {
     console.log('ERROR:', error);
   };
 

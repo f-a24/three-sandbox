@@ -41,17 +41,6 @@ export default () => {
   directionalLight.position.set(-1, 1, 1).normalize();
   scene.add(directionalLight);
 
-  const onProgress = xhr => {
-    if (xhr.lengthComputable) {
-      const percentComplete = (xhr.loaded / xhr.total) * 100;
-      console.log(`${Math.round(percentComplete)}% downloaded`);
-    }
-  };
-
-  const onError = error => {
-    console.log('ERROR:', error);
-  };
-
   let mesh: THREE.SkinnedMesh;
 
   const helper = new MMDAnimationHelper();
@@ -70,8 +59,15 @@ export default () => {
         physics: true
       });
     },
-    onProgress,
-    onError
+    xhr => {
+      if (xhr.lengthComputable) {
+        const percentComplete = (xhr.loaded / xhr.total) * 100;
+        console.log(`${Math.round(percentComplete)}% downloaded`);
+      }
+    },
+    error => {
+      console.log('ERROR:', error);
+    }
   );
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
