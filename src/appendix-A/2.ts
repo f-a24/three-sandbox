@@ -1,5 +1,7 @@
 import * as THREE from 'three';
-import { WEBVR } from '../../node_modules/three/examples/jsm/vr/WebVR';
+import { VRButton } from '../../node_modules/three/examples/jsm/webxr/VRButton';
+// import { WEBVR } from '../../node_modules/three/examples/jsm/vr/WebVR';
+// r112でwebxrとしてサポート
 import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUtils';
 
 export default () => {
@@ -161,7 +163,7 @@ export default () => {
     } else {
       for (let i = 0; i < intersects.length; i++) {
         const debri = intersects[i].object as THREE.Mesh;
-        if (debri === earth) break;
+        if (debri as THREE.Object3D === earth) break;
         if (selectedDebri !== debri) {
           deselectDebri();
           selectedDebri = debri;
@@ -230,7 +232,7 @@ export default () => {
 
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
-  document.body.appendChild(WEBVR.createButton(renderer, undefined));
+  document.body.appendChild(VRButton.createButton(renderer, undefined));
 
   renderer.domElement.addEventListener('click', function() {
     if (

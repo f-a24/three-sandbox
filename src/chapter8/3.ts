@@ -30,7 +30,7 @@ export default () => {
 
   const createMesh = (geom: THREE.Geometry) => {
     const meshMaterial = new THREE.MeshBasicMaterial({
-      vertexColors: THREE.VertexColors,
+      vertexColors: true,
       wireframe: true,
       wireframeLinewidth: 2,
       color: 0xaaaaaa

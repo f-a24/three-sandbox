@@ -40,6 +40,7 @@ export default () => {
     ]);
     return mesh;
   };
+
   const drawShape = () => {
     const shape = new THREE.Shape();
     shape.moveTo(10, 10);
@@ -62,6 +63,7 @@ export default () => {
     shape.holes.push(hole3);
     return shape;
   };
+
   const createLine = (shape: THREE.Shape, spaced: boolean) =>
     !spaced
       ? new THREE.Line(
@@ -80,7 +82,7 @@ export default () => {
         );
 
   /* shape */
-  let shape = createMesh(new THREE.ShapeGeometry(drawShape()));
+  let shape: THREE.Group | THREE.Line = createMesh(new THREE.ShapeGeometry(drawShape()));
   scene.add(shape);
 
   /* spotlight */

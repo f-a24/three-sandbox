@@ -53,7 +53,7 @@ export default () => {
   };
 
   const createMesh = (geom: THREE.Geometry) => {
-    geom.applyMatrix(new THREE.Matrix4().makeTranslation(-20, 0, 0));
+    geom.applyMatrix4(new THREE.Matrix4().makeTranslation(-20, 0, 0));
     const meshMaterial = new THREE.MeshNormalMaterial({
       transparent: true,
       opacity: 0.7

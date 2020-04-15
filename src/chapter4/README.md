@@ -166,3 +166,4 @@ TypeScript x Webpack での挑戦
   - https://threejs.org/docs/#api/en/deprecated/DeprecatedLis
 - computeLineDistances()は lines(THREE.Geometry)ではなく line(THREE.Line)
 - THREE.LineDashedMaterial のオプション vertexColors は boolean ではなく THREE.VertexColors(THREE.Colors)
+  - r114でbooleanに戻った

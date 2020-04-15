@@ -69,7 +69,7 @@ export default () => {
   };
 
   const createMesh = (geom: THREE.Geometry) => {
-    geom.applyMatrix(new THREE.Matrix4().makeTranslation(-25, 0, -25));
+    geom.applyMatrix4(new THREE.Matrix4().makeTranslation(-25, 0, -25));
     const meshMaterial = new THREE.MeshPhongMaterial({
       specular: 0xaaaafff,
       color: 0x3399ff,

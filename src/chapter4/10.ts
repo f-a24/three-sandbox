@@ -139,7 +139,7 @@ export default () => {
   lines.colors = colors;
 
   const material = new THREE.LineDashedMaterial({
-    vertexColors: THREE.VertexColors,
+    vertexColors: true,
     dashSize: 2,
     gapSize: 2,
     scale: 0.1

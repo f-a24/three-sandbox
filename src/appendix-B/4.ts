@@ -76,7 +76,7 @@ export default () => {
           });
           new THREE.AudioLoader().load(
             'audios/audio.mp3',
-            (buffer: THREE.AudioBuffer) => {
+            (buffer: AudioBuffer) => {
               const listener = new THREE.AudioListener();
               const audio = new THREE.Audio(listener).setBuffer(buffer);
               listener.position.z = 1;

@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import * as Stats from 'stats.js';
-import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls';
+// import * as THREE from 'three';
+// import * as Stats from 'stats.js';
+// import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls';
 // import { BabylonLoader } from '../../node_modules/three/examples/jsm/loaders/BabylonLoader';
 
 /* 

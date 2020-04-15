@@ -141,7 +141,7 @@ export default () => {
   const material = new THREE.LineBasicMaterial({
     opacity: 1.0,
     linewidth: 1,
-    vertexColors: THREE.VertexColors
+    vertexColors: true
   });
   const line = new THREE.Line(lines, material);
   line.position.set(25, -30, -60);

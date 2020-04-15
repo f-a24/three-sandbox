@@ -40,7 +40,7 @@ export default () => {
       size: size,
       transparent: transparent,
       opacity: opacity,
-      vertexColors: vertexColors ? THREE.VertexColors : THREE.NoColors,
+      vertexColors: vertexColors,
       sizeAttenuation: sizeAttenuation,
       color: color
     });

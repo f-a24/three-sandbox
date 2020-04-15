@@ -96,6 +96,8 @@ THREE.Scene
 
     - import-loader & 型拡張で対応
 
+      - 最新バージョンでは大丈夫
+
 - 効いてないっぽい（バグ？設定ミス？）
   - THREE.MeshPhongMaterial
     - **scene.overrideMaterial プロパティが設定されていただけでした…**

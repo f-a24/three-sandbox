@@ -28,7 +28,7 @@ export default () => {
   const geom = new THREE.Geometry();
   const material = new THREE.PointsMaterial({
     size: 4,
-    vertexColors: THREE.VertexColors,
+    vertexColors: true,
     color: 0xffffff
   });
   for (let x = -5; x < 5; x++) {

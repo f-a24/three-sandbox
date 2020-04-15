@@ -123,11 +123,11 @@ export default () => {
 
       const matrix1 = new THREE.Matrix4();
       matrix1.makeTranslation(0, 3, 0);
-      top.applyMatrix(matrix1);
+      top.applyMatrix4(matrix1);
 
       const matrix2 = new THREE.Matrix4();
       matrix2.makeTranslation(0, -3, 0);
-      bot.applyMatrix(matrix2);
+      bot.applyMatrix4(matrix2);
 
       merged.merge(top);
       merged.merge(bot);

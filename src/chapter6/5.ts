@@ -40,7 +40,7 @@ export default () => {
   const orbit = new OrbitControls(camera, renderer.domElement);
 
   const createMesh = (geom: THREE.Geometry) => {
-    geom.applyMatrix(new THREE.Matrix4().makeTranslation(-390, -74, 0));
+    geom.applyMatrix4(new THREE.Matrix4().makeTranslation(-390, -74, 0));
     const meshMaterial = new THREE.MeshPhongMaterial({
       color: 0x333333,
       shininess: 100

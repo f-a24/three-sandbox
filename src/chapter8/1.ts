@@ -149,7 +149,7 @@ export default () => {
         bbox,
         new THREE.MeshBasicMaterial({
           color: 0x000000,
-          vertexColors: THREE.VertexColors,
+          vertexColors: true,
           wireframeLinewidth: 2,
           wireframe: true
         })

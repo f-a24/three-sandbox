@@ -176,7 +176,7 @@ export default () => {
     } else {
       for (let i = 0; i < intersects.length; i++) {
         const debri = intersects[i].object as THREE.Mesh;
-        if (debri === earth) break;
+        if (debri as THREE.Object3D === earth) break;
         if (selectedDebri !== debri) {
           deselectDebri();
           selectedDebri = debri;
