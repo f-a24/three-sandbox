@@ -4,6 +4,13 @@ TypeScript x Webpack での挑戦
 
 ## 12 章　物理演算と立体音響
 
+- Physi.jsは物理エンジン（ammo.js）を扱いやすくするラッパー
+  - 物理シミュレーションはCPU負荷が高いのでバックグラウンドスレッド（WebWorker）で計算
+  - Cannon.jsを利用するブランチもある
+- THREE.PositionalAudioで立体音響も可能
+
+※ 物理演算に関しては公式サンプルがammo.jsを使っているのでそちらも後で試してみる
+
 ### ハマったところ
 
 - physijs で使用する ammo.js は physijs 同梱の example じゃないとエラー
