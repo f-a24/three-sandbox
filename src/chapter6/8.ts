@@ -60,7 +60,7 @@ export default () => {
       className: 'spinner',
       zIndex: 2e9,
       top: '50%',
-      left: '50%'
+      left: '50%',
     };
     const target = document.getElementById('WebGL-output');
     spinner = new Spinner(opts).spin(target);
@@ -118,7 +118,7 @@ export default () => {
     meshMaterial.side = THREE.DoubleSide;
     const wireFrameMat = new THREE.MeshBasicMaterial({
       opacity: 0.5,
-      wireframeLinewidth: 0.5
+      wireframeLinewidth: 0.5,
     });
     wireFrameMat.wireframe = true;
     const mesh = new THREE.Mesh(geom, wireFrameMat);
@@ -172,7 +172,7 @@ export default () => {
       redrawResult();
     },
     hideWireframes: false,
-    rotateResult: false
+    rotateResult: false,
   };
 
   const gui = new dat.GUI();
@@ -230,7 +230,7 @@ export default () => {
     'subtract',
     'intersect',
     'union',
-    'none'
+    'none',
   ]);
   const guiCube = gui.addFolder('cube');
   guiCube.add(controls, 'cubePosX', -15, 15).onChange(() => {
@@ -255,7 +255,7 @@ export default () => {
     'subtract',
     'intersect',
     'union',
-    'none'
+    'none',
   ]);
   gui.add(controls, 'showResult');
   gui.add(controls, 'rotateResult');

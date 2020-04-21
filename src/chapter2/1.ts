@@ -11,7 +11,7 @@ export default () => {
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0xffffff, 0.015, 100);
   scene.overrideMaterial = new THREE.MeshLambertMaterial({
-    color: 0xffffff
+    color: 0xffffff,
   });
 
   /* camera */
@@ -71,11 +71,11 @@ export default () => {
       const cubeSize = Math.ceil(Math.random() * 3);
       const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
       const cubeMaterial = new THREE.MeshLambertMaterial({
-        color: Math.random() * 0xffffff
+        color: Math.random() * 0xffffff,
       });
       const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
       cube.castShadow = true;
-      cube.name = 'cube-' + scene.children.length;
+      cube.name = `cube-${scene.children.length}`;
       cube.position.x =
         -30 + Math.round(Math.random() * planeGeometry.parameters.width);
       cube.position.y = Math.round(Math.random() * 5);
@@ -86,7 +86,7 @@ export default () => {
     },
     outputObjects() {
       console.log(scene.children);
-    }
+    },
   };
   /* stats */
   const initStats = () => {
@@ -113,7 +113,7 @@ export default () => {
   /* render */
   const render = () => {
     stats.update();
-    scene.traverse(obj => {
+    scene.traverse((obj) => {
       if (obj instanceof THREE.Mesh && obj !== plane) {
         obj.rotation.x += controls.rotationSpeed;
         obj.rotation.y += controls.rotationSpeed;

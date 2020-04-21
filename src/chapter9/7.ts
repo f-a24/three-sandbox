@@ -51,7 +51,7 @@ export default () => {
     const normalTexture = textureLoader.load('./assets/tex/mars_1k_normal.jpg');
     const planetMaterial = new THREE.MeshPhongMaterial({
       map: planetTexture,
-      bumpMap: normalTexture
+      bumpMap: normalTexture,
     });
     const wireFrameMat = new THREE.MeshBasicMaterial();
     wireFrameMat.wireframe = true;

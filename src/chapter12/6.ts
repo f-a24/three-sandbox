@@ -49,15 +49,15 @@ export default () => {
   const textureLoader = new THREE.TextureLoader();
   const material1 = new THREE.MeshBasicMaterial({
     color: 0xffffff,
-    map: textureLoader.load('./assets/tex/cow.png')
+    map: textureLoader.load('./assets/tex/cow.png'),
   });
   const material_2 = new THREE.MeshBasicMaterial({
     color: 0xffffff,
-    map: textureLoader.load('./assets/tex/dog.jpg')
+    map: textureLoader.load('./assets/tex/dog.jpg'),
   });
   const material_3 = new THREE.MeshBasicMaterial({
     color: 0xffffff,
-    map: textureLoader.load('./assets/tex/cat.jpg')
+    map: textureLoader.load('./assets/tex/cat.jpg'),
   });
 
   const mesh1 = new THREE.Mesh(cube, material1);
@@ -84,7 +84,7 @@ export default () => {
   const sound1 = new THREE.PositionalAudio(listener1);
   audioLoader.load(
     './assets/cow.ogg',
-    audioBuffer => {
+    (audioBuffer) => {
       sound1.autoplay = true;
       sound1.setBuffer(audioBuffer);
       sound1.setRefDistance(20);
@@ -100,7 +100,7 @@ export default () => {
   const sound2 = new THREE.PositionalAudio(listener2);
   audioLoader.load(
     './assets/dog.ogg',
-    audioBuffer => {
+    (audioBuffer) => {
       sound2.autoplay = true;
       sound2.setBuffer(audioBuffer);
       sound2.setRefDistance(20);
@@ -116,7 +116,7 @@ export default () => {
   const sound3 = new THREE.PositionalAudio(listener3);
   audioLoader.load(
     './assets/cat.ogg',
-    audioBuffer => {
+    (audioBuffer) => {
       sound3.setBuffer(audioBuffer);
       sound3.setRefDistance(20);
       sound3.setLoop(true);

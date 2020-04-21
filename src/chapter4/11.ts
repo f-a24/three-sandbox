@@ -75,7 +75,7 @@ export default () => {
     metalness: meshMaterial.metalness,
     side: 'front',
     shading: 'smooth',
-    color: meshMaterial.color.getStyle()
+    color: meshMaterial.color.getStyle(),
   };
 
   const gui = new dat.GUI();

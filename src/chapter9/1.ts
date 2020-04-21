@@ -78,7 +78,7 @@ export default () => {
   const controls = {
     rotationSpeed: 0.02,
     bouncingSpeed: 0.03,
-    scalingSpeed: 0.03
+    scalingSpeed: 0.03,
   };
   const gui = new dat.GUI();
   gui.add(controls, 'rotationSpeed', 0, 0.5);

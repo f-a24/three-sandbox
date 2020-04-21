@@ -45,14 +45,14 @@ export default () => {
       Math.random() * newColor.getHSL({} as THREE.HSL).l
     );
     const material = new THREE.PointsMaterial({
-      size: size,
-      transparent: transparent,
-      opacity: opacity,
+      size,
+      transparent,
+      opacity,
       map: texture,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      sizeAttenuation: sizeAttenuation,
-      color: color
+      sizeAttenuation,
+      color,
     });
 
     const range = 40;
@@ -65,7 +65,7 @@ export default () => {
       velocities.push({
         x: (Math.random() - 0.5) / 3,
         y: 0.1 + Math.random() / 5,
-        z: (Math.random() - 0.5) / 3
+        z: (Math.random() - 0.5) / 3,
       });
       geom.vertices.push(particle);
     }
@@ -142,12 +142,12 @@ export default () => {
     sizeAttenuation: true,
     redraw: () => {
       const toRemove = [];
-      scene.children.forEach(child => {
+      scene.children.forEach((child) => {
         if (child instanceof THREE.Points) {
           toRemove.push(child);
         }
       });
-      toRemove.forEach(function(child) {
+      toRemove.forEach(function (child) {
         scene.remove(child);
       });
       createMultiPoints(
@@ -157,7 +157,7 @@ export default () => {
         controls.sizeAttenuation,
         controls.color
       );
-    }
+    },
   };
 
   /* gui */
@@ -184,13 +184,13 @@ export default () => {
   const renderScene = () => {
     stats.update();
 
-    scene.children.forEach(child => {
+    scene.children.forEach((child) => {
       if (child instanceof THREE.Points) {
-        const vertices = (child.geometry as THREE.Geometry).vertices;
+        const { vertices } = child.geometry as THREE.Geometry;
         vertices.forEach((v, i) => {
-          v.x = v.x - velocities[i].x;
-          v.y = v.y - velocities[i].y;
-          v.z = v.z - velocities[i].z;
+          v.x -= velocities[i].x;
+          v.y -= velocities[i].y;
+          v.z -= velocities[i].z;
           if (v.x <= -20 || v.x >= 20) velocities[i].x = velocities[i].x * -1;
           if (v.y <= 0) v.y = 60;
           if (v.z <= -20 || v.z >= 20) velocities[i].z = velocities[i].z * -1;

@@ -51,10 +51,10 @@ export default () => {
     range: number
   ) => {
     const spriteMaterial = new THREE.SpriteMaterial({
-      opacity: opacity,
-      color: color,
-      transparent: transparent,
-      map: getTexture()
+      opacity,
+      color,
+      transparent,
+      map: getTexture(),
     });
     spriteMaterial.map.offset = new THREE.Vector2(0.2 * spriteNumber, 0);
     spriteMaterial.map.repeat = new THREE.Vector2(1 / 5, 1);

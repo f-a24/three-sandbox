@@ -85,7 +85,7 @@ export default () => {
       } else {
         video.style.display = 'none';
       }
-    }
+    },
   };
 
   const gui = new dat.GUI();

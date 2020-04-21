@@ -55,10 +55,10 @@ export default () => {
     spriteNumber: number
   ) => {
     const spriteMaterial = new THREE.SpriteMaterial({
-      opacity: opacity,
-      color: color,
-      transparent: transparent,
-      map: getTexture()
+      opacity,
+      color,
+      transparent,
+      map: getTexture(),
     });
     spriteMaterial.map.offset = new THREE.Vector2(0.2 * spriteNumber, 0);
     spriteMaterial.map.repeat = new THREE.Vector2(1 / 5, 1);
@@ -82,7 +82,7 @@ export default () => {
     color: 0xffffff,
     rotateSystem: true,
     redraw: () => {
-      sceneOrtho.children.forEach(child => {
+      sceneOrtho.children.forEach((child) => {
         if (child instanceof THREE.Sprite) sceneOrtho.remove(child);
       });
       createSprite(
@@ -92,15 +92,12 @@ export default () => {
         controls.color,
         controls.sprite
       );
-    }
+    },
   };
 
   /* gui */
   const gui = new dat.GUI();
-  gui
-    .add(controls, 'sprite', 0, 4)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'sprite', 0, 4).step(1).onChange(controls.redraw);
   gui.add(controls, 'size', 0, 120).onChange(controls.redraw);
   gui.add(controls, 'transparent').onChange(controls.redraw);
   gui.add(controls, 'opacity', 0, 1).onChange(controls.redraw);

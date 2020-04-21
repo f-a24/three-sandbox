@@ -31,7 +31,7 @@ export default () => {
   /* plane */
   const planeGeometry = new THREE.PlaneGeometry(60, 20, 1, 1);
   const planeMaterial = new THREE.MeshLambertMaterial({
-    color: 0xffffff
+    color: 0xffffff,
   });
   const plane = new THREE.Mesh(planeGeometry, planeMaterial);
   plane.rotation.x = -0.5 * Math.PI;
@@ -44,7 +44,7 @@ export default () => {
   /* cube */
   const cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
   const cubeMaterial = new THREE.MeshLambertMaterial({
-    color: 0xff0000
+    color: 0xff0000,
   });
   const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
   cube.position.x = -4;
@@ -56,7 +56,7 @@ export default () => {
   /* sphere */
   const sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
   const sphereMaterial = new THREE.MeshLambertMaterial({
-    color: 0x7777ff
+    color: 0x7777ff,
   });
   const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
   sphere.position.x = 20;
@@ -94,7 +94,7 @@ export default () => {
     rotationSpeed: 0.02,
     bouncingSpeed: 0.03,
     ambientColor: ambiColor,
-    disableSpotlight: false
+    disableSpotlight: false,
   };
   const gui = new dat.GUI();
 

@@ -89,13 +89,13 @@ export default () => {
   ) => {
     const geom = new THREE.Geometry();
     const material = new THREE.PointsMaterial({
-      size: size,
-      transparent: transparent,
-      opacity: opacity,
+      size,
+      transparent,
+      opacity,
       map: getTexture(),
-      sizeAttenuation: sizeAttenuation,
+      sizeAttenuation,
       depthWrite: false,
-      color: color
+      color,
     });
     const range = 500;
     for (let i = 0; i < 5000; i++) {
@@ -131,7 +131,7 @@ export default () => {
         controls.sizeAttenuation,
         controls.color
       );
-    }
+    },
   };
 
   /* gui */

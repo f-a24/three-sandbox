@@ -62,7 +62,7 @@ export default () => {
     new THREE.MeshPhongMaterial({
       color: 0xffffff,
       map: textureLoader.load('./assets/tex/floor-wood.jpg'),
-      normalScale: new THREE.Vector2(0.6, 0.6)
+      normalScale: new THREE.Vector2(0.6, 0.6),
     })
   );
   (cube.material as THREE.MeshPhongMaterial).map.wrapS = THREE.RepeatWrapping;
@@ -85,7 +85,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: scale(Math.random()).hex(),
           opacity: 0.8,
-          transparent: true
+          transparent: true,
         })
       );
       cube.position.x = i * stepX + (Math.random() - 0.5) * range;
@@ -154,7 +154,7 @@ export default () => {
       (focusShader.uniforms as any).waveFactor.value = controls.waveFactor;
       (focusShader.uniforms as any).sampleDistance.value =
         controls.sampleDistance;
-    }
+    },
   };
 
   const gui = new dat.GUI();

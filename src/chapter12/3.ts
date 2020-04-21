@@ -52,7 +52,7 @@ export default () => {
   const getMaterial = () =>
     Physijs.createMaterial(
       new THREE.MeshLambertMaterial({
-        color: scale(Math.random()).hex()
+        color: scale(Math.random()).hex(),
       }),
       0.5,
       0.7
@@ -148,11 +148,11 @@ export default () => {
       scene.add(convex);
     },
     clearMeshes: () => {
-      meshes.forEach(e => {
+      meshes.forEach((e) => {
         scene.remove(e);
       });
       meshes = [];
-    }
+    },
   };
 
   const gui = new dat.GUI();
@@ -169,7 +169,7 @@ export default () => {
     const textureLoader = new THREE.TextureLoader();
     const groundMaterial = Physijs.createMaterial(
       new THREE.MeshLambertMaterial({
-        map: textureLoader.load('./assets/tex/grasslight-big.jpg')
+        map: textureLoader.load('./assets/tex/grasslight-big.jpg'),
       }),
       0.3,
       0.8

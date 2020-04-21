@@ -36,7 +36,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -80,19 +80,13 @@ export default () => {
         )
       );
       scene.add(torus);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'innerRadius', 0, 40).onChange(controls.redraw);
   gui.add(controls, 'outerRadius', 0, 100).onChange(controls.redraw);
-  gui
-    .add(controls, 'thetaSegments', 1, 40)
-    .step(1)
-    .onChange(controls.redraw);
-  gui
-    .add(controls, 'phiSegments', 1, 20)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'thetaSegments', 1, 40).step(1).onChange(controls.redraw);
+  gui.add(controls, 'phiSegments', 1, 20).step(1).onChange(controls.redraw);
   gui.add(controls, 'thetaStart', 0, Math.PI * 2).onChange(controls.redraw);
   gui.add(controls, 'thetaLength', 0, Math.PI * 2).onChange(controls.redraw);
 

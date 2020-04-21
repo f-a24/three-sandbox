@@ -60,19 +60,19 @@ export default () => {
   loader.loadWithAnimation(
     'model/kizunaai.pmx',
     'vmds/dance.vmd',
-    pmx => {
+    (pmx) => {
       mesh = pmx.mesh;
 
       helper.add(mesh, {
         animation: pmx.animation,
-        physics: true
+        physics: true,
       });
       loader.loadAnimation(
         'vmds/camera.vmd',
         camera,
         (cameraAnimation: THREE.AnimationClip) => {
           helper.add(camera, {
-            animation: cameraAnimation
+            animation: cameraAnimation,
           });
           new THREE.AudioLoader().load(
             'audios/audio.mp3',

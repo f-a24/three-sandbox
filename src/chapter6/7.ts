@@ -12,11 +12,11 @@ export default () => {
   fontLoader.load(
     './assets/helvetiker_regular.typeface.js',
     (helvetiker: THREE.Font) => {
-      fonts['helvetiker'] = helvetiker;
+      fonts.helvetiker = helvetiker;
       fontLoader.load(
         './assets/optimer_regular.typeface.js',
         (optimer: THREE.Font) => {
-          fonts['optimer'] = optimer;
+          fonts.optimer = optimer;
 
           /* scene */
           const scene = new THREE.Scene();
@@ -56,7 +56,7 @@ export default () => {
             const meshMaterial = new THREE.MeshPhongMaterial({
               specular: 0xffffff,
               color: 0xff6666,
-              shininess: 100
+              shininess: 100,
             });
             const plane = new THREE.Mesh(geom, meshMaterial);
             return plane;
@@ -102,7 +102,7 @@ export default () => {
                 bevelSegments: controls.bevelSegments,
                 bevelEnabled: controls.bevelEnabled,
                 curveSegments: controls.curveSegments,
-                steps: controls.steps
+                steps: controls.steps,
               };
               text1 = createMesh(new THREE.TextGeometry('Learning', options));
               text1.position.z = -100;
@@ -110,7 +110,7 @@ export default () => {
               scene.add(text1);
               text2 = createMesh(new THREE.TextGeometry('Three.js', options));
               scene.add(text2);
-            }
+            },
           };
 
           const gui = new dat.GUI();
@@ -130,10 +130,7 @@ export default () => {
             .add(controls, 'curveSegments', 1, 30)
             .step(1)
             .onChange(controls.asGeom);
-          gui
-            .add(controls, 'steps', 1, 5)
-            .step(1)
-            .onChange(controls.asGeom);
+          gui.add(controls, 'steps', 1, 5).step(1).onChange(controls.asGeom);
 
           controls.asGeom();
 

@@ -90,7 +90,7 @@ export default () => {
   /* gui */
   const controls = {
     rotationSpeed: 0.02,
-    numberOfObjects: scene.children.length
+    numberOfObjects: scene.children.length,
   };
 
   const gui = new dat.GUI();

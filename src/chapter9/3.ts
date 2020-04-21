@@ -55,7 +55,7 @@ export default () => {
       vertexPositions.push([
         array[i],
         (array[i + 1] + 3.22544) * pos - 3.22544,
-        array[i + 2]
+        array[i + 2],
       ]);
     }
     const vertices = new Float32Array(vertexPositions.flat());
@@ -112,7 +112,7 @@ export default () => {
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
-      map: generateSprite()
+      map: generateSprite(),
     });
     pointCloud = new THREE.Points(geometry, material);
     tween.start();

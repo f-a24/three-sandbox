@@ -30,7 +30,7 @@ export default () => {
 
   const cubeMaterial = new THREE.MeshNormalMaterial({
     transparent: true,
-    opacity: 0.5
+    opacity: 0.5,
   });
 
   const addcube = () => {
@@ -71,10 +71,10 @@ export default () => {
     },
     redraw: () => {
       const toRemove = [];
-      scene.traverse(e => {
+      scene.traverse((e) => {
         if (e instanceof THREE.Mesh) toRemove.push(e);
       });
-      toRemove.forEach(e => {
+      toRemove.forEach((e) => {
         scene.remove(e);
       });
       if (controls.combined) {
@@ -90,7 +90,7 @@ export default () => {
           scene.add(controls.addCube());
         }
       }
-    }
+    },
   };
 
   const gui = new dat.GUI();
@@ -110,7 +110,7 @@ export default () => {
   );
 
   /* render */
-  let step = 0.03;
+  const step = 0.03;
   let rotation = 0;
   const renderScene = () => {
     rotation += 0.005;

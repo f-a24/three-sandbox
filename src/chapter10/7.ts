@@ -42,7 +42,7 @@ export default () => {
   const controls = {
     loadCube1: () => {
       const loader = new OBJLoader();
-      loader.load('./assets/UVCube1.obj', geometry => {
+      loader.load('./assets/UVCube1.obj', (geometry) => {
         if (mesh) scene.remove(mesh);
         const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const texture = textureLoader.load('./assets/tex/ash_uvgrid01.jpg');
@@ -55,7 +55,7 @@ export default () => {
     },
     loadCube2: () => {
       const loader = new OBJLoader();
-      loader.load('./assets/UVCube2.obj', geometry => {
+      loader.load('./assets/UVCube2.obj', (geometry) => {
         if (mesh) scene.remove(mesh);
         const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const texture = textureLoader.load('./assets/tex/ash_uvgrid01.jpg');
@@ -66,7 +66,7 @@ export default () => {
         geometry.rotation.x = -0.3;
         scene.add(geometry);
       });
-    }
+    },
   };
 
   const gui = new dat.GUI();

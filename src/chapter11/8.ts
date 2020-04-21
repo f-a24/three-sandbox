@@ -23,19 +23,19 @@ export default () => {
       tDiffuse: { type: 't', value: null },
       rPower: { type: 'f', value: 0.2126 },
       gPower: { type: 'f', value: 0.7152 },
-      bPower: { type: 'f', value: 0.0722 }
+      bPower: { type: 'f', value: 0.0722 },
     },
     vertexShader: GrayScaleVertexShader.default,
-    fragmentShader: GrayScaleFragmentShader.default
+    fragmentShader: GrayScaleFragmentShader.default,
   };
 
   const CustomBitShader = {
     uniforms: {
       tDiffuse: { type: 't', value: null },
-      bitSize: { type: 'i', value: 4 }
+      bitSize: { type: 'i', value: 4 },
     },
     vertexShader: BitVertexShader.default,
-    fragmentShader: BitFragmentShader.default
+    fragmentShader: BitFragmentShader.default,
   };
 
   // 画面サイズ
@@ -123,7 +123,7 @@ export default () => {
     updateBit: () => {
       bitPass.enabled = controls.bitShader;
       (bitPass.uniforms as any).bitSize.value = controls.bitSize;
-    }
+    },
   };
 
   const gui = new dat.GUI();
@@ -135,10 +135,7 @@ export default () => {
 
   const bitMenu = gui.addFolder('bit');
   bitMenu.add(controls, 'bitShader').onChange(controls.updateBit);
-  bitMenu
-    .add(controls, 'bitSize', 2, 24)
-    .step(1)
-    .onChange(controls.updateBit);
+  bitMenu.add(controls, 'bitSize', 2, 24).step(1).onChange(controls.updateBit);
 
   /* stats */
   const initStats = () => {

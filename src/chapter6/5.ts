@@ -43,7 +43,7 @@ export default () => {
     geom.applyMatrix4(new THREE.Matrix4().makeTranslation(-390, -74, 0));
     const meshMaterial = new THREE.MeshPhongMaterial({
       color: 0x333333,
-      shininess: 100
+      shininess: 100,
     });
     const mesh = new THREE.Mesh(geom, meshMaterial);
     mesh.scale.x = 0.1;
@@ -95,29 +95,20 @@ export default () => {
         bevelSegments: controls.bevelSegments,
         bevelEnabled: controls.bevelEnabled,
         curveSegments: controls.curveSegments,
-        steps: controls.steps
+        steps: controls.steps,
       };
       shape = createMesh(new THREE.ExtrudeGeometry(drawShape(), options));
       scene.add(shape);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'amount', 0, 20).onChange(controls.asGeom);
   gui.add(controls, 'bevelThickness', 0, 10).onChange(controls.asGeom);
   gui.add(controls, 'bevelSize', 0, 10).onChange(controls.asGeom);
-  gui
-    .add(controls, 'bevelSegments', 0, 30)
-    .step(1)
-    .onChange(controls.asGeom);
+  gui.add(controls, 'bevelSegments', 0, 30).step(1).onChange(controls.asGeom);
   gui.add(controls, 'bevelEnabled').onChange(controls.asGeom);
-  gui
-    .add(controls, 'curveSegments', 1, 30)
-    .step(1)
-    .onChange(controls.asGeom);
-  gui
-    .add(controls, 'steps', 1, 5)
-    .step(1)
-    .onChange(controls.asGeom);
+  gui.add(controls, 'curveSegments', 1, 30).step(1).onChange(controls.asGeom);
+  gui.add(controls, 'steps', 1, 5).step(1).onChange(controls.asGeom);
 
   controls.asGeom();
 

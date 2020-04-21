@@ -74,7 +74,7 @@ export default () => {
       specular: 0xaaaafff,
       color: 0x3399ff,
       shininess: 40,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
     meshMaterial.side = THREE.DoubleSide;
     const mesh = new THREE.Mesh(geom, meshMaterial);
@@ -108,18 +108,12 @@ export default () => {
         new THREE.ParametricGeometry(func, controls.slices, controls.stacks)
       );
       scene.add(parametricMesh);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'func', ['klein', 'radialWave']).onChange(controls.redraw);
-  gui
-    .add(controls, 'slices', 10, 200)
-    .step(5)
-    .onChange(controls.redraw);
-  gui
-    .add(controls, 'stacks', 10, 200)
-    .step(5)
-    .onChange(controls.redraw);
+  gui.add(controls, 'slices', 10, 200).step(5).onChange(controls.redraw);
+  gui.add(controls, 'stacks', 10, 200).step(5).onChange(controls.redraw);
 
   controls.redraw();
 

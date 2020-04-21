@@ -84,7 +84,7 @@ export default () => {
     emissive: meshMaterial.emissive.getHex(),
     side: 'front',
     color: meshMaterial.color.getStyle(),
-    selectedMesh: 'cube'
+    selectedMesh: 'cube',
   };
 
   const gui = new dat.GUI();

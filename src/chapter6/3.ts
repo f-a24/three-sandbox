@@ -37,7 +37,7 @@ export default () => {
     shape.splineThru([
       new THREE.Vector2(32, 30),
       new THREE.Vector2(28, 20),
-      new THREE.Vector2(30, 10)
+      new THREE.Vector2(30, 10),
     ]);
     shape.quadraticCurveTo(20, 15, 10, 10);
     const hole1 = new THREE.Path();
@@ -56,13 +56,13 @@ export default () => {
     geom.applyMatrix4(new THREE.Matrix4().makeTranslation(-20, 0, 0));
     const meshMaterial = new THREE.MeshNormalMaterial({
       transparent: true,
-      opacity: 0.7
+      opacity: 0.7,
     });
     const wireFrameMat = new THREE.MeshBasicMaterial();
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -102,29 +102,20 @@ export default () => {
         bevelSegments: controls.bevelSegments,
         bevelEnabled: controls.bevelEnabled,
         curveSegments: controls.curveSegments,
-        steps: controls.steps
+        steps: controls.steps,
       };
       shape = createMesh(new THREE.ExtrudeGeometry(drawShape(), options));
       scene.add(shape);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'amount', 0, 20).onChange(controls.asGeom);
   gui.add(controls, 'bevelThickness', 0, 10).onChange(controls.asGeom);
   gui.add(controls, 'bevelSize', 0, 10).onChange(controls.asGeom);
-  gui
-    .add(controls, 'bevelSegments', 0, 30)
-    .step(1)
-    .onChange(controls.asGeom);
+  gui.add(controls, 'bevelSegments', 0, 30).step(1).onChange(controls.asGeom);
   gui.add(controls, 'bevelEnabled').onChange(controls.asGeom);
-  gui
-    .add(controls, 'curveSegments', 1, 30)
-    .step(1)
-    .onChange(controls.asGeom);
-  gui
-    .add(controls, 'steps', 1, 5)
-    .step(1)
-    .onChange(controls.asGeom);
+  gui.add(controls, 'curveSegments', 1, 30).step(1).onChange(controls.asGeom);
+  gui.add(controls, 'steps', 1, 5).step(1).onChange(controls.asGeom);
 
   controls.asGeom();
 

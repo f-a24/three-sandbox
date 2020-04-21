@@ -63,7 +63,7 @@ export default () => {
     new THREE.MeshPhongMaterial({
       color: 0xffffff,
       map: textureLoader.load('./assets/tex/floor-wood.jpg'),
-      normalScale: new THREE.Vector2(0.6, 0.6)
+      normalScale: new THREE.Vector2(0.6, 0.6),
     })
   );
   (cube.material as THREE.MeshPhongMaterial).map.wrapS = THREE.RepeatWrapping;
@@ -86,7 +86,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: scale(Math.random()).hex(),
           opacity: 0.8,
-          transparent: true
+          transparent: true,
         })
       );
       cube.position.x = i * stepX + (Math.random() - 0.5) * range;
@@ -151,7 +151,7 @@ export default () => {
         controls.deltaX,
         controls.deltaY
       );
-    }
+    },
   };
 
   const gui = new dat.GUI();
@@ -162,14 +162,8 @@ export default () => {
   gui.add(controls, 'vTilt').onChange(controls.onChange);
   gui.add(controls, 'vTiltR', 0, 1).onChange(controls.onChange);
   gui.add(controls, 'triBlur').onChange(controls.onChange);
-  gui
-    .add(controls, 'deltaX', 0, 0.05)
-    .step(0.001)
-    .onChange(controls.onChange);
-  gui
-    .add(controls, 'deltaY', 0, 0.05)
-    .step(0.001)
-    .onChange(controls.onChange);
+  gui.add(controls, 'deltaX', 0, 0.05).step(0.001).onChange(controls.onChange);
+  gui.add(controls, 'deltaY', 0, 0.05).step(0.001).onChange(controls.onChange);
 
   /* stats */
   const initStats = () => {

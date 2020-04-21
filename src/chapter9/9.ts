@@ -39,7 +39,7 @@ export default () => {
   const cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
   const cubeMaterial = new THREE.MeshLambertMaterial({
     morphTargets: true,
-    color: 0xff0000
+    color: 0xff0000,
   });
 
   const cubeTarget1 = new THREE.BoxGeometry(2, 10, 2);
@@ -73,7 +73,7 @@ export default () => {
     update: () => {
       cube.morphTargetInfluences[0] = controls.influence1;
       cube.morphTargetInfluences[1] = controls.influence2;
-    }
+    },
   };
 
   const gui = new dat.GUI();

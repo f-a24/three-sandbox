@@ -41,7 +41,7 @@ export default () => {
       `${path}posy${format}`,
       `${path}negy${format}`,
       `${path}posz${format}`,
-      `${path}negz${format}`
+      `${path}negz${format}`,
     ];
     const cubeTextureLoader = new THREE.CubeTextureLoader();
     const textureCube = cubeTextureLoader.load(urls);
@@ -58,7 +58,7 @@ export default () => {
     vertexShader: shader.vertexShader,
     uniforms: shader.uniforms,
     depthWrite: false,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
   });
 
   const skybox = new THREE.Mesh(
@@ -75,11 +75,11 @@ export default () => {
   const cylinderGeometry = new THREE.CylinderGeometry(2, 4, 10, 20, 20, false);
   const dynamicEnvMaterial = new THREE.MeshBasicMaterial({
     envMap: textureCube,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
   });
   const envMaterial = new THREE.MeshBasicMaterial({
     envMap: textureCube,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
   });
 
   const sphere = new THREE.Mesh(sphereGeometry, dynamicEnvMaterial);
@@ -97,7 +97,7 @@ export default () => {
   scene.add(cube);
 
   const controls = {
-    rotationSpeed: 0.005
+    rotationSpeed: 0.005,
   };
   const gui = new dat.GUI();
   gui.add(controls, 'rotationSpeed', -0.1, 0.1);

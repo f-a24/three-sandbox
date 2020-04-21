@@ -97,7 +97,7 @@ export default () => {
     wireframeLinewidth: meshMaterial.wireframeLinewidth,
     clippingEnabled: false,
     clippingPlaneZ: 0,
-    selectedMesh: 'cube'
+    selectedMesh: 'cube',
   };
 
   const gui = new dat.GUI();

@@ -84,7 +84,7 @@ export default () => {
     rotationSpeed: 0.02,
     bouncingSpeed: 0.03,
     scalingSpeed: 0.03,
-    showRay: false
+    showRay: false,
   };
   const gui = new dat.GUI();
   gui.add(controls, 'rotationSpeed', 0, 0.5);
@@ -96,7 +96,7 @@ export default () => {
 
   document.addEventListener(
     'mousedown',
-    e => {
+    (e) => {
       let vector = new THREE.Vector3(
         (e.clientX / window.innerWidth) * 2 - 1,
         -(e.clientY / window.innerHeight) * 2 + 1,
@@ -120,7 +120,7 @@ export default () => {
   );
   document.addEventListener(
     'mousemove',
-    e => {
+    (e) => {
       if (controls.showRay) {
         let vector = new THREE.Vector3(
           (e.clientX / window.innerWidth) * 2 - 1,
@@ -140,7 +140,7 @@ export default () => {
           const mat = new THREE.MeshBasicMaterial({
             color: 0xff0000,
             transparent: true,
-            opacity: 0.6
+            opacity: 0.6,
           });
           const tubeGeometry = new THREE.TubeGeometry(
             new THREE.CatmullRomCurve3(points),

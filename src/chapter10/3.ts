@@ -65,7 +65,7 @@ export default () => {
     }
     const t = textureLoader.load(`./assets/tex/${imageFile}`);
     const mat1 = new THREE.MeshPhongMaterial({
-      map: t
+      map: t,
     });
     const mesh = new THREE.Mesh(geom, mat1);
     return mesh;
@@ -91,7 +91,7 @@ export default () => {
     new THREE.BoxGeometry(200, 100, 0.1, 30),
     new THREE.MeshPhongMaterial({
       color: 0x3c3c3c,
-      map: floorTex
+      map: floorTex,
     })
   );
   plane.position.y = -7.5;
@@ -111,7 +111,7 @@ export default () => {
     },
     updateBump: (e: number) => {
       (sphere2.material as THREE.MeshPhongMaterial).normalScale.set(e, e);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'bumpScale', -2, 2).onChange(controls.updateBump);

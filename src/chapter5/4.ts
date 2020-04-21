@@ -36,7 +36,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -49,7 +49,7 @@ export default () => {
     shape.splineThru([
       new THREE.Vector2(32, 30),
       new THREE.Vector2(28, 20),
-      new THREE.Vector2(30, 10)
+      new THREE.Vector2(30, 10),
     ]);
     shape.quadraticCurveTo(20, 15, 10, 10);
     const hole1 = new THREE.Path();
@@ -70,19 +70,21 @@ export default () => {
           shape.createPointsGeometry(10),
           new THREE.LineBasicMaterial({
             color: 0xff3333,
-            linewidth: 2
+            linewidth: 2,
           })
         )
       : new THREE.Line(
           shape.createSpacedPointsGeometry(3),
           new THREE.LineBasicMaterial({
             color: 0xff3333,
-            linewidth: 2
+            linewidth: 2,
           })
         );
 
   /* shape */
-  let shape: THREE.Group | THREE.Line = createMesh(new THREE.ShapeGeometry(drawShape()));
+  let shape: THREE.Group | THREE.Line = createMesh(
+    new THREE.ShapeGeometry(drawShape())
+  );
   scene.add(shape);
 
   /* spotlight */
@@ -120,7 +122,7 @@ export default () => {
       scene.remove(shape);
       shape = createLine(drawShape(), true);
       scene.add(shape);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'asGeom');

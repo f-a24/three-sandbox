@@ -134,7 +134,7 @@ export default () => {
       mesh,
       drotx: (Math.random() - 0.5) / 10,
       droty: (Math.random() - 0.5) / 10,
-      drotz: (Math.random() - 0.5) / 10
+      drotz: (Math.random() - 0.5) / 10,
     };
   };
 
@@ -163,7 +163,7 @@ export default () => {
     } else {
       for (let i = 0; i < intersects.length; i++) {
         const debri = intersects[i].object as THREE.Mesh;
-        if (debri as THREE.Object3D === earth) break;
+        if ((debri as THREE.Object3D) === earth) break;
         if (selectedDebri !== debri) {
           deselectDebri();
           selectedDebri = debri;
@@ -234,7 +234,7 @@ export default () => {
 
   document.body.appendChild(VRButton.createButton(renderer, undefined));
 
-  renderer.domElement.addEventListener('click', function() {
+  renderer.domElement.addEventListener('click', function () {
     if (
       !(document as any).mozFullScreen &&
       !(document as any).webkitIsFullScreen

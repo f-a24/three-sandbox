@@ -29,7 +29,7 @@ export default () => {
   const material = new THREE.PointsMaterial({
     size: 4,
     vertexColors: true,
-    color: 0xffffff
+    color: 0xffffff,
   });
   for (let x = -5; x < 5; x++) {
     for (let y = -5; y < 5; y++) {

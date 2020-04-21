@@ -33,7 +33,7 @@ export default () => {
       vertexColors: true,
       wireframe: true,
       wireframeLinewidth: 2,
-      color: 0xaaaaaa
+      color: 0xaaaaaa,
     });
     meshMaterial.side = THREE.DoubleSide;
     return new THREE.Mesh(geom, meshMaterial);
@@ -96,7 +96,7 @@ export default () => {
         loadedMesh.position.x -= 50;
         scene.add(loadedMesh);
       }
-    }
+    },
   };
 
   const gui = new dat.GUI();
@@ -114,14 +114,8 @@ export default () => {
     .add(controls, 'tubularSegments', 1, 20)
     .step(1)
     .onChange(controls.redraw);
-  meshGui
-    .add(controls, 'p', 1, 10)
-    .step(1)
-    .onChange(controls.redraw);
-  meshGui
-    .add(controls, 'q', 1, 15)
-    .step(1)
-    .onChange(controls.redraw);
+  meshGui.add(controls, 'p', 1, 10).step(1).onChange(controls.redraw);
+  meshGui.add(controls, 'q', 1, 15).step(1).onChange(controls.redraw);
 
   /* resize */
   window.addEventListener(

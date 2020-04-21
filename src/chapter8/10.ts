@@ -37,7 +37,7 @@ export default () => {
 
   const loader = new VTKLoader();
   let group = new THREE.Object3D();
-  loader.load('./assets/moai_fixed.vtk', geometry => {
+  loader.load('./assets/moai_fixed.vtk', (geometry) => {
     // geometry.computeFaceNormals();
     geometry.computeVertexNormals();
     const mat = new THREE.MeshLambertMaterial({ color: 0xaaffaa });

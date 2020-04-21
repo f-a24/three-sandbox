@@ -88,7 +88,7 @@ export default () => {
 
       (cube.material as THREE.MeshPhongMaterial).map.needsUpdate = true;
       (sphere.material as THREE.MeshPhongMaterial).map.needsUpdate = true;
-    }
+    },
   };
 
   const gui = new dat.GUI();

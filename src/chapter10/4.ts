@@ -39,7 +39,7 @@ export default () => {
   const groundMaterial = new THREE.MeshStandardMaterial({
     color: 0x777777,
     lightMap: lm,
-    map: wood
+    map: wood,
   });
   groundGeom.faceVertexUvs[1] = groundGeom.faceVertexUvs[0];
 

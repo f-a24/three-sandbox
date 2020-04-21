@@ -38,7 +38,7 @@ export default () => {
 
   const loader = new ColladaLoader();
   let mesh: THREE.Mesh;
-  loader.load('./assets/Truck_dae.dae', result => {
+  loader.load('./assets/Truck_dae.dae', (result) => {
     mesh = result.scene.children[0].children[0].clone() as THREE.Mesh;
     mesh.scale.set(4, 4, 4);
     scene.add(mesh);

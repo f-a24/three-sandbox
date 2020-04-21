@@ -36,7 +36,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -101,24 +101,18 @@ export default () => {
           break;
       }
       scene.add(polyhedron);
-    }
+    },
   };
   const gui = new dat.GUI();
-  gui
-    .add(controls, 'radius', 0, 40)
-    .step(1)
-    .onChange(controls.redraw);
-  gui
-    .add(controls, 'detail', 0, 3)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'radius', 0, 40).step(1).onChange(controls.redraw);
+  gui.add(controls, 'detail', 0, 3).step(1).onChange(controls.redraw);
   gui
     .add(controls, 'type', [
       'Icosahedron',
       'Tetrahedron',
       'Octahedron',
       'Dodecahedron',
-      'Custom'
+      'Custom',
     ])
     .onChange(controls.redraw);
 

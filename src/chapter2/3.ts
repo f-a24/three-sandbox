@@ -60,7 +60,7 @@ export default () => {
     new THREE.Vector3(-1, 3, -1),
     new THREE.Vector3(-1, 3, 1),
     new THREE.Vector3(-1, -1, -1),
-    new THREE.Vector3(-1, -1, 1)
+    new THREE.Vector3(-1, -1, 1),
   ];
   geom.faces = [
     new THREE.Face3(0, 2, 1),
@@ -74,7 +74,7 @@ export default () => {
     new THREE.Face3(5, 7, 0),
     new THREE.Face3(7, 2, 0),
     new THREE.Face3(1, 3, 4),
-    new THREE.Face3(3, 6, 4)
+    new THREE.Face3(3, 6, 4),
   ];
   geom.computeFaceNormals();
 
@@ -82,13 +82,13 @@ export default () => {
     new THREE.MeshLambertMaterial({
       opacity: 0.6,
       color: 0x44ff44,
-      transparent: true
+      transparent: true,
     }),
-    new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true })
+    new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true }),
   ];
 
   const mesh = SceneUtils.createMultiMaterialObject(geom, materials);
-  mesh.children.forEach(e => {
+  mesh.children.forEach((e) => {
     e.castShadow = true;
   });
 
@@ -97,7 +97,7 @@ export default () => {
   const addControl = (x: number, y: number, z: number) => ({
     x,
     y,
-    z
+    z,
   });
 
   const controlPoints = [];
@@ -120,15 +120,15 @@ export default () => {
           new THREE.MeshLambertMaterial({
             opacity: 0.6,
             color: 0xff44ff,
-            transparent: true
+            transparent: true,
           }),
-          new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true })
+          new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true }),
         ];
         const mesh2 = SceneUtils.createMultiMaterialObject(
           clonedGeometry as THREE.Geometry,
           materials
         );
-        mesh2.children.forEach(e => {
+        mesh2.children.forEach((e) => {
           e.castShadow = true;
         });
         mesh2.translateX(5);
@@ -136,7 +136,7 @@ export default () => {
         mesh2.name = 'clone';
         scene.remove(scene.getObjectByName('clone'));
         scene.add(mesh2);
-      }
+      },
     },
     'clone'
   );
@@ -166,7 +166,7 @@ export default () => {
   /* render */
   const render = () => {
     stats.update();
-    mesh.children.forEach(e => {
+    mesh.children.forEach((e) => {
       for (let i = 0; i < 8; i++) {
         ((e as THREE.Mesh).geometry as THREE.Geometry).vertices[i].set(
           controlPoints[i].x,

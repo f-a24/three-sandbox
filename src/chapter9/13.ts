@@ -38,7 +38,7 @@ export default () => {
 
   const controls = {
     animations: 'crattack',
-    playbackrate: 10
+    playbackrate: 10,
   };
   const gui = new dat.GUI();
   const clock = new THREE.Clock();
@@ -47,7 +47,7 @@ export default () => {
   character.onLoadComplete = () => {
     const { animations } = character.meshBody.geometry as THREE.Geometry;
     const animLabels: string[] = [];
-    animations.forEach(function(anim) {
+    animations.forEach(function (anim) {
       if (!anim.name.match(/\d{3}f$/)) {
         animLabels.push(anim.name);
       }
@@ -68,7 +68,7 @@ export default () => {
     baseUrl: './assets/',
     body: 'ogro.md2',
     skins: ['skin.jpg'],
-    weapons: []
+    weapons: [],
   });
   scene.add(character.root);
 

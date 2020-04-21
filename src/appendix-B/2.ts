@@ -75,7 +75,7 @@ export default () => {
     });
     poses.add(controls, 'pose', files).onChange(onChangePose);
 
-    Object.keys(dictionary).forEach(key => {
+    Object.keys(dictionary).forEach((key) => {
       controls[key] = 0.0;
       keys.push(key);
       morphs.add(controls, key, 0.0, 1.0, 0.01).onChange(onChangeMorph);
@@ -116,12 +116,12 @@ export default () => {
     'vpds/08.vpd',
     'vpds/09.vpd',
     'vpds/10.vpd',
-    'vpds/11.vpd'
+    'vpds/11.vpd',
   ];
 
   loader.load(
     'model/kizunaai.pmx',
-    pmx => {
+    (pmx) => {
       mesh = pmx;
       mesh.position.y = -10;
       scene.add(mesh);
@@ -131,7 +131,7 @@ export default () => {
         loader.loadVPD(
           vpdFile,
           false,
-          vpd => {
+          (vpd) => {
             vpds.push(vpd);
             vpdIndex++;
             if (vpdIndex < vpdFiles.length) {

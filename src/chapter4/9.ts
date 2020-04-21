@@ -49,14 +49,14 @@ export default () => {
     };
     const fd = (dist: number) => {
       points.push({ x: turtle[0], y: turtle[1], z: Math.sin(count) * 5 });
-      var dir = turtle[2] * (Math.PI / 180);
+      const dir = turtle[2] * (Math.PI / 180);
       turtle[0] += Math.cos(dir) * dist;
       turtle[1] += Math.sin(dir) * dist;
       points.push({ x: turtle[0], y: turtle[1], z: Math.sin(count) * 5 });
     };
     const rg = (st: number, ln: number, turtle: number[]) => {
       st--;
-      ln = ln / 2.6457;
+      ln /= 2.6457;
       if (st > 0) {
         rg(st, ln, turtle);
         rt(60);
@@ -90,7 +90,7 @@ export default () => {
     };
     const gl = (st: number, ln: number, turtle: number[]) => {
       st--;
-      ln = ln / 2.6457;
+      ln /= 2.6457;
       if (st > 0) {
         lt(60);
         rg(st, ln, turtle);
@@ -131,7 +131,7 @@ export default () => {
   const lines = new THREE.Geometry();
   const colors = <THREE.Color[]>[];
   let i = 0;
-  points.forEach(function(e) {
+  points.forEach(function (e) {
     lines.vertices.push(new THREE.Vector3(e.x, e.z, e.y));
     colors[i] = new THREE.Color(0xffffff);
     colors[i].setHSL(e.x / 100 + 0.5, (e.y * 20) / 300, 0.8);
@@ -141,7 +141,7 @@ export default () => {
   const material = new THREE.LineBasicMaterial({
     opacity: 1.0,
     linewidth: 1,
-    vertexColors: true
+    vertexColors: true,
   });
   const line = new THREE.Line(lines, material);
   line.position.set(25, -30, -60);

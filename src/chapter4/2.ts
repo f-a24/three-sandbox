@@ -64,7 +64,7 @@ export default () => {
       let cubeMaterial:
         | THREE.MeshLambertMaterial
         | THREE.MeshDepthMaterial = new THREE.MeshLambertMaterial({
-        color: Math.random() * 0xffffff
+        color: Math.random() * 0xffffff,
       });
       cubeMaterial = new THREE.MeshDepthMaterial();
       const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -77,7 +77,7 @@ export default () => {
     },
     outputObjects: () => {
       console.log(scene.children);
-    }
+    },
   };
 
   const gui = new dat.GUI();

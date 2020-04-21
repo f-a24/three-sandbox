@@ -68,7 +68,7 @@ export default () => {
       color: 0xffffff,
       map: textureLoader.load('./assets/tex/plaster-diffuse.jpg'),
       normalMap: textureLoader.load('./assets/tex/plaster-normal.jpg'),
-      normalScale: new THREE.Vector2(0.6, 0.6)
+      normalScale: new THREE.Vector2(0.6, 0.6),
     })
   );
   (cube.material as THREE.MeshPhongMaterial).map.wrapS = THREE.RepeatWrapping;
@@ -110,12 +110,12 @@ export default () => {
 
   let mesh: THREE.Group;
   const mtlLoader = new MTLLoader();
-  mtlLoader.load('./assets/LibertStatue.mtl', materials => {
+  mtlLoader.load('./assets/LibertStatue.mtl', (materials) => {
     materials.preload();
     const objLoader = new OBJLoader();
     objLoader.setMaterials(materials);
-    objLoader.load('./assets/LibertStatue.obj', object => {
-      object.children.forEach(e => {
+    objLoader.load('./assets/LibertStatue.obj', (object) => {
+      object.children.forEach((e) => {
         e.castShadow = true;
       });
       object.scale.set(20, 20, 20);
@@ -314,7 +314,7 @@ export default () => {
     changeKal: () => {
       (kal.uniforms as any).sides.value = controls.kalSides;
       (kal.uniforms as any).angle.value = controls.kalAngle;
-    }
+    },
   };
 
   const gui = new dat.GUI();
@@ -331,7 +331,7 @@ export default () => {
       'hueAndSaturation',
       'kaleidoscope',
       'luminosity',
-      'technicolor'
+      'technicolor',
     ])
     .onChange(controls.switchShader);
   gui.add(controls, 'rotate');
@@ -384,10 +384,7 @@ export default () => {
     .onChange(controls.changeVignette);
 
   const hueAndSat = gui.addFolder('hue and saturation');
-  hueAndSat
-    .add(controls, 'hue', -1, 1)
-    .step(0.01)
-    .onChange(controls.changeHue);
+  hueAndSat.add(controls, 'hue', -1, 1).step(0.01).onChange(controls.changeHue);
   hueAndSat
     .add(controls, 'saturation', -1, 1)
     .step(0.01)

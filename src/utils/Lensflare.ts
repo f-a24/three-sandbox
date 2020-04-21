@@ -7,7 +7,7 @@ const material1bFrag = require('./material1b.frag');
 const elementVert = require('./element.vert');
 const elementFrag = require('./element.frag');
 
-const Lensflare = function() {
+const Lensflare = function () {
   THREE.Mesh.call(
     this,
     Lensflare.Geometry,
@@ -56,26 +56,26 @@ const Lensflare = function() {
   const material1a = new THREE.RawShaderMaterial({
     uniforms: {
       scale: { value: null },
-      screenPosition: { value: null }
+      screenPosition: { value: null },
     },
     vertexShader: material1aVert.default,
     fragmentShader: material1aFrag.default,
     depthTest: true,
     depthWrite: false,
-    transparent: false
+    transparent: false,
   });
 
   const material1b = new THREE.RawShaderMaterial({
     uniforms: {
       map: { value: tempMap },
       scale: { value: null },
-      screenPosition: { value: null }
+      screenPosition: { value: null },
     },
     vertexShader: material1bVert.default,
     fragmentShader: material1bFrag.default,
     depthTest: false,
     depthWrite: false,
-    transparent: false
+    transparent: false,
   });
 
   // the following object is used for occlusionMap generation
@@ -94,18 +94,18 @@ const Lensflare = function() {
       occlusionMap: { value: occlusionMap },
       color: { value: new THREE.Color(0xffffff) },
       scale: { value: new THREE.Vector2() },
-      screenPosition: { value: new THREE.Vector3() }
+      screenPosition: { value: new THREE.Vector3() },
     },
     vertexShader: shader.vertexShader,
     fragmentShader: shader.fragmentShader,
     blending: THREE.AdditiveBlending,
     transparent: true,
-    depthWrite: false
+    depthWrite: false,
   });
 
   const mesh2 = new THREE.Mesh(geometry, material2);
 
-  this.addElement = function(element) {
+  this.addElement = function (element) {
     elements.push(element);
   };
 
@@ -116,7 +116,7 @@ const Lensflare = function() {
   const validArea = new THREE.Box2();
   const viewport = new THREE.Vector4();
 
-  this.onBeforeRender = function(renderer, scene, camera) {
+  this.onBeforeRender = function (renderer, scene, camera) {
     renderer.getCurrentViewport(viewport);
 
     const invAspect = viewport.w / viewport.z;
@@ -160,9 +160,9 @@ const Lensflare = function() {
 
       // render pink quad
 
-      const uniforms = material1a.uniforms;
-      uniforms['scale'].value = scale;
-      uniforms['screenPosition'].value = positionScreen;
+      const { uniforms } = material1a;
+      uniforms.scale.value = scale;
+      uniforms.screenPosition.value = positionScreen;
 
       renderer.renderBufferDirect(
         camera,
@@ -200,19 +200,19 @@ const Lensflare = function() {
       for (let i = 0, l = elements.length; i < l; i++) {
         const element = elements[i];
 
-        const uniforms = material2.uniforms;
+        const { uniforms } = material2;
 
-        uniforms['color'].value.copy(element.color);
-        uniforms['map'].value = element.texture;
-        uniforms['screenPosition'].value.x =
+        uniforms.color.value.copy(element.color);
+        uniforms.map.value = element.texture;
+        uniforms.screenPosition.value.x =
           positionScreen.x + vecX * element.distance;
-        uniforms['screenPosition'].value.y =
+        uniforms.screenPosition.value.y =
           positionScreen.y + vecY * element.distance;
 
         const size = element.size / viewport.w;
         const invAspect = viewport.w / viewport.z;
 
-        uniforms['scale'].value.set(size * invAspect, size);
+        uniforms.scale.value.set(size * invAspect, size);
 
         // material2.uniformsNeedUpdate = true;
 
@@ -228,7 +228,7 @@ const Lensflare = function() {
     }
   };
 
-  this.dispose = function() {
+  this.dispose = function () {
     material1a.dispose();
     material1b.dispose();
     material2.dispose();
@@ -248,7 +248,7 @@ Lensflare.prototype.isLensflare = true;
 
 //
 
-const LensflareElement = function(
+const LensflareElement = function (
   texture: THREE.Texture,
   size?: number,
   distance?: number,
@@ -266,13 +266,13 @@ LensflareElement.Shader = {
     occlusionMap: { value: null },
     color: { value: null },
     scale: { value: null },
-    screenPosition: { value: null }
+    screenPosition: { value: null },
   },
   vertexShader: elementVert.default,
-  fragmentShader: elementFrag.default
+  fragmentShader: elementFrag.default,
 };
 
-Lensflare.Geometry = (function() {
+Lensflare.Geometry = (function () {
   const geometry = new THREE.BufferGeometry();
 
   const float32Array = new Float32Array([
@@ -295,7 +295,7 @@ Lensflare.Geometry = (function() {
     1,
     0,
     0,
-    1
+    1,
   ]);
 
   const interleavedBuffer = new THREE.InterleavedBuffer(float32Array, 5);

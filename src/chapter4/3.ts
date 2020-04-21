@@ -67,11 +67,11 @@ export default () => {
       const colorMaterial = new THREE.MeshBasicMaterial({
         color: controls.color,
         transparent: true,
-        blending: THREE.MultiplyBlending
+        blending: THREE.MultiplyBlending,
       });
       const cube = SceneUtils.createMultiMaterialObject(cubeGeometry, [
         colorMaterial,
-        cubeMaterial
+        cubeMaterial,
       ]);
       cube.children[1].scale.set(0.99, 0.99, 0.99);
       cube.castShadow = true;
@@ -83,7 +83,7 @@ export default () => {
     },
     outputObjects: () => {
       console.log(scene.children);
-    }
+    },
   };
 
   const gui = new dat.GUI();

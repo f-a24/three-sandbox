@@ -44,7 +44,7 @@ export default () => {
   const textureLoader = new THREE.TextureLoader();
   const groundMaterial = Physijs.createMaterial(
     new THREE.MeshPhongMaterial({
-      map: textureLoader.load('./assets/tex/wood-2.jpg')
+      map: textureLoader.load('./assets/tex/wood-2.jpg'),
     }),
     0.9,
     0.3
@@ -118,11 +118,11 @@ export default () => {
           controls.gravityZ
         )
       );
-      stones.forEach(st => {
+      stones.forEach((st) => {
         scene.remove(st);
       });
       stones = [];
-      points.forEach(point => {
+      points.forEach((point) => {
         const stoneGeom = new THREE.BoxGeometry(0.6, 6, 2);
         const stone = new Physijs.BoxMesh(
           stoneGeom,
@@ -130,7 +130,7 @@ export default () => {
             new THREE.MeshPhongMaterial({
               color: scale(Math.random()).hex(),
               transparent: true,
-              opacity: 0.8
+              opacity: 0.8,
             })
           )
         );
@@ -144,7 +144,7 @@ export default () => {
       });
       stones[0].rotation.x = 0.2;
       (stones[0] as any).__dirtyRotation = true;
-    }
+    },
   };
 
   const gui = new dat.GUI();

@@ -45,7 +45,7 @@ export default () => {
   const textureLoader = new THREE.TextureLoader();
   const ground_material = Physijs.createMaterial(
     new THREE.MeshPhongMaterial({
-      map: textureLoader.load('./assets/tex/floor-wood.jpg')
+      map: textureLoader.load('./assets/tex/floor-wood.jpg'),
     }),
     0.9,
     0.6
@@ -105,7 +105,7 @@ export default () => {
     sphereRestitution: 0.9,
     sphereFriction: 0.1,
     clearMeshes: () => {
-      meshes.forEach(e => {
+      meshes.forEach((e) => {
         scene.remove(e);
       });
       meshes = [];
@@ -119,7 +119,7 @@ export default () => {
             new THREE.MeshPhongMaterial({
               color: colorSphere,
               opacity: 0.8,
-              transparent: true
+              transparent: true,
             }),
             controls.sphereFriction,
             controls.sphereRestitution
@@ -143,7 +143,7 @@ export default () => {
             new THREE.MeshPhongMaterial({
               color: colorBox,
               opacity: 0.8,
-              transparent: true
+              transparent: true,
             }),
             controls.cubeFriction,
             controls.cubeRestitution
@@ -162,7 +162,7 @@ export default () => {
         meshes.push(box);
         scene.add(box);
       }
-    }
+    },
   };
 
   const gui = new dat.GUI();

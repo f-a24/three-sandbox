@@ -109,7 +109,7 @@ export default () => {
         sCount: THREE.Uniform;
         grayscale: THREE.Uniform;
       }).sCount.value = controls.scanlinesCount;
-    }
+    },
   };
   const gui = new dat.GUI();
   gui

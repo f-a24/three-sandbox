@@ -99,7 +99,7 @@ export default () => {
         camera.lookAt(scene.position);
         controls.perspective = 'Perspective';
       }
-    }
+    },
   };
 
   const gui = new dat.GUI();

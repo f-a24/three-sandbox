@@ -85,7 +85,7 @@ export default () => {
     side: 'front',
     shading: 'smooth',
     color: meshMaterial.color.getStyle(),
-    selectedMesh: 'cube'
+    selectedMesh: 'cube',
   };
 
   const gui = new dat.GUI();

@@ -54,7 +54,7 @@ export default () => {
     const textureLoader = new THREE.TextureLoader();
     const ground_material = Physijs.createMaterial(
       new THREE.MeshPhongMaterial({
-        map: textureLoader.load('./assets/tex/floor-wood.jpg')
+        map: textureLoader.load('./assets/tex/floor-wood.jpg'),
       }),
       1,
       0.7
@@ -117,7 +117,7 @@ export default () => {
       new THREE.MeshLambertMaterial({
         color: 0x444444,
         opacity: 0.9,
-        transparent: true
+        transparent: true,
       }),
       1.0,
       0.5
@@ -141,7 +141,7 @@ export default () => {
       new THREE.MeshLambertMaterial({
         color: 0xff4444,
         opacity: 0.9,
-        transparent: true
+        transparent: true,
       }),
       0.5,
       0.5
@@ -207,7 +207,7 @@ export default () => {
       flConstraint,
       frConstraint,
       rlConstraint,
-      rrConstraint
+      rrConstraint,
     };
   };
 
@@ -250,7 +250,7 @@ export default () => {
       car.rlConstraint.setAngularUpperLimit(
         new THREE.Vector3(0, controls.wheelAngle, 0)
       );
-    }
+    },
   };
 
   const gui = new dat.GUI();

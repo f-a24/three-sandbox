@@ -69,7 +69,7 @@ export default () => {
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
-      map: generateSprite()
+      map: generateSprite(),
     });
     group = new THREE.Points(geometry, material);
     scene.add(group);

@@ -43,9 +43,9 @@ export default () => {
     spGroup = new THREE.Group();
     const material = new THREE.MeshBasicMaterial({
       color: 0xff0000,
-      transparent: false
+      transparent: false,
     });
-    points.forEach(point => {
+    points.forEach((point) => {
       const spGeom = new THREE.SphereGeometry(0.2);
       const spMesh = new THREE.Mesh(spGeom, material);
       spMesh.position.copy(point);
@@ -64,7 +64,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -92,7 +92,7 @@ export default () => {
       scene.remove(spGroup);
       scene.remove(hullMesh);
       generatePoints();
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'redraw');

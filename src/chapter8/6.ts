@@ -40,11 +40,11 @@ export default () => {
   let mesh: THREE.Group;
 
   const mtlLoader = new MTLLoader();
-  mtlLoader.load('./assets/butterfly.mtl', materials => {
+  mtlLoader.load('./assets/butterfly.mtl', (materials) => {
     const objLoader = new OBJLoader();
     objLoader.setMaterials(materials);
     objLoader.materials;
-    objLoader.load('./assets/butterfly.obj', object => {
+    objLoader.load('./assets/butterfly.obj', (object) => {
       const wing2 = object.children[5] as THREE.Mesh;
       const wing1 = object.children[4] as THREE.Mesh;
       const wing1material = wing1.material as THREE.Material;

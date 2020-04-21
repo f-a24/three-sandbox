@@ -5,7 +5,7 @@ import { SceneUtils } from '../../node_modules/three/examples/jsm/utils/SceneUti
 import { EffectComposer } from '../../node_modules/three/examples/jsm/postprocessing/EffectComposer';
 import {
   ClearMaskPass,
-  MaskPass
+  MaskPass,
 } from '../../node_modules/three/examples/jsm/postprocessing/MaskPass';
 import { RenderPass } from '../../node_modules/three/examples/jsm/postprocessing/RenderPass';
 import { ShaderPass } from '../../node_modules/three/examples/jsm/postprocessing/ShaderPass';
@@ -72,7 +72,7 @@ export default () => {
   const textureLoader = new THREE.TextureLoader();
   const materialColor = new THREE.MeshBasicMaterial({
     map: textureLoader.load('./assets/tex/starry-deep-outer-space-galaxy.jpg'),
-    depthTest: false
+    depthTest: false,
   });
   const bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), materialColor);
   bgPlane.position.z = -100;

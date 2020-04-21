@@ -36,7 +36,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -85,7 +85,7 @@ export default () => {
         )
       );
       scene.add(sphere);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'radius', 0, 40).onChange(controls.redraw);

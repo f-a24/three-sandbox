@@ -3,7 +3,7 @@ import * as Stats from 'stats.js';
 import * as dat from 'dat.gui';
 import {
   Lensflare,
-  LensflareElement
+  LensflareElement,
 } from '../../node_modules/three/examples/jsm/objects/Lensflare';
 // import { Lensflare, LensflareElement } from '../utils/Lensflare';
 
@@ -55,7 +55,7 @@ export default () => {
   /* cube */
   const cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
   const cubeMaterial = new THREE.MeshLambertMaterial({
-    color: 0xff3333
+    color: 0xff3333,
   });
   const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
   cube.position.x = -4;
@@ -67,7 +67,7 @@ export default () => {
   /* sphere */
   const sphereGeometry = new THREE.SphereGeometry(4, 25, 25);
   const sphereMaterial = new THREE.MeshLambertMaterial({
-    color: 0x7777ff
+    color: 0x7777ff,
   });
   const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
   sphere.position.x = 10;
@@ -150,7 +150,7 @@ export default () => {
     debug: false,
     castShadow: true,
     onlyShadow: false,
-    target: 'Plane'
+    target: 'Plane',
   };
   const gui = new dat.GUI();
 

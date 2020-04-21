@@ -54,7 +54,7 @@ export default () => {
     ({
       geometryAtoms,
       geometryBonds,
-      json
+      json,
     }: {
       geometryAtoms: THREE.BufferGeometry;
       geometryBonds: THREE.BufferGeometry;
@@ -70,7 +70,7 @@ export default () => {
         const material = new THREE.MeshPhongMaterial({
           color: new THREE.Color(
             `rgb(${atom[3][0]},${atom[3][1]},${atom[3][2]})`
-          )
+          ),
         });
         const mesh = new THREE.Mesh(sphere, material);
         mesh.position.set(
@@ -91,7 +91,7 @@ export default () => {
             bondsPositions.getX[j + 1],
             bondsPositions.getY[j + 1],
             bondsPositions.getZ[j + 1]
-          )
+          ),
         ]);
         const tube = new THREE.TubeGeometry(path, 1, 0.04);
         const material = new THREE.MeshPhongMaterial({ color: 0xcccccc });

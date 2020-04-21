@@ -36,7 +36,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const plane = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return plane;
   };
@@ -84,7 +84,7 @@ export default () => {
         )
       );
       scene.add(plane);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'width', 0, 40).onChange(controls.redraw);

@@ -49,23 +49,23 @@ export default () => {
   loader.loadWithAnimation(
     'model/kizunaai.pmx',
     'vmds/dance.vmd',
-    pmx => {
+    (pmx) => {
       mesh = pmx.mesh;
       mesh.position.y = -10;
 
       scene.add(mesh);
       helper.add(mesh, {
         animation: pmx.animation,
-        physics: true
+        physics: true,
       });
     },
-    xhr => {
+    (xhr) => {
       if (xhr.lengthComputable) {
         const percentComplete = (xhr.loaded / xhr.total) * 100;
         console.log(`${Math.round(percentComplete)}% downloaded`);
       }
     },
-    error => {
+    (error) => {
       console.log('ERROR:', error);
     }
   );

@@ -51,7 +51,7 @@ export default () => {
   spotLight.castShadow = true;
   scene.add(spotLight);
 
-  (argScene => {
+  ((argScene) => {
     const geoms = [];
     geoms.push(new THREE.CylinderGeometry(1, 4, 4));
     geoms.push(new THREE.BoxGeometry(2, 2, 2));
@@ -65,7 +65,7 @@ export default () => {
       new THREE.Vector3(2, -2, 2),
       new THREE.Vector3(2, -2, -2),
       new THREE.Vector3(-2, -2, -2),
-      new THREE.Vector3(-2, -2, 2)
+      new THREE.Vector3(-2, -2, 2),
     ];
     geoms.push(new ConvexGeometry(points));
 
@@ -113,16 +113,16 @@ export default () => {
       const materials = [
         new THREE.MeshPhongMaterial({
           color: Math.random() * 0xffffff,
-          flatShading: true
+          flatShading: true,
         }),
         new THREE.MeshBasicMaterial({
           color: 0x000000,
-          wireframe: true
-        })
+          wireframe: true,
+        }),
       ];
 
       const mesh = SceneUtils.createMultiMaterialObject(geoms[i], materials);
-      mesh.traverse(e => {
+      mesh.traverse((e) => {
         e.castShadow = true;
       });
       mesh.position.x = -24 + (i % 4) * 12;

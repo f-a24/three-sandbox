@@ -74,7 +74,7 @@ export default () => {
     scale: chroma.Scale<chroma.Color>
   ) => {
     if (material instanceof THREE.MultiMaterial) {
-      material.materials.forEach(mat => {
+      material.materials.forEach((mat) => {
         _setRandomColors(mat, scale);
       });
     } else {
@@ -99,7 +99,7 @@ export default () => {
   textureLoader.load('./assets/tex/metro01.jpg');
   const mtlLoader = new MTLLoader();
   // mtlLoader.setBaseUrl("./assets/models/"); // ← 型定義から削除する必要あり
-  mtlLoader.load('./assets/city.mtl', materials => {
+  mtlLoader.load('./assets/city.mtl', (materials) => {
     materials.preload();
     const objLoader = new OBJLoader();
     objLoader.setMaterials(materials);

@@ -33,13 +33,13 @@ export default () => {
   const groundMesh = SceneUtils.createMultiMaterialObject(ground, [
     new THREE.MeshBasicMaterial({
       wireframe: true,
-      color: 0x000000
+      color: 0x000000,
     }),
     new THREE.MeshBasicMaterial({
       color: 0x00ff00,
       transparent: true,
-      opacity: 0.5
-    })
+      opacity: 0.5,
+    }),
   ]);
   groundMesh.rotation.x = -0.5 * Math.PI;
   scene.add(groundMesh);
@@ -51,7 +51,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     return SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
   };
 
@@ -151,13 +151,13 @@ export default () => {
           color: 0x000000,
           vertexColors: true,
           wireframeLinewidth: 2,
-          wireframe: true
+          wireframe: true,
         })
       );
       bboxMesh.position.x = (box.min.x + box.max.x) / 2;
       bboxMesh.position.y = (box.min.y + box.max.y) / 2;
       bboxMesh.position.z = (box.min.z + box.max.z) / 2;
-    }
+    },
   };
 
   const gui = new dat.GUI();

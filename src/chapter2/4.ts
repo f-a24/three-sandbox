@@ -79,7 +79,7 @@ export default () => {
       controls.positionX = cube.position.x;
       controls.positionY = cube.position.y;
       controls.positionZ = cube.position.z;
-    }
+    },
   };
   const gui = new dat.GUI();
   const guiScale = gui.addFolder('scale');

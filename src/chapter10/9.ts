@@ -51,11 +51,11 @@ export default () => {
     let before_x = 0;
     let before_y = 0;
 
-    canvas.addEventListener('mousemove', e => {
+    canvas.addEventListener('mousemove', (e) => {
       if (!drawing) return;
       const {
         left,
-        top
+        top,
       } = (e.target as HTMLCanvasElement).getBoundingClientRect();
       const x = e.clientX - left;
       const y = e.clientY - top;
@@ -70,11 +70,11 @@ export default () => {
       before_x = x;
       before_y = y;
     });
-    canvas.addEventListener('mousedown', e => {
+    canvas.addEventListener('mousedown', (e) => {
       drawing = true;
       const {
         left,
-        top
+        top,
       } = (e.target as HTMLCanvasElement).getBoundingClientRect();
       before_x = e.clientX - left;
       before_y = e.clientY - top;
@@ -110,7 +110,7 @@ export default () => {
       } else {
         canvas.style.display = 'none';
       }
-    }
+    },
   };
 
   const gui = new dat.GUI();

@@ -53,7 +53,7 @@ export default () => {
     const textureLoader = new THREE.TextureLoader();
     ground_material = Physijs.createMaterial(
       new THREE.MeshPhongMaterial({
-        map: textureLoader.load('./assets/tex/floor-wood.jpg')
+        map: textureLoader.load('./assets/tex/floor-wood.jpg'),
       }),
       0.9,
       0.7
@@ -117,7 +117,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: 0x4444ff,
           transparent: true,
-          opacity: 0.7
+          opacity: 0.7,
         }),
         0,
         0
@@ -136,7 +136,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: 0x4444ff,
           transparent: true,
-          opacity: 0.7
+          opacity: 0.7,
         }),
         0,
         0
@@ -172,7 +172,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: 0xff4444,
           transparent: true,
-          opacity: 0.7
+          opacity: 0.7,
         }),
         0,
         0
@@ -190,7 +190,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: 0xff4444,
           transparent: true,
-          opacity: 0.7
+          opacity: 0.7,
         }),
         0,
         0
@@ -218,7 +218,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: 0x44ff44,
           opacity: 0.6,
-          transparent: true
+          transparent: true,
         }),
         0,
         0
@@ -249,7 +249,7 @@ export default () => {
         new THREE.MeshPhongMaterial({
           color: 0x44ff44,
           transparent: true,
-          opacity: 0.5
+          opacity: 0.5,
         }),
         0,
         0
@@ -421,7 +421,7 @@ export default () => {
       );
     },
     clearMeshes: () => {
-      meshes.forEach(e => {
+      meshes.forEach((e) => {
         scene.remove(e);
       });
       meshes = [];
@@ -435,7 +435,7 @@ export default () => {
             new THREE.MeshPhongMaterial({
               color: colorSphere,
               opacity: 0.8,
-              transparent: true
+              transparent: true,
             })
           ),
           0.1
@@ -450,7 +450,7 @@ export default () => {
         meshes.push(box);
         scene.add(box);
       }
-    }
+    },
   };
   controls.updateMotor();
 

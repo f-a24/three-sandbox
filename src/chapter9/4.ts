@@ -69,7 +69,7 @@ export default () => {
     scale: chroma.Scale<chroma.Color>
   ) => {
     if (material instanceof THREE.MultiMaterial) {
-      material.materials.forEach(mat => {
+      material.materials.forEach((mat) => {
         _setRandomColors(mat, scale);
       });
     } else {
@@ -91,7 +91,7 @@ export default () => {
   };
 
   const mtlLoader = new MTLLoader();
-  mtlLoader.load('./assets/city.mtl', materials => {
+  mtlLoader.load('./assets/city.mtl', (materials) => {
     materials.preload();
     const objLoader = new OBJLoader();
     objLoader.setMaterials(materials);

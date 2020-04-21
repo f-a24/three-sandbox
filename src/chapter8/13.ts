@@ -53,7 +53,7 @@ export default () => {
   const loader = new AWDLoader();
   const group = new THREE.Object3D();
   loader.load('./assets/PolarBear.awd', (model: THREE.Object3D) => {
-    model.traverse(child => {
+    model.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.material = new THREE.MeshLambertMaterial({ color: 0xaaaaaa });
       }

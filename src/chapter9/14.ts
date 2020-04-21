@@ -36,7 +36,7 @@ export default () => {
   document.getElementById('WebGL-output').appendChild(renderer.domElement);
 
   const loader = new GLTFLoader();
-  loader.load('./assets/Cesium_Air.gltf', gltf => {
+  loader.load('./assets/Cesium_Air.gltf', (gltf) => {
     scene.add(gltf.scene);
   });
 

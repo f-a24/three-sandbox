@@ -51,9 +51,9 @@ export default () => {
     spGroup.rotation.y = -Math.PI / 2;
     const material = new THREE.MeshBasicMaterial({
       color: 0xff0000,
-      transparent: false
+      transparent: false,
     });
-    points.forEach(point => {
+    points.forEach((point) => {
       const spGeom = new THREE.SphereGeometry(0.2);
       const spMesh = new THREE.Mesh(spGeom, material);
       spMesh.position.set(point.x, point.y, 0);
@@ -77,7 +77,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -108,13 +108,10 @@ export default () => {
       scene.remove(spGroup);
       scene.remove(latheMesh);
       generatePoints(controls.segments, controls.phiStart, controls.phiLength);
-    }
+    },
   };
   const gui = new dat.GUI();
-  gui
-    .add(controls, 'segments', 0, 50)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'segments', 0, 50).step(1).onChange(controls.redraw);
   gui.add(controls, 'phiStart', 0, 2 * Math.PI).onChange(controls.redraw);
   gui.add(controls, 'phiLength', 0, 2 * Math.PI).onChange(controls.redraw);
 

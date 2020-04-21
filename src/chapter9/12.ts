@@ -37,7 +37,7 @@ export default () => {
 
   let mixer: THREE.AnimationMixer;
   const loader = new ColladaLoader();
-  loader.load('./assets/monster.dae', collada => {
+  loader.load('./assets/monster.dae', (collada) => {
     const child = collada.scene;
     scene.add(child);
 

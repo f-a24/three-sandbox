@@ -37,12 +37,12 @@ export default () => {
   ) => {
     const geom = new THREE.Geometry();
     const material = new THREE.PointsMaterial({
-      size: size,
-      transparent: transparent,
-      opacity: opacity,
-      vertexColors: vertexColors,
-      sizeAttenuation: sizeAttenuation,
-      color: color
+      size,
+      transparent,
+      opacity,
+      vertexColors,
+      sizeAttenuation,
+      color,
     });
     const range = 500;
     for (let i = 0; i < 15000; i++) {
@@ -100,7 +100,7 @@ export default () => {
         controls.sizeAttenuation,
         controls.color
       );
-    }
+    },
   };
 
   const gui = new dat.GUI();

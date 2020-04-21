@@ -60,7 +60,7 @@ export default () => {
       transparent: true,
       blending: THREE.AdditiveBlending,
       map: generateSprite(),
-      depthWrite: false
+      depthWrite: false,
     });
     return new THREE.Points(geom, material);
   };
@@ -95,27 +95,15 @@ export default () => {
       );
       knot = controls.asParticles ? createPoints(geom) : createMesh(geom);
       scene.add(knot);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'radius', 0, 40).onChange(controls.redraw);
   gui.add(controls, 'tube', 0, 40).onChange(controls.redraw);
-  gui
-    .add(controls, 'radialSegments', 0, 400)
-    .step(1)
-    .onChange(controls.redraw);
-  gui
-    .add(controls, 'tubularSegments', 1, 20)
-    .step(1)
-    .onChange(controls.redraw);
-  gui
-    .add(controls, 'p', 1, 10)
-    .step(1)
-    .onChange(controls.redraw);
-  gui
-    .add(controls, 'q', 1, 15)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'radialSegments', 0, 400).step(1).onChange(controls.redraw);
+  gui.add(controls, 'tubularSegments', 1, 20).step(1).onChange(controls.redraw);
+  gui.add(controls, 'p', 1, 10).step(1).onChange(controls.redraw);
+  gui.add(controls, 'q', 1, 15).step(1).onChange(controls.redraw);
   gui.add(controls, 'asParticles').onChange(controls.redraw);
   gui.add(controls, 'rotate').onChange(controls.redraw);
 

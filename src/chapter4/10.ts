@@ -55,7 +55,7 @@ export default () => {
     };
     const rg = (st: number, ln: number, turtle: number[]) => {
       st--;
-      ln = ln / 2.6457;
+      ln /= 2.6457;
       if (st > 0) {
         rg(st, ln, turtle);
         rt(60);
@@ -89,7 +89,7 @@ export default () => {
     };
     const gl = (st: number, ln: number, turtle: number[]) => {
       st--;
-      ln = ln / 2.6457;
+      ln /= 2.6457;
       if (st > 0) {
         lt(60);
         rg(st, ln, turtle);
@@ -142,7 +142,7 @@ export default () => {
     vertexColors: true,
     dashSize: 2,
     gapSize: 2,
-    scale: 0.1
+    scale: 0.1,
   });
   const line = new THREE.Line(lines, material);
   line.position.set(25, -30, -60);

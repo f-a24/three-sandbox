@@ -45,15 +45,15 @@ export default () => {
       time: { type: 'f', value: 0.2 },
       scale: { type: 'f', value: 0.2 },
       alpha: { type: 'f', value: 0.6 },
-      resolution: { type: 'v2', value: new THREE.Vector2() }
+      resolution: { type: 'v2', value: new THREE.Vector2() },
     };
     uniforms.resolution.value.x = window.innerWidth;
     uniforms.resolution.value.y = window.innerHeight;
     const meshMaterial = new THREE.ShaderMaterial({
-      uniforms: uniforms,
+      uniforms,
       vertexShader: vertShader,
       fragmentShader: fragShader,
-      transparent: true
+      transparent: true,
     });
     return meshMaterial;
   };
@@ -90,7 +90,7 @@ export default () => {
     meshMaterial3,
     meshMaterial4,
     meshMaterial5,
-    meshMaterial6
+    meshMaterial6,
   ]);
   // const cube = new THREE.Mesh(cubeGeometry, [
   //   meshMaterial2,
@@ -144,7 +144,7 @@ export default () => {
     cube.rotation.x = step;
     cube.rotation.z = step;
 
-    (cube.material as THREE.ShaderMaterial[]).forEach(m => {
+    (cube.material as THREE.ShaderMaterial[]).forEach((m) => {
       m.uniforms.time.value += 0.01;
     });
     requestAnimationFrame(renderScene);

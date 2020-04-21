@@ -75,7 +75,7 @@ export default () => {
     goWild: false,
     updateEffect: () => {
       effectGlitch.goWild = controls.goWild;
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'goWild').onChange(controls.updateEffect);

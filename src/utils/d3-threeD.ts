@@ -2,43 +2,43 @@ import * as THREE from 'three';
 
 const DEGS_TO_RADS = Math.PI / 180;
 
-const DIGIT_0 = 48,
-  DIGIT_9 = 57,
-  COMMA = 44,
-  SPACE = 32,
-  PERIOD = 46,
-  MINUS = 45;
+const DIGIT_0 = 48;
+const DIGIT_9 = 57;
+const COMMA = 44;
+const SPACE = 32;
+const PERIOD = 46;
+const MINUS = 45;
 
 const transformSVGPathExposed = (pathStr: string): THREE.Shape[] => {
   const paths = [] as THREE.Shape[];
   let path = new THREE.Shape();
 
-  let idx = 1,
-    len = pathStr.length,
-    activeCmd,
-    x = 0,
-    y = 0,
-    nx = 0,
-    ny = 0,
-    firstX = null,
-    firstY = null,
-    x1 = 0,
-    x2 = 0,
-    y1 = 0,
-    y2 = 0,
-    rx = 0,
-    ry = 0,
-    xar = 0,
-    laf = 0,
-    sf = 0,
-    cx,
-    cy;
+  let idx = 1;
+  const len = pathStr.length;
+  let activeCmd;
+  let x = 0;
+  let y = 0;
+  let nx = 0;
+  let ny = 0;
+  let firstX = null;
+  let firstY = null;
+  let x1 = 0;
+  let x2 = 0;
+  let y1 = 0;
+  let y2 = 0;
+  let rx = 0;
+  let ry = 0;
+  let xar = 0;
+  let laf = 0;
+  let sf = 0;
+  let cx;
+  let cy;
 
   function eatNum() {
-    let sidx,
-      c,
-      isFloat = false,
-      s;
+    let sidx;
+    let c;
+    let isFloat = false;
+    let s;
     // eat delims
     while (idx < len) {
       c = pathStr.charCodeAt(idx);
@@ -234,8 +234,8 @@ const transformSVGPathExposed = (pathStr: string): THREE.Shape[] => {
         cx = Math.cos(xar) * x2 - Math.sin(xar) * y2 + (x + nx) / 2;
         cy = Math.sin(xar) * x2 + Math.cos(xar) * y2 + (y + ny) / 2;
 
-        let u = new THREE.Vector2(1, 0),
-          v = new THREE.Vector2((x1 - x2) / rx, (y1 - y2) / ry);
+        const u = new THREE.Vector2(1, 0);
+        const v = new THREE.Vector2((x1 - x2) / rx, (y1 - y2) / ry);
         let startAng = Math.acos(u.dot(v) / u.length() / v.length());
         if (u.x * v.y - u.y * v.x < 0) startAng = -startAng;
 
@@ -259,7 +259,7 @@ const transformSVGPathExposed = (pathStr: string): THREE.Shape[] => {
         break;
 
       default:
-        throw new Error('weird path command: ' + activeCmd);
+        throw new Error(`weird path command: ${activeCmd}`);
     }
     if (firstX === null && !enteredSub) {
       firstX = x;
@@ -273,10 +273,9 @@ const transformSVGPathExposed = (pathStr: string): THREE.Shape[] => {
 
   if (zSeen) {
     return paths;
-  } else {
-    paths.push(path);
-    return paths;
   }
+  paths.push(path);
+  return paths;
 };
 
 export { transformSVGPathExposed };

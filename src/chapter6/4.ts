@@ -33,13 +33,13 @@ export default () => {
     const meshMaterial = new THREE.MeshBasicMaterial({
       color: 0x00ff00,
       transparent: true,
-      opacity: 0.2
+      opacity: 0.2,
     });
     const wireFrameMat = new THREE.MeshBasicMaterial();
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -56,9 +56,9 @@ export default () => {
     spGroup = new THREE.Object3D();
     const material = new THREE.MeshBasicMaterial({
       color: 0xff0000,
-      transparent: false
+      transparent: false,
     });
-    points.forEach(point => {
+    points.forEach((point) => {
       const spGeom = new THREE.SphereGeometry(0.2);
       const spMesh = new THREE.Mesh(spGeom, material);
       spMesh.position.copy(point);
@@ -120,7 +120,7 @@ export default () => {
         controls.radiusSegments,
         controls.closed
       );
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'newPoints');
@@ -128,15 +128,9 @@ export default () => {
     .add(controls, 'numberOfPoints', 2, 15)
     .step(1)
     .onChange(controls.newPoints);
-  gui
-    .add(controls, 'segments', 0, 200)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'segments', 0, 200).step(1).onChange(controls.redraw);
   gui.add(controls, 'radius', 0, 10).onChange(controls.redraw);
-  gui
-    .add(controls, 'radiusSegments', 0, 100)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'radiusSegments', 0, 100).step(1).onChange(controls.redraw);
   gui.add(controls, 'closed').onChange(controls.redraw);
 
   controls.newPoints();

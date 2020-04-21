@@ -149,7 +149,7 @@ export default () => {
       composer3.addPass(renderScene);
       composer3.addPass(bloomPass);
       composer3.addPass(effectCopy);
-    }
+    },
   };
 
   const gui = new dat.GUI();

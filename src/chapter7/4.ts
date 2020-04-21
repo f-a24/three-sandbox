@@ -81,7 +81,7 @@ export default () => {
   const createSprites = () => {
     const material = new THREE.SpriteMaterial({
       map: getTexture(),
-      color: 0xffffff
+      color: 0xffffff,
     });
 
     const range = 500;

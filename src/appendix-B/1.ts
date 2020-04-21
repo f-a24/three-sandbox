@@ -34,17 +34,17 @@ export default () => {
   const loader = new MMDLoader();
   loader.load(
     'model/kizunaai.pmx',
-    mesh => {
+    (mesh) => {
       mesh.position.y = -10;
       scene.add(mesh);
     },
-    xhr => {
+    (xhr) => {
       if (xhr.lengthComputable) {
         const percentComplete = (xhr.loaded / xhr.total) * 100;
         console.log(`${Math.round(percentComplete)}% downloaded`);
       }
     },
-    error => {
+    (error) => {
       console.log('ERROR:', error);
     }
   );

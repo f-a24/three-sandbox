@@ -37,7 +37,7 @@ export default () => {
 
   const loader = new STLLoader();
   let group = new THREE.Object3D();
-  loader.load('./assets/SolidHead_2_lowPoly_42k.stl', geometry => {
+  loader.load('./assets/SolidHead_2_lowPoly_42k.stl', (geometry) => {
     const mat = new THREE.MeshLambertMaterial({ color: 0x7777ff });
     group = new THREE.Mesh(geometry, mat);
     group.rotation.x = -0.5 * Math.PI;

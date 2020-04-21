@@ -41,14 +41,14 @@ export default () => {
     const geom = new THREE.Geometry();
 
     const material = new THREE.PointsMaterial({
-      size: size,
-      transparent: transparent,
-      opacity: opacity,
+      size,
+      transparent,
+      opacity,
       depthWrite: false,
       map: texture,
       blending: THREE.AdditiveBlending,
-      sizeAttenuation: sizeAttenuation,
-      color: color
+      sizeAttenuation,
+      color,
     });
     const range = 40;
     for (let i = 0; i < 1500; i++) {
@@ -60,7 +60,7 @@ export default () => {
       geom.vertices.push(particle);
       velocities.push({
         x: (Math.random() - 0.5) / 3,
-        y: 0.1 + Math.random() / 5
+        y: 0.1 + Math.random() / 5,
       });
     }
     cloud = new THREE.Points(geom, material);
@@ -85,7 +85,7 @@ export default () => {
         controls.sizeAttenuation,
         controls.color
       );
-    }
+    },
   };
 
   /* gui */
@@ -109,14 +109,14 @@ export default () => {
   const stats = initStats();
 
   /* render */
-  let step = 0;
+  const step = 0;
   const renderScene = () => {
     stats.update();
 
-    const vertices = (cloud.geometry as THREE.Geometry).vertices;
+    const { vertices } = cloud.geometry as THREE.Geometry;
     vertices.forEach((v, i) => {
-      v.y = v.y - velocities[i].y;
-      v.x = v.x - velocities[i].x;
+      v.y -= velocities[i].y;
+      v.x -= velocities[i].x;
       if (v.y <= 0) v.y = 60;
       if (v.x <= -20 || v.x >= 20) velocities[i].x = velocities[i].x * -1;
     });

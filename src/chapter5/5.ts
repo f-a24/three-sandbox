@@ -36,7 +36,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -91,7 +91,7 @@ export default () => {
         )
       );
       scene.add(cube);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'width', 0, 40).onChange(controls.redraw);

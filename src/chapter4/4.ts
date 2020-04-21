@@ -107,7 +107,7 @@ export default () => {
     wireframe: meshMaterial.wireframe,
     wireframeLinewidth: meshMaterial.wireframeLinewidth,
     selectedMesh: 'cube',
-    shading: 'flat'
+    shading: 'flat',
   };
 
   const gui = new dat.GUI();

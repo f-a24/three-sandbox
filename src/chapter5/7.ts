@@ -36,7 +36,7 @@ export default () => {
     wireFrameMat.wireframe = true;
     const mesh = SceneUtils.createMultiMaterialObject(geom, [
       meshMaterial,
-      wireFrameMat
+      wireFrameMat,
     ]);
     return mesh;
   };
@@ -84,20 +84,14 @@ export default () => {
         )
       );
       scene.add(cylinder);
-    }
+    },
   };
   const gui = new dat.GUI();
   gui.add(controls, 'radiusTop', -40, 40).onChange(controls.redraw);
   gui.add(controls, 'radiusBottom', -40, 40).onChange(controls.redraw);
   gui.add(controls, 'height', 0, 40).onChange(controls.redraw);
-  gui
-    .add(controls, 'radialSegments', 1, 20)
-    .step(1)
-    .onChange(controls.redraw);
-  gui
-    .add(controls, 'heightSegments', 1, 20)
-    .step(1)
-    .onChange(controls.redraw);
+  gui.add(controls, 'radialSegments', 1, 20).step(1).onChange(controls.redraw);
+  gui.add(controls, 'heightSegments', 1, 20).step(1).onChange(controls.redraw);
   gui.add(controls, 'openEnded').onChange(controls.redraw);
   gui.add(controls, 'thetaStart', 0, 2 * Math.PI).onChange(controls.redraw);
   gui.add(controls, 'thetaLength', 0, 2 * Math.PI).onChange(controls.redraw);

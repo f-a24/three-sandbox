@@ -39,7 +39,7 @@ export default () => {
 
   let mesh: THREE.Group;
   const loader = new OBJLoader();
-  loader.load('./assets/pinecone.obj', loadedMesh => {
+  loader.load('./assets/pinecone.obj', (loadedMesh) => {
     const material = new THREE.MeshLambertMaterial({ color: 0x5c3a21 });
     loadedMesh.children.forEach((child: THREE.Mesh) => {
       child.material = material;
