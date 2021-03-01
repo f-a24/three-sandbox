@@ -25,7 +25,7 @@
     "dat.gui": "^0.7.7",
     "spin.js": "^4.1.0",
     "stats.js": "^0.17.0",
-    "three": "^0.115.0"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
